@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import Logo from './ui/logo'
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,17 +31,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#50626C] to-[#8D9DA6] flex items-center justify-center group-hover:scale-105 transition-transform">
-              <div className="w-6 h-6 border-2 border-white" />
-            </div>
-            <div>
-              <div className="text-[#50626C] tracking-[0.02em] leading-none" style={{ fontWeight: 800, fontSize: '18px' }}>
-                ГАЗПРОЕКТ
-              </div>
-              <div className="text-[#8D9DA6] tracking-[0.1em] leading-none" style={{ fontWeight: 500, fontSize: '10px' }}>
-                ИНЖИНИРИНГ
-              </div>
-            </div>
+            <Logo width={100}/>
           </Link>
 
           {/* Desktop menu */}

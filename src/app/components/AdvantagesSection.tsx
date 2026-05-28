@@ -6,7 +6,7 @@ export function AdvantagesSection() {
     {
       icon: Factory,
       title: 'Собственное производство',
-      description: '12 000 м² современных цехов с полным циклом изготовления оборудования',
+      description: '4 000 м² современных цехов с полным циклом изготовления оборудования',
       accent: 'from-[#50626C] to-[#595B5C]',
     },
     {
@@ -17,7 +17,7 @@ export function AdvantagesSection() {
     },
     {
       icon: TrendingUp,
-      title: '200+ проектов',
+      title: '2000+ проектов',
       description: 'Успешно реализованные поставки для ведущих корпораций России',
       accent: 'from-[#8D9DA6] to-[#A7A9AC]',
     },
@@ -29,7 +29,7 @@ export function AdvantagesSection() {
     },
     {
       icon: Award,
-      title: '21 год на рынке',
+      title: 'более 20 лет на рынке',
       description: 'Надежность, проверенная временем и сотнями успешных проектов',
       accent: 'from-[#595B5C] to-[#A7A9AC]',
     },
@@ -129,55 +129,6 @@ export function AdvantagesSection() {
             );
           })}
         </div>
-
-        {/* Bottom stats bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-20 p-12 bg-gradient-to-r from-[#50626C] to-[#8D9DA6] relative overflow-hidden"
-        >
-          {/* Pattern overlay */}
-          <div
-            className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 2v36M2 20h36' stroke='%23ffffff' stroke-width='1' fill='none'/%3E%3C/svg%3E")`,
-            }}
-          />
-
-          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: '12 000', unit: 'м²', label: 'Производство' },
-              { value: '200', unit: '+', label: 'Проектов' },
-              { value: '150', unit: '+', label: 'Специалистов' },
-              { value: '21', unit: 'год', label: 'Опыт работы' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="flex items-baseline justify-center gap-1 mb-2">
-                  <span
-                    className="text-white"
-                    style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 800, letterSpacing: '-0.02em' }}
-                  >
-                    {stat.value}
-                  </span>
-                  <span
-                    className="text-[#A7A9AC]"
-                    style={{ fontSize: '18px', fontWeight: 700 }}
-                  >
-                    {stat.unit}
-                  </span>
-                </div>
-                <div
-                  className="text-white/70"
-                  style={{ fontSize: '13px', fontWeight: 500, letterSpacing: '0.05em' }}
-                >
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

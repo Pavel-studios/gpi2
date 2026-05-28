@@ -4,7 +4,7 @@ import { Users, Shield, MapPin, Award, Building2, Calendar, CheckCircle2, Trendi
 export function AboutSection() {
   const timeline = [
     { year: '2005', event: 'Основание предприятия', description: 'Запуск первого производственного цеха' },
-    { year: '2010', event: 'Расширение производства', description: 'Увеличение площадей до 8 000 м²' },
+    { year: '2010', event: 'Расширение производства', description: 'Увеличение площадей до 4 000 м²' },
     { year: '2015', event: 'Получение лицензий Ростехнадзора', description: 'Аттестация по всем направлениям' },
     { year: '2018', event: 'Запуск нового сварочного цеха', description: 'Внедрение современного оборудования' },
     { year: '2022', event: 'Сертификация по ASME', description: 'Международное признание качества' },

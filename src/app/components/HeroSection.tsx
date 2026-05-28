@@ -60,10 +60,10 @@ export function HeroSection() {
             >
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: '12 000', unit: 'м²', label: 'Площадь производства' },
-                  { value: '200', unit: '+', label: 'Реализованных проектов' },
-                  { value: '21', unit: 'год', label: 'На рынке' },
-                  { value: '150', unit: '+', label: 'Специалистов' },
+                  { value: '4 000', unit: 'м²', label: 'Площадь производства' },
+                  { value: '2000', unit: '+', label: 'Реализованных проектов' },
+                  { value: '20', unit: '+', label: 'Лет на рынке' },
+                  { value: '50', unit: '+', label: 'Партнеров' },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -104,7 +104,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="absolute -bottom-8 -left-8 px-6 py-4 bg-gradient-to-r from-[#50626C] to-[#8D9DA6] border-2 border-white/30 shadow-2xl"
+                className="absolute -bottom-16 -left-8 px-6 py-4 bg-gradient-to-r from-[#50626C] to-[#8D9DA6] border-2 border-white/30 shadow-2xl"
               >
                 <div className="text-white text-center">
                   <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em' }} className="text-white/70 mb-1">

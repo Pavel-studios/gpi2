@@ -27,7 +27,7 @@ export function ProductionPreview() {
   ];
 
   const stats = [
-    { value: '12 000', unit: 'м²', label: 'Общая площадь' },
+    { value: '4 000', unit: 'м²', label: 'Общая площадь' },
     { value: '50', unit: 'тонн', label: 'Макс. масса изделия' },
     { value: '24', unit: '/7', label: 'Режим работы' },
   ];

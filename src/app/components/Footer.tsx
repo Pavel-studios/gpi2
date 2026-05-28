@@ -1,5 +1,6 @@
 import { Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Logo from './ui/logo';
 
 export function Footer() {
   const navigationLinks = [
@@ -23,19 +24,7 @@ export function Footer() {
       <div className="relative max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-white/20 flex items-center justify-center">
-                <div className="w-7 h-7 border-2 border-white" />
-              </div>
-              <div>
-                <div className="text-white leading-none mb-1" style={{ fontWeight: 800, fontSize: '16px', letterSpacing: '0.02em' }}>
-                  ГАЗПРОЕКТ
-                </div>
-                <div className="text-white/70 leading-none" style={{ fontWeight: 500, fontSize: '9px', letterSpacing: '0.1em' }}>
-                  ИНЖИНИРИНГ
-                </div>
-              </div>
-            </div>
+            <Logo className="pb-4" fill="#FFFFFF" width={100}/>
             <p
               className="text-white/70"
               style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6 }}

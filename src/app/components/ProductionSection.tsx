@@ -81,7 +81,7 @@ export function ProductionSection() {
   ];
 
   const capabilities = [
-    { icon: Factory, value: '12 000', unit: 'м²', label: 'Общая площадь' },
+    { icon: Factory, value: '4 000', unit: 'м²', label: 'Общая площадь' },
     { icon: Cog, value: '50', unit: 'тонн', label: 'Макс. масса изделия' },
     { icon: Award, value: '24', unit: '/7', label: 'Режим работы' },
   ];
@@ -126,7 +126,7 @@ export function ProductionSection() {
                 className="text-white/80 mb-8"
                 style={{ fontSize: '18px', fontWeight: 400, lineHeight: 1.7 }}
               >
-                12 000 м² современных производственных площадей с полным циклом изготовления оборудования.
+                4 000 м² современных производственных площадей с полным циклом изготовления оборудования.
                 Визуальное подтверждение наличия собственного производства.
               </p>
 
