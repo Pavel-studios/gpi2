@@ -266,15 +266,15 @@ export function ProductionSection() {
                     </div>
 
                     {/* Right: Content */}
-                    <div className="lg:col-span-7 p-8 flex flex-col justify-between">
+                    <div className="lg:col-span-7 p-4 sm:p-8 flex flex-col justify-between">
                       <div>
                         <div className="flex items-center gap-4 mb-4">
                           <div className={`p-4 bg-gradient-to-br ${area.gradient}`}>
                             <Icon className="text-white" size={28} strokeWidth={1.5} />
                           </div>
                           <h3
-                            className="text-[#50626C]"
-                            style={{ fontSize: '28px', fontWeight: 700 }}
+                            className="text-[#50626C] text-[20px] sm:text-[28px]"
+                            style={{ fontWeight: 700 }}
                           >
                             {area.title}
                           </h3>
@@ -289,7 +289,7 @@ export function ProductionSection() {
 
                         {/* Details list */}
                         {(area.details || area.controls || area.features) && (
-                          <div className="grid grid-cols-2 gap-3 mb-6">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                             {(area.details || []).map((detail, idx) => (
                               <div key={idx} className="flex items-center gap-2">
                                 <div className="w-1.5 h-1.5 rounded-full bg-[#8D9DA6]" />
@@ -351,9 +351,9 @@ export function ProductionSection() {
 
                         {/* Stats */}
                         {area.stats && (
-                          <div className="grid grid-cols-3 gap-4">
+                          <div className="grid grid-cols-3 gap-1 ms:gap-4">
                             {area.stats.map((stat, idx) => (
-                              <div key={idx} className="p-4 bg-[#F5F5F5] border border-[#A7A9AC]/10">
+                              <div key={idx} className="p-1 sm:p-4 bg-[#F5F5F5] text-[14px] sm:text-[18px] border border-[#A7A9AC]/10">
                                 <div
                                   className="text-[#A7A9AC] mb-1"
                                   style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.05em' }}
@@ -362,7 +362,7 @@ export function ProductionSection() {
                                 </div>
                                 <div
                                   className="text-[#50626C]"
-                                  style={{ fontSize: '18px', fontWeight: 800 }}
+                                  style={{ fontWeight: 800 }}
                                 >
                                   {stat.value}
                                 </div>
