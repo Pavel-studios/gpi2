@@ -136,9 +136,6 @@ export function IndustriesSection() {
                     {industries[0].projects}
                   </div>
                 </div>
-                <div className="w-12 h-12 border-2 border-white/30 flex items-center justify-center group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
-                  <ArrowUpRight className="text-white" size={24} />
-                </div>
               </div>
             </div>
           </motion.div>
