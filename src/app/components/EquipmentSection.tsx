@@ -106,6 +106,13 @@ export function EquipmentSection() {
       images: ['lukoil1.jpg', 'lukoil2.jpg']
     }
   ];
+  const standards = [
+    { name: 'ГОСТ', fullName: 'Российские стандарты', color: 'from-[#50626C] to-[#595B5C]' },
+    { name: 'ТР ТС', fullName: 'Технический регламент ТС', color: 'from-[#595B5C] to-[#8D9DA6]' },
+    { name: 'Ростехнадзор', fullName: 'Требования Ростехнадзора', color: 'from-[#8D9DA6] to-[#A7A9AC]' },
+    { name: 'ASME', fullName: 'American Society of Mechanical Engineers', color: 'from-[#50626C] to-[#8D9DA6]' },
+    { name: 'EN', fullName: 'European Norms', color: 'from-[#595B5C] to-[#A7A9AC]' },
+  ];
 
   return (
     <div className="pt-20">
@@ -413,6 +420,60 @@ export function EquipmentSection() {
               </div>
             ))}
           </motion.div>
+        </div>
+      </section>
+      <section className="relative py-16 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-block px-4 py-2 bg-[#50626C]/5 border border-[#50626C]/10 mb-6">
+              <span className="text-[#50626C]" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
+                СЕРТИФИКАЦИЯ
+              </span>
+            </div>
+            <h2
+              className="text-[#50626C] mb-6"
+              style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em' }}
+            >
+              Соответствие стандартам
+            </h2>
+          </motion.div>
+      
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {standards.map((standard, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white border-2 border-[#A7A9AC]/30 group-hover:border-[#8D9DA6]/60 transition-all duration-300" />
+                <div className={`absolute inset-0 bg-gradient-to-br ${standard.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+      
+                <div className="relative p-8 text-center">
+                  <div
+                    className="text-[#50626C] group-hover:text-white mb-3 transition-colors"
+                    style={{ fontSize: '22px', fontWeight: 800, letterSpacing: '0.05em' }}
+                  >
+                    {standard.name}
+                  </div>
+                  <div
+                    className="text-[#595B5C] group-hover:text-white/80 transition-colors"
+                    style={{ fontSize: '12px', fontWeight: 400, lineHeight: 1.3 }}
+                  >
+                    {standard.fullName}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
