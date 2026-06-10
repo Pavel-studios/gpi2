@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { RotateCw, Workflow, Wrench, Package, Settings, Cog, ArrowUpRight, ArrowRight, ArrowDown, Gauge, Droplet, CheckCircle2, Layers } from 'lucide-react';
+import pattern from '@/imports/pattern.svg'
 
 export function EquipmentSection() {
   const equipment = [
@@ -119,11 +120,11 @@ export function EquipmentSection() {
       {/* Hero */}
       <section className="relative py-16 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(167,169,172,0.2),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/>
 
         {/* Geometric patterns */}
-        <div className="absolute top-10 right-10 w-96 h-96 border border-white/10 rotate-12 rounded-full" />
-        <div className="absolute bottom-10 left-10 w-64 h-64 border border-white/10 -rotate-12" />
+        {/* <div className="absolute top-10 right-10 w-96 h-96 border border-white/10 rotate-12 rounded-full" />
+        <div className="absolute bottom-10 left-10 w-64 h-64 border border-white/10 -rotate-12" /> */}
 
         <div className="relative max-w-7xl mx-auto">
           <motion.div

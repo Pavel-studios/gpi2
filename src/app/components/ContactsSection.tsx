@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, Building2, Clock, FileText, ArrowRight, MessageSquare, Send } from 'lucide-react';
+import pattern from '@/imports/pattern.svg'
 
 export function ContactsSection() {
   const contacts = [
@@ -52,11 +53,11 @@ export function ContactsSection() {
       {/* Hero */}
       <section className="relative py-32 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(167,169,172,0.2),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/>
 
         {/* Decorative elements */}
-        <div className="absolute top-20 right-0 w-[400px] h-[400px] border border-white/10 rotate-45" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 border border-white/10 rounded-full" />
+        {/* <div className="absolute top-20 right-0 w-[400px] h-[400px] border border-white/10 rotate-45" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 border border-white/10 rounded-full" /> */}
 
         <div className="relative max-w-7xl mx-auto">
           <motion.div

@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface LogoProps {
   fill?: string;
   width: number;
