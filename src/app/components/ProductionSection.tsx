@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Cog, Flame, Shield, FlaskConical, Gauge, CheckCircle2, ArrowRight, Factory, TrendingUp, Award } from 'lucide-react';
+import pattern from '@/imports/pattern.svg'
 
 export function ProductionSection() {
   const productionAreas = [
@@ -91,11 +92,11 @@ export function ProductionSection() {
       {/* Hero */}
       <section className="relative py-32 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(167,169,172,0.2),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/>
 
         {/* Decorative elements */}
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] border border-white/10 rounded-full" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 border border-white/10 rotate-45" />
+        {/* <div className="absolute top-20 right-0 w-[500px] h-[500px] border border-white/10 rounded-full" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 border border-white/10 rotate-45" /> */}
 
         <div className="relative max-w-7xl mx-auto">
           <motion.div
@@ -266,15 +267,15 @@ export function ProductionSection() {
                     </div>
 
                     {/* Right: Content */}
-                    <div className="lg:col-span-7 p-8 flex flex-col justify-between">
+                    <div className="lg:col-span-7 p-4 sm:p-8 flex flex-col justify-between">
                       <div>
                         <div className="flex items-center gap-4 mb-4">
                           <div className={`p-4 bg-gradient-to-br ${area.gradient}`}>
                             <Icon className="text-white" size={28} strokeWidth={1.5} />
                           </div>
                           <h3
-                            className="text-[#50626C]"
-                            style={{ fontSize: '28px', fontWeight: 700 }}
+                            className="text-[#50626C] text-[20px] sm:text-[28px]"
+                            style={{ fontWeight: 700 }}
                           >
                             {area.title}
                           </h3>
@@ -289,7 +290,7 @@ export function ProductionSection() {
 
                         {/* Details list */}
                         {(area.details || area.controls || area.features) && (
-                          <div className="grid grid-cols-2 gap-3 mb-6">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                             {(area.details || []).map((detail, idx) => (
                               <div key={idx} className="flex items-center gap-2">
                                 <div className="w-1.5 h-1.5 rounded-full bg-[#8D9DA6]" />
@@ -351,9 +352,9 @@ export function ProductionSection() {
 
                         {/* Stats */}
                         {area.stats && (
-                          <div className="grid grid-cols-3 gap-4">
+                          <div className="grid grid-cols-3 gap-1 ms:gap-4">
                             {area.stats.map((stat, idx) => (
-                              <div key={idx} className="p-4 bg-[#F5F5F5] border border-[#A7A9AC]/10">
+                              <div key={idx} className="p-1 sm:p-4 bg-[#F5F5F5] text-[14px] sm:text-[18px] border border-[#A7A9AC]/10">
                                 <div
                                   className="text-[#A7A9AC] mb-1"
                                   style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.05em' }}
@@ -362,7 +363,7 @@ export function ProductionSection() {
                                 </div>
                                 <div
                                   className="text-[#50626C]"
-                                  style={{ fontSize: '18px', fontWeight: 800 }}
+                                  style={{ fontWeight: 800 }}
                                 >
                                   {stat.value}
                                 </div>

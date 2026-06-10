@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Users, Shield, MapPin, Award, Building2, Calendar, CheckCircle2, TrendingUp, Target, Lightbulb, ArrowRight } from 'lucide-react';
+import pattern from '@/imports/pattern.svg'
 
 export function AboutSection() {
   const timeline = [
@@ -56,7 +57,7 @@ export function AboutSection() {
       <section className="relative py-32 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(167,169,172,0.2),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(141,157,166,0.2),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/>
 
         {/* Geometric decorations */}
         <div className="absolute top-20 right-20 w-64 h-64 border border-white/10 rotate-45" />

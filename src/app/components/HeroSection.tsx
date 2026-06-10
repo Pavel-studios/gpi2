@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Play } from 'lucide-react';
+import pattern from '@/imports/pattern.svg'
 
 export function HeroSection() {
   return (
@@ -8,15 +9,15 @@ export function HeroSection() {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(141,157,166,0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`}}/>
       </div>
 
       {/* Geometric patterns */}
-      <div className="absolute top-20 right-10 w-64 h-64 border-2 border-white/10 rotate-45 rounded-3xl" />
+      {/* <div className="absolute top-20 right-10 w-64 h-64 border-2 border-white/10 rotate-45 rounded-3xl" />
       <div className="absolute bottom-20 left-10 w-48 h-48 border-2 border-white/10 -rotate-12 rounded-2xl" />
-      <div className="absolute top-1/2 left-1/4 w-32 h-32 border border-white/5 rotate-12" />
+      <div className="absolute top-1/2 left-1/4 w-32 h-32 border border-white/5 rotate-12" /> */}
 
-      <div className="relative z-10 w-full px-6 py-32">
+      <div className="relative z-10 w-full px-6 py-32 bg-cover">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left content */}
