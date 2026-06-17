@@ -1,15 +1,17 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Play } from 'lucide-react';
 import pattern from '@/imports/pattern.svg'
+import backgroundImage from '@/imports/N59A2391.jpg'
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full flex items-center overflow-hidden">
+    <section className="relative min-h-screen w-full flex overflow-hidden">
       {/* Animated background gradient */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(141,157,166,0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`}}/>
+        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`}}/> */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ background: `linear-gradient(to right, transparent 50%, rgba(255, 255, 255,0.2) 100%), url(${backgroundImage}) center / cover no-repeat`}}/>
       </div>
 
       {/* Geometric patterns */}
@@ -17,7 +19,7 @@ export function HeroSection() {
       <div className="absolute bottom-20 left-10 w-48 h-48 border-2 border-white/10 -rotate-12 rounded-2xl" />
       <div className="absolute top-1/2 left-1/4 w-32 h-32 border border-white/5 rotate-12" /> */}
 
-      <div className="relative z-10 w-full px-6 py-32 bg-cover">
+      <div className="relative z-10 w-full px-6 pt-48 lg:pt-64 bg-cover">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left content */}
@@ -26,7 +28,7 @@ export function HeroSection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm mb-6 border border-white/20">
+              <div className="inline-block px-4 py-2 bg-[#5a5c5eb2] mb-6 border border-white/20">
                 <span className="text-white/90 uppercase" style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '0.1em' }}>
                   Производство оборудования с 2005
                 </span>
@@ -53,7 +55,7 @@ export function HeroSection() {
             </motion.div>
 
             {/* Right content - Stats cards */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -100,7 +102,6 @@ export function HeroSection() {
                 ))}
               </div>
 
-              {/* Floating badge */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -116,7 +117,7 @@ export function HeroSection() {
                   </div>
                 </div>
               </motion.div>
-            </motion.div>
+            </motion.div> */}
           </div>
 
           {/* Process timeline */}
@@ -124,14 +125,14 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mt-24 pt-12 border-t border-white/10"
+            className="mt-4 lg:mt-48 pt-12  border-t border-white/10"
           >
             <div className="flex flex-wrap items-center flex-col lg:flex-row gap-8 lg:gap-0 justify-between lg:justify-start">
               {['Проектирование', 'Производство', 'Поставка', 'Монтаж', 'Сервис'].map((item, index, arr) => (
                 <div key={item} className="flex items-center lg:flex-1">
                   <div className="group cursor-pointer">
                     <div className="flex lg:items-center gap-3 mb-2">
-                      <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-all duration-300 border border-white/30">
+                      <div className="w-8 h-8 rounded-full bg-[#5a5c5eb2] flex items-center justify-center group-hover:bg-white/30 transition-all duration-300 border border-white/30">
                         <span className="text-white" style={{ fontSize: '12px', fontWeight: 700 }}>
                           {index + 1}
                         </span>

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Users, Shield, MapPin, Award, Building2, Calendar, CheckCircle2, TrendingUp, Target, Lightbulb, ArrowRight } from 'lucide-react';
 import pattern from '@/imports/pattern.svg'
+import backgroundImage from '@/imports/DJI_20260520153109_0571_D.jpg'
 
 export function AboutSection() {
   const timeline = [
@@ -57,7 +58,8 @@ export function AboutSection() {
       <section className="relative py-32 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(167,169,172,0.2),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/>
+        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/> */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ background: `linear-gradient(to right, rgba(89, 91, 92, 0.2), rgba(255, 255, 255,0.2) 100%), url(${backgroundImage}) center / cover no-repeat`}}/>
 
         {/* Geometric decorations */}
         <div className="absolute top-20 right-20 w-64 h-64 border border-white/10 rotate-45" />
@@ -71,7 +73,7 @@ export function AboutSection() {
             className="grid lg:grid-cols-2 gap-16 items-center"
           >
             <div>
-              <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm mb-6 border border-white/20">
+              <div className="inline-block px-4 py-2 bg-[#5a5c5eb2] mb-6 border border-white/20">
                 <span className="text-white/90 uppercase" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
                   О Компании
                 </span>
@@ -103,7 +105,7 @@ export function AboutSection() {
                 ].map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <div key={index} className="p-6 bg-white/10 backdrop-blur-sm border border-white/20">
+                    <div key={index} className="p-6 bg-[#5a5c5eb2] border border-white/20">
                       <Icon className="text-white/70 mb-3" size={28} strokeWidth={1.5} />
                       <div
                         className="text-white mb-1"
@@ -133,7 +135,7 @@ export function AboutSection() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                      className={`p-6 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 ${
+                      className={`p-6 bg-[#5a5c5eb2] border border-white/20 hover:bg-white/20 transition-all duration-300 ${
                         index === 2 ? 'col-span-2' : ''
                       }`}
                     >
