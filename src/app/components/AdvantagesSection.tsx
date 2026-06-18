@@ -11,14 +11,14 @@ export function AdvantagesSection() {
     },
     {
       icon: Users,
-      title: 'Команда профессионалов',
-      description: '150+ инженеров, конструкторов и рабочих высокой квалификации',
+      title: '150+ сотрудников',
+      description: 'Инженеры, конструкторы, рабочие производства и административный персонал',
       accent: 'from-[#595B5C] to-[#8D9DA6]',
     },
     {
       icon: TrendingUp,
       title: '2000+ проектов',
-      description: 'Успешно реализованные поставки для ведущих корпораций России',
+      description: 'Поставки промышленного оборудования для российских и зарубежных объектов',
       accent: 'from-[#8D9DA6] to-[#A7A9AC]',
     },
     {
@@ -29,8 +29,8 @@ export function AdvantagesSection() {
     },
     {
       icon: Award,
-      title: 'более 20 лет на рынке',
-      description: 'Надежность, проверенная временем и сотнями успешных проектов',
+      title: 'С 2005 года',
+      description: 'Опыт работы на рынке оборудования для нефтегазовой, химической и энергетической отраслей',
       accent: 'from-[#595B5C] to-[#A7A9AC]',
     },
     {
@@ -68,13 +68,13 @@ export function AdvantagesSection() {
             className="text-[#50626C] mb-6"
             style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.2 }}
           >
-            Почему выбирают нас
+            Производственная база в цифрах
           </h2>
           <p
             className="text-[#595B5C] max-w-2xl mx-auto"
             style={{ fontSize: '18px', fontWeight: 400, lineHeight: 1.7 }}
           >
-            Полный производственный цикл и проверенная надежность
+            Факты, необходимые для первичной оценки предприятия как промышленного поставщика
           </p>
         </motion.div>
 

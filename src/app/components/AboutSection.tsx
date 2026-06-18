@@ -16,20 +16,20 @@ export function AboutSection() {
   const values = [
     {
       icon: Target,
-      title: 'Качество',
-      description: 'Строгий контроль на каждом этапе производства',
+      title: 'Контроль качества',
+      description: 'Входной, операционный и приемочный контроль на производственных этапах',
       gradient: 'from-[#50626C] to-[#595B5C]',
     },
     {
       icon: Shield,
-      title: 'Надежность',
-      description: '21 год безупречной репутации на рынке',
+      title: 'Сертификация',
+      description: 'Лицензии, аттестации и подтверждение соответствия отраслевым требованиям',
       gradient: 'from-[#595B5C] to-[#8D9DA6]',
     },
     {
       icon: Lightbulb,
-      title: 'Инновации',
-      description: 'Современные технологии и решения',
+      title: 'Инжиниринг',
+      description: 'Конструкторская документация, расчеты и 3D-моделирование оборудования',
       gradient: 'from-[#8D9DA6] to-[#A7A9AC]',
     },
   ];
