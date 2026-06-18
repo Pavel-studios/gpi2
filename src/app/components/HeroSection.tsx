@@ -30,7 +30,7 @@ export function HeroSection() {
             >
               <div className="inline-block px-4 py-2 bg-[#5a5c5eb2] mb-6 border border-white/20">
                 <span className="text-white/90 uppercase" style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '0.1em' }}>
-                  Производство оборудования с 2003
+                  Производство оборудования с 2005
                 </span>
               </div>
 
@@ -113,7 +113,7 @@ export function HeroSection() {
                     СЕРТИФИКАЦИЯ
                   </div>
                   <div style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '0.05em' }}>
-                    ТР ТС • ISO 9001 • STO INTI S.QS.7
+                    ASME • ГОСТ • ТР ТС
                   </div>
                 </div>
               </motion.div>

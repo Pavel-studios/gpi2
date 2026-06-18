@@ -5,12 +5,12 @@ import backgroundImage from '@/imports/DJI_20260520153109_0571_D.jpg'
 
 export function AboutSection() {
   const timeline = [
-    { year: '2003', event: 'Основание предприятия', description: 'Начало работы как проектной организации' },
-    { year: '2004', event: 'Испытания факельных оголовков', description: 'Успешные испытания средств контроля пламени и розжига' },
+    { year: '2005', event: 'Основание предприятия', description: 'Запуск первого производственного цеха' },
     { year: '2010', event: 'Расширение производства', description: 'Увеличение площадей до 4 000 м²' },
     { year: '2015', event: 'Получение лицензий Ростехнадзора', description: 'Аттестация по всем направлениям' },
     { year: '2018', event: 'Запуск нового сварочного цеха', description: 'Внедрение современного оборудования' },
-    { year: '2023', event: 'Расширение номенклатуры', description: 'Изготовление оборудования для тепловых и атомных станций' },
+    { year: '2022', event: 'Сертификация по ASME', description: 'Международное признание качества' },
+    { year: '2026', event: 'Внедрение системы контроля качества', description: 'Полная цифровизация процессов' },
   ];
 
   const values = [
@@ -35,12 +35,12 @@ export function AboutSection() {
   ];
 
   const certificates = [
-    { name: 'Сертификация ТР ТС', code: 'ТР ТС' },
-    { name: 'ISO 9001', code: 'Система менеджмента качества' },
-    { name: 'STO INTI S.QS.7', code: 'Отраслевая сертификация' },
+    { name: 'Лицензия Ростехнадзора', code: 'РТН-2024-001' },
     { name: 'Аттестация НАКС', code: 'НАКС-2024-156' },
-    { name: 'Аттестация лаборатории', code: 'Контроль качества' },
     { name: 'Свидетельство СРО', code: 'СРО-П-123-456' },
+    { name: 'Сертификат ГОСТ', code: 'РОСС RU.001.456' },
+    { name: 'Сертификат ТР ТС', code: 'ТС RU C-RU.АЛ15.В' },
+    { name: 'Сертификат ASME', code: 'ASME U-2024' },
   ];
 
   const regions = [
@@ -49,9 +49,7 @@ export function AboutSection() {
     { name: 'Сибирь', projects: 52 },
     { name: 'Урал', projects: 38 },
     { name: 'Дальний Восток', projects: 15 },
-    { name: 'Белоруссия', projects: 18 },
     { name: 'Казахстан', projects: 22 },
-    { name: 'Узбекистан', projects: 14 },
   ];
 
   return (
@@ -85,10 +83,10 @@ export function AboutSection() {
                 className="text-white mb-6"
                 style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}
               >
-                С 2003 года в
+                21 год инженерного
                 <br />
                 <span className="bg-gradient-to-r from-[#A7A9AC] to-white bg-clip-text text-transparent">
-                  промышленном инжиниринге
+                  совершенства
                 </span>
               </h1>
 
@@ -96,15 +94,14 @@ export function AboutSection() {
                 className="text-white/80 mb-8"
                 style={{ fontSize: '18px', fontWeight: 400, lineHeight: 1.7 }}
               >
-                ООО «Газ-Проект Инжиниринг» разрабатывает и внедряет технологии и оборудование
-                для добычи, переработки и транспорта углеводородов и попутного газа.
-                С 2023 года предприятие также изготавливает оборудование для тепловых и атомных станций.
+                ООО «Газ-Проект Инжиниринг» — российское машиностроительное предприятие полного цикла.
+                Проектируем, производим и поставляем промышленное оборудование для ключевых отраслей экономики.
               </p>
 
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: Calendar, value: 'с 2003', label: 'На рынке' },
-                  { icon: Award, value: '2000+', label: 'Проектов' },
+                  { icon: Calendar, value: 'с 2005', label: 'На рынке' },
+                  { icon: Award, value: '200+', label: 'Проектов' },
                 ].map((item, index) => {
                   const Icon = item.icon;
                   return (
