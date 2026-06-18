@@ -29,14 +29,14 @@ export function AdvantagesSection() {
     },
     {
       icon: Award,
-      title: 'С 2005 года',
+      title: 'С 2003 года',
       description: 'Опыт работы на рынке оборудования для нефтегазовой, химической и энергетической отраслей',
       accent: 'from-[#595B5C] to-[#A7A9AC]',
     },
     {
       icon: Shield,
       title: 'Полная сертификация',
-      description: 'ASME, ГОСТ, ТР ТС, лицензии Ростехнадзора и аттестации НАКС',
+      description: 'ТР ТС, ISO 9001, STO INTI S.QS.7, аттестации НАКС и лабораторная аттестация',
       accent: 'from-[#8D9DA6] to-[#50626C]',
     },
   ];

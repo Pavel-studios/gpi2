@@ -16,24 +16,24 @@ export function ProjectsPreview() {
       title: 'Теплообменное оборудование',
       client: 'Заказчик 1',
       year: '2025',
-      value: '850 млн ₽',
-      scope: 'Комплект теплообменников для ГПЗ',
+      value: 'ГПЗ',
+      scope: 'Комплект теплообменного оборудования для газоперерабатывающего предприятия',
       status: 'Выполнен',
     },
     {
       title: 'Сепараторы высокого давления',
       client: 'Заказчик 2',
       year: '2024',
-      value: '420 млн ₽',
-      scope: 'Серия сепараторов 3-фазных',
-      status: 'Выполнеен',
+      value: 'Нефтегаз',
+      scope: 'Серия трехфазных сепараторов для технологической линии',
+      status: 'Выполнен',
     },
     {
       title: 'Реакторное оборудование',
       client: 'Заказчик 3',
       year: '2024',
-      value: '1.2 млрд ₽',
-      scope: 'Реакторы для нефтехимии',
+      value: 'Нефтехимия',
+      scope: 'Реакторное оборудование для модернизации производственного участка',
       status: 'Выполнен',
     },
   ];
@@ -58,7 +58,7 @@ export function ProjectsPreview() {
         >
           <div className="inline-block px-4 py-2 bg-[#50626C]/5 border border-[#50626C]/10 mb-6">
             <span className="text-[#50626C] uppercase" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-              Протфолио
+              Портфолио
             </span>
           </div>
           <h2
@@ -71,7 +71,7 @@ export function ProjectsPreview() {
             className="text-[#595B5C] max-w-2xl mx-auto"
             style={{ fontSize: '18px', fontWeight: 400, lineHeight: 1.7 }}
           >
-            Поставки оборудования для ведущих корпораций России
+            Поставки оборудования для промышленных компаний России и стран ближнего зарубежья
           </p>
         </motion.div>
 
@@ -153,7 +153,7 @@ export function ProjectsPreview() {
                       >
                         {project.client}
                       </span>
-                      {project.status === 'Завершен' && (
+                      {project.status === 'Выполнен' && (
                         <div className="flex items-center gap-1 text-[#50626C]">
                           <CheckCircle2 size={14} />
                           <span style={{ fontSize: '11px', fontWeight: 600 }}>
@@ -188,7 +188,7 @@ export function ProjectsPreview() {
                             className="text-[#A7A9AC] mb-2 uppercase"
                             style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em' }}
                           >
-                            Стоимость контракта
+                            Объект
                           </div>
                           <div
                             className="text-[#50626C]"
