@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Play } from 'lucide-react';
-import pattern from '@/imports/pattern.svg'
+import { Pattern } from '@/imports/pattern';
 import backgroundImage from '@/imports/N59A2391.jpg'
 
 export function HeroSection() {
@@ -10,8 +10,8 @@ export function HeroSection() {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(141,157,166,0.3),transparent_50%)]" />
-        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`}}/> */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ background: `linear-gradient(to right, transparent 50%, rgba(255, 255, 255,0.2) 100%), url(${backgroundImage}) center / cover no-repeat`}}/>
+        <Pattern opacity={0.13} size={150} fade="right" />
       </div>
 
       {/* Geometric patterns */}
