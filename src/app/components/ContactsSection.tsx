@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { MapPin, Phone, Mail, Building2, Clock, FileText, ArrowRight, MessageSquare, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, FileText, Building2 } from 'lucide-react';
 import pattern from '@/imports/pattern.svg'
 
 export function ContactsSection() {
@@ -31,8 +31,8 @@ export function ContactsSection() {
   ];
 
   const departments = [
-    { name: 'Отдел продаж', phone: '+7 (495) 123-45-68', email: 'sales@gpi.ru' },
-    { name: 'Технический отдел', phone: '+7 (495) 123-45-69', email: 'tech@gpi.ru' },
+    { name: 'Приемная', phone: '+7 (495) 123-45-68', email: 'office@gpi.ru' },
+    { name: 'Производственная площадка', phone: '+7 (495) 123-45-69', email: 'production@gpi.ru' },
     { name: 'Бухгалтерия', phone: '+7 (495) 123-45-70', email: 'accounting@gpi.ru' },
   ];
 
@@ -68,7 +68,7 @@ export function ContactsSection() {
           >
             <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm mb-6 border border-white/20">
               <span className="text-white/90 uppercase" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-                Свяжитесь с нами
+                Контактная информация
               </span>
             </div>
 
@@ -76,9 +76,9 @@ export function ContactsSection() {
               className="text-white mb-6 max-w-4xl mx-auto"
               style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}
             >
-              Готовы ответить на ваши{' '}
+              Реквизиты и адреса{' '}
               <span className="bg-gradient-to-r from-[#A7A9AC] to-white bg-clip-text text-transparent">
-                вопросы
+                предприятия
               </span>
             </h1>
 
@@ -86,7 +86,8 @@ export function ContactsSection() {
               className="text-white/80 max-w-2xl mx-auto mb-12"
               style={{ fontSize: '18px', fontWeight: 400, lineHeight: 1.7 }}
             >
-              Свяжитесь с нами для получения технической консультации, коммерческого предложения или любой другой информации
+              Справочные данные ООО «Газ-Проект Инжиниринг»: юридический адрес,
+              производственная площадка, общий телефон, электронная почта и режим работы.
             </p>
           </motion.div>
         </div>
@@ -152,7 +153,7 @@ export function ContactsSection() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#8D9DA6] to-[#A7A9AC] flex items-center justify-center">
-                    <MessageSquare className="text-white" size={20} strokeWidth={2} />
+                    <Building2 className="text-white" size={20} strokeWidth={2} />
                   </div>
                   <h3
                     className="text-[#50626C]"
@@ -309,15 +310,15 @@ export function ContactsSection() {
                 <div className="flex items-center gap-2 text-[#595B5C]">
                   <FileText size={20} />
                   <span style={{ fontSize: '14px', fontWeight: 500 }}>
-                    Полные реквизиты
+                    Карточка предприятия
                   </span>
                 </div>
-                <button className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#50626C] to-[#8D9DA6] text-white hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#50626C] to-[#8D9DA6] text-white">
                   <span style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '0.05em' }}>
-                    СКАЧАТЬ PDF
+                    PDF после утверждения
                   </span>
-                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </button>
+                  <FileText size={16} />
+                </div>
               </div>
             </div>
           </motion.div>
