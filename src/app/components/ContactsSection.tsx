@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, Clock, FileText, Building2 } from 'lucide-react';
-import { Pattern } from '@/imports/pattern';
+import pattern from '@/imports/pattern.svg'
 
 export function ContactsSection() {
   const contacts = [
@@ -53,8 +53,7 @@ export function ContactsSection() {
       {/* Hero */}
       <section className="relative py-32 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" />
-        <Pattern opacity={0.14} size={136} fade="center" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/>
 
         {/* Decorative elements */}
         {/* <div className="absolute top-20 right-0 w-[400px] h-[400px] border border-white/10 rotate-45" />
@@ -210,7 +209,13 @@ export function ContactsSection() {
             transition={{ duration: 0.6 }}
             className="relative aspect-video bg-gradient-to-br from-[#50626C] to-[#8D9DA6] shadow-2xl overflow-hidden"
           >
-            <Pattern opacity={0.13} size={112} fade="center" />
+            {/* Pattern */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }}
+            />
 
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">

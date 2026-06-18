@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { RotateCw, Workflow, Wrench, Package, Settings, Cog, ArrowUpRight, ArrowRight, ArrowDown, Gauge, Droplet, CheckCircle2, Layers } from 'lucide-react';
-import { Pattern } from '@/imports/pattern';
+import pattern from '@/imports/pattern.svg'
 
 export function EquipmentSection() {
   const equipment = [
@@ -130,8 +130,7 @@ export function EquipmentSection() {
       {/* Hero */}
       <section className="relative py-16 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" />
-        <Pattern opacity={0.15} size={128} fade="right" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/>
 
         {/* Geometric patterns */}
         {/* <div className="absolute top-10 right-10 w-96 h-96 border border-white/10 rotate-12 rounded-full" />
@@ -244,7 +243,12 @@ export function EquipmentSection() {
                 className="bg-gradient-to-br from-white to-[#F5F5F5] border border-[#A7A9AC]/20 hover:border-[#8D9DA6]/60 transition-all duration-300 hover:shadow-xl overflow-hidden group"
               >
                 <div className="aspect-square bg-gradient-to-br from-[#8D9DA6] to-[#A7A9AC] relative overflow-hidden">
-                  <Pattern opacity={0.22} size={88} fade="center" />
+                  <div
+                    className="absolute inset-0 opacity-30"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.8'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                    }}
+                  />
 
                   <div className="absolute inset-0 flex items-center justify-center">
                     <img/>
@@ -369,7 +373,12 @@ export function EquipmentSection() {
                 className="bg-white border border-[#A7A9AC]/20 hover:border-[#50626C]/40 transition-all duration-300 hover:shadow-xl overflow-hidden group"
               >
                 <div className="aspect-video bg-gradient-to-br from-[#8D9DA6] to-[#A7A9AC] relative overflow-hidden">
-                  <Pattern opacity={0.2} size={88} fade="center" />
+                  <div
+                    className="absolute inset-0 opacity-30"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.8'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                    }}
+                  />
 
                   <div className="absolute inset-0 flex items-center justify-center">
                     {/* <img src={project.images[0]} alt={project.customer} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" /> */}

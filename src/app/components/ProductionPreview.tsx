@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { Cog, Flame, Shield, Gauge, CheckCircle2, ArrowRight } from 'lucide-react';
-import { Pattern } from '@/imports/pattern';
 
 export function ProductionPreview() {
   const capabilities = [
@@ -35,12 +34,12 @@ export function ProductionPreview() {
 
   return (
     <section className="relative py-16 px-6 overflow-hidden bg-white">
-      <Pattern
-        tone="dark"
-        opacity={0.035}
-        size={150}
-        fade="bottom"
-        gradient="linear-gradient(135deg, rgba(80,98,108,0.07), rgba(255,255,255,0))"
+      {/* Background pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0V0zm50 2v96M2 50h96' stroke='%2350626C' stroke-width='2' fill='none'/%3E%3C/svg%3E")`,
+        }}
       />
 
       <div className="relative max-w-7xl mx-auto">
@@ -96,7 +95,13 @@ export function ProductionPreview() {
                 <div className="relative h-full bg-white border border-[#A7A9AC]/20 overflow-hidden">
                   {/* Top colored section */}
                   <div className="relative aspect-[16/10] bg-gradient-to-br from-[#50626C] to-[#595B5C] overflow-hidden">
-                    <Pattern opacity={0.13} size={92} fade="center" />
+                    {/* Pattern */}
+                    <div
+                      className="absolute inset-0 opacity-10"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                      }}
+                    />
 
                     {/* Icon */}
                     <div className="absolute top-6 left-6">

@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Cog, Flame, Shield, FlaskConical, Gauge, CheckCircle2, ArrowRight, Factory, TrendingUp, Award } from 'lucide-react';
-import { Pattern } from '@/imports/pattern';
+import pattern from '@/imports/pattern.svg'
 
 export function ProductionSection() {
   const productionAreas = [
@@ -108,8 +108,7 @@ export function ProductionSection() {
       {/* Hero */}
       <section className="relative py-32 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" />
-        <Pattern opacity={0.16} size={132} fade="right" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/>
 
         {/* Decorative elements */}
         {/* <div className="absolute top-20 right-0 w-[500px] h-[500px] border border-white/10 rounded-full" />
@@ -260,7 +259,13 @@ export function ProductionSection() {
                     {/* Left: Visual placeholder */}
                     <div className="lg:col-span-5">
                       <div className={`aspect-[4/3] bg-gradient-to-br ${area.gradient} relative overflow-hidden`}>
-                        <Pattern opacity={0.16} size={104} fade="center" />
+                        {/* Pattern */}
+                        <div
+                          className="absolute inset-0 opacity-10"
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.6'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 65.523 0 60s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                          }}
+                        />
 
                         <div className="absolute inset-0 flex items-center justify-center">
                           <Icon className="text-white/40 group-hover:text-white/60 group-hover:scale-110 transition-all duration-300" size={80} strokeWidth={1} />

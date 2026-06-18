@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { Factory, Users, Cog, Award, TrendingUp, Shield } from 'lucide-react';
-import { Pattern } from '@/imports/pattern';
 
 export function AdvantagesSection() {
   const advantages = [
@@ -46,13 +45,6 @@ export function AdvantagesSection() {
     <section className="relative py-16 px-6 overflow-hidden">
       {/* Background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F5F5F5] to-white" />
-      <Pattern
-        tone="dark"
-        opacity={0.045}
-        size={140}
-        fade="bottom"
-        gradient="linear-gradient(135deg, rgba(80,98,108,0.08), rgba(255,255,255,0))"
-      />
 
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-radial from-[#8D9DA6]/10 to-transparent blur-3xl" />

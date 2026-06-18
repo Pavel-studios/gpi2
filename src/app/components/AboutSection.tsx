@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Users, Shield, MapPin, Award, Building2, Calendar, CheckCircle2, TrendingUp, Target, Lightbulb, ArrowRight } from 'lucide-react';
-import { Pattern } from '@/imports/pattern';
+import pattern from '@/imports/pattern.svg'
 import backgroundImage from '@/imports/DJI_20260520153109_0571_D.jpg'
 
 export function AboutSection() {
@@ -60,8 +60,8 @@ export function AboutSection() {
       <section className="relative py-32 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(167,169,172,0.2),transparent_50%)]" />
+        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/> */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ background: `linear-gradient(to right, rgba(89, 91, 92, 0.2), rgba(255, 255, 255,0.2) 100%), url(${backgroundImage}) center / cover no-repeat`}}/>
-        <Pattern opacity={0.12} size={142} fade="right" />
 
         {/* Geometric decorations */}
         <div className="absolute top-20 right-20 w-64 h-64 border border-white/10 rotate-45" />
@@ -219,7 +219,6 @@ export function AboutSection() {
       {/* Team */}
       <section className="relative py-16 px-6 overflow-hidden bg-gradient-to-r from-[#50626C] to-[#8D9DA6]">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-radial from-[#8D9DA6]/10 to-transparent blur-3xl" />
-        <Pattern opacity={0.11} size={124} fade="left" />
 
         <div className="relative max-w-7xl mx-auto">
           <motion.div
@@ -374,7 +373,13 @@ export function AboutSection() {
             transition={{ duration: 0.6 }}
             className="relative aspect-video bg-gradient-to-br from-[#50626C] to-[#8D9DA6] mb-12 overflow-hidden shadow-2xl"
           >
-            <Pattern opacity={0.12} size={112} fade="center" />
+            {/* Pattern */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }}
+            />
 
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
