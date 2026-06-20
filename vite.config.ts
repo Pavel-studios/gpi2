@@ -16,10 +16,31 @@ function figmaAssetResolver() {
   }
 }
 
+function sourceEntry() {
+  return {
+    name: 'source-entry',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html: string) {
+        return html
+        .replace(
+          /<script type="module" crossorigin src="\/gpi2\/assets\/index-[^"]+\.js"><\/script>/,
+          '<script type="module" src="/src/main.tsx"></script>',
+        )
+        .replace(
+          /\s*<link rel="stylesheet" crossorigin href="\/gpi2\/assets\/index-[^"]+\.css">/,
+          '',
+        );
+      },
+    },
+  }
+}
+
 export default defineConfig({
   base: '/gpi2',
   plugins: [
     figmaAssetResolver(),
+    sourceEntry(),
     // The React and Tailwind plugins are both required for Make, even if
     // Tailwind is not being actively used – do not remove them
     react(),
