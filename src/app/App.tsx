@@ -1,10 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
-import { HeroSection } from './components/HeroSection';
-import { AdvantagesSection } from './components/AdvantagesSection';
-import { IndustriesSection } from './components/IndustriesSection';
-import { ProjectsPreview } from './components/ProjectsPreview';
-import { ProductionPreview } from './components/ProductionPreview';
 import { AboutSection } from './components/AboutSection';
 import { EquipmentSection } from './components/EquipmentSection';
 import { ProductionSection } from './components/ProductionSection';
@@ -12,6 +7,12 @@ import { ContactsSection } from './components/ContactsSection';
 import { Footer } from './components/Footer';
 import { PageLoader } from './components/PageLoader';
 import { RouteMeta } from './components/RouteMeta';
+import { LandingPage } from './components/LandingPage';
+import { HeroSection } from './components/HeroSection';
+import { IndustriesSection } from './components/IndustriesSection';
+import { AdvantagesSection } from './components/AdvantagesSection';
+import { ProjectsPreview } from './components/ProjectsPreview';
+import { ProductionPreview } from './components/ProductionPreview';
 
 export default function App() {
   return (
@@ -22,12 +23,13 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={
+            // <LandingPage />
             <>
-              <HeroSection />
-              <AdvantagesSection />
-              <IndustriesSection />
-              <ProjectsPreview />
-              <ProductionPreview />
+            <HeroSection />
+            <AdvantagesSection />
+            <IndustriesSection />
+            <ProjectsPreview />
+            <ProductionPreview />
             </>
           } />
           <Route path="/about" element={<AboutSection />} />
