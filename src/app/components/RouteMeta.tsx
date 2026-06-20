@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 const pages: Record<string, { title: string; description: string }> = {
   '/': {
-    title: 'Газ-Проект Инжиниринг | Промышленное оборудование с 2005 года',
+    title: 'Газ-Проект Инжиниринг | Промышленное оборудование с 2003 года',
     description:
       'ООО «Газ-Проект Инжиниринг» - машиностроительное предприятие полного цикла для нефтегазовой, химической и энергетической отраслей.',
   },
@@ -70,7 +70,7 @@ function upsertOrganizationSchema() {
     '@type': 'Organization',
     name: 'Газ-Проект Инжиниринг',
     legalName: 'ООО «Газ-Проект Инжиниринг»',
-    foundingDate: '2005',
+    foundingDate: '2003',
     email: 'info@gazproektengineering.ru',
     telephone: '+7 (495) 123-45-67',
     address: {

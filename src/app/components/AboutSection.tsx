@@ -5,12 +5,9 @@ import backgroundImage from '@/imports/DJI_20260520153109_0571_D.jpg'
 
 export function AboutSection() {
   const timeline = [
-    { year: '2005', event: 'Основание предприятия', description: 'Запуск первого производственного цеха' },
-    { year: '2010', event: 'Расширение производства', description: 'Увеличение площадей до 4 000 м²' },
-    { year: '2015', event: 'Получение лицензий Ростехнадзора', description: 'Аттестация по всем направлениям' },
-    { year: '2018', event: 'Запуск нового сварочного цеха', description: 'Внедрение современного оборудования' },
-    { year: '2022', event: 'Сертификация по ASME', description: 'Международное признание качества' },
-    { year: '2026', event: 'Внедрение системы контроля качества', description: 'Полная цифровизация процессов' },
+    { year: '2003', event: 'Основание компании', description: 'Начало работы в нефтегазовом секторе' },
+    { year: '2004', event: 'Испытания факельных оголовков', description: 'Получена сертификационная документация' },
+    { year: '2023', event: 'Расширение сферы деятельности', description: 'Освоено изготовление оборудования для тепловых и атомных станций' },
   ];
 
   const values = [
@@ -35,21 +32,17 @@ export function AboutSection() {
   ];
 
   const certificates = [
-    { name: 'Лицензия Ростехнадзора', code: 'РТН-2024-001' },
-    { name: 'Аттестация НАКС', code: 'НАКС-2024-156' },
-    { name: 'Свидетельство СРО', code: 'СРО-П-123-456' },
-    { name: 'Сертификат ГОСТ', code: 'РОСС RU.001.456' },
-    { name: 'Сертификат ТР ТС', code: 'ТС RU C-RU.АЛ15.В' },
-    { name: 'Сертификат ASME', code: 'ASME U-2024' },
+    { name: 'Сертификация ТР ТС', code: 'ТР ТС' },
+    { name: 'Система менеджмента качества', code: 'ISO 9001' },
+    { name: 'Отраслевой стандарт', code: 'STO INTI S.QS.7' },
+    { name: 'Аттестация персонала', code: 'НАКС' },
   ];
 
   const regions = [
-    { name: 'Москва и МО', projects: 45 },
-    { name: 'Санкт-Петербург', projects: 28 },
-    { name: 'Сибирь', projects: 52 },
-    { name: 'Урал', projects: 38 },
-    { name: 'Дальний Восток', projects: 15 },
-    { name: 'Казахстан', projects: 22 },
+    { name: 'Россия' },
+    { name: 'Белоруссия' },
+    { name: 'Казахстан' },
+    { name: 'Узбекистан' },
   ];
 
   return (
@@ -83,7 +76,7 @@ export function AboutSection() {
                 className="text-white mb-6"
                 style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}
               >
-                21 год инженерного
+                Более 20 лет инженерного
                 <br />
                 <span className="bg-gradient-to-r from-[#A7A9AC] to-white bg-clip-text text-transparent">
                   совершенства
@@ -100,8 +93,8 @@ export function AboutSection() {
 
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: Calendar, value: 'с 2005', label: 'На рынке' },
-                  { icon: Award, value: '200+', label: 'Проектов' },
+                  { icon: Calendar, value: 'с 2003', label: 'На рынке' },
+                  { icon: Award, value: '2000+', label: 'Проектов' },
                 ].map((item, index) => {
                   const Icon = item.icon;
                   return (
@@ -304,7 +297,7 @@ export function AboutSection() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {certificates.map((cert, index) => (
               <motion.div
                 key={index}
@@ -431,14 +424,8 @@ export function AboutSection() {
                 className="group p-6 bg-white border border-[#A7A9AC]/20 hover:border-[#8D9DA6]/60 transition-all duration-300 hover:shadow-lg"
               >
                 <div
-                  className="text-[#50626C] mb-2"
-                  style={{ fontSize: '24px', fontWeight: 800 }}
-                >
-                  {region.projects}
-                </div>
-                <div
                   className="text-[#595B5C]"
-                  style={{ fontSize: '13px', fontWeight: 600 }}
+                  style={{ fontSize: '16px', fontWeight: 700 }}
                 >
                   {region.name}
                 </div>

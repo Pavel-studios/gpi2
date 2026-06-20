@@ -30,7 +30,7 @@ export function HeroSection() {
             >
               <div className="inline-block px-4 py-2 bg-[#5a5c5eb2] mb-6 border border-white/20">
                 <span className="text-white/90 uppercase" style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '0.1em' }}>
-                  Производство оборудования с 2005
+                  Производство оборудования с 2003 года
                 </span>
               </div>
 
@@ -63,10 +63,10 @@ export function HeroSection() {
             >
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: '4 000', unit: 'м²', label: 'Площадь производства' },
+                  { value: '2003', unit: '', label: 'Год основания' },
                   { value: '2000', unit: '+', label: 'Реализованных проектов' },
-                  { value: '20', unit: '+', label: 'Лет на рынке' },
-                  { value: '50', unit: '+', label: 'Партнеров' },
+                  { value: '15', unit: ' т', label: 'Грузоподъёмность кран-балок' },
+                  { value: '40', unit: ' МПа', label: 'Гидравлические испытания' },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -113,7 +113,7 @@ export function HeroSection() {
                     СЕРТИФИКАЦИЯ
                   </div>
                   <div style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '0.05em' }}>
-                    ASME • ГОСТ • ТР ТС
+                    ТР ТС • ISO 9001 • STO INTI S.QS.7
                   </div>
                 </div>
               </motion.div>
