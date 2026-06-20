@@ -10,10 +10,14 @@ import { EquipmentSection } from './components/EquipmentSection';
 import { ProductionSection } from './components/ProductionSection';
 import { ContactsSection } from './components/ContactsSection';
 import { Footer } from './components/Footer';
+import { PageLoader } from './components/PageLoader';
+import { RouteMeta } from './components/RouteMeta';
 
 export default function App() {
   return (
     <div className="min-h-screen bg-white">
+      <RouteMeta />
+      <PageLoader />
       <Navigation />
       <main>
         <Routes>
