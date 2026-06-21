@@ -1,40 +1,108 @@
 import { motion } from 'motion/react';
-import { ArrowUpRight, Building2, CheckCircle2 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import gazpromLogo from '@/imports/clients/logo-gazprom-white.png';
+import gazpromNoyabrskLogo from '@/imports/clients/4eba501e-7995-7637-b5e7-5b1bc43f685a.jpg';
+import gazpromSalavatLogo from '@/imports/clients/logo_gnhs_rus.png';
+import rosneftLogo from '@/imports/clients/a2ddf127393db4380ee610d7b9e31e66.jpg';
+import rnSnabzhenieLogo from '@/imports/clients/images.jpg';
+import rnYuganskLogo from '@/imports/clients/668124.png';
+import rnPurneftegazLogo from '@/imports/clients/purneftegaz.jpg';
+import rnUvatLogo from '@/imports/clients/rn-uvatneftegaz.jpg';
+import lukoilLogo from '@/imports/clients/b3f61e122a.jpg';
+import lukoilKomiLogo from '@/imports/clients/unnamed-3.jpg';
+import bashneftLogo from '@/imports/clients/580f14163611fefad60da78d5c9b904c.png';
+import vankorneftLogo from '@/imports/clients/6e13b810-9462-4f09-bb81-8a24f905ae3c.png';
+import inkLogo from '@/imports/clients/big-catalog-16344744171.webp';
+import sibneftegazLogo from '@/imports/clients/sibneftegaz_logo.png';
+import norilsktransgazLogo from '@/imports/clients/381564_1.png';
+import oznaLogo from '@/imports/clients/medium_193ea5be318e4658a7571d32a2c3b966.png';
+import orskLogo from '@/imports/clients/7fca05_dd235cf2b7bf43a3a74c46428ff851a3~mv2.png';
+import salavatneftemashLogo from '@/imports/clients/21.jpg';
+import kondensatLogo from '@/imports/clients/Untitled-1.jpg';
+import technohimLogo from '@/imports/clients/1089297.webp';
+import elprommashLogo from '@/imports/clients/elprommash.gif';
+import gspLogo from '@/imports/clients/057_1-2-4.png';
+import hydrodynamicsLogo from '@/imports/clients/44771315.e7e820nb9w.W215.jpg';
+import uraltekhnostroyLogo from '@/imports/clients/ooo-korporacija-uraltekhnostroj-270f07c33cbe1f6b451367798bc1bcd5.png';
 
 export function ProjectsPreview() {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
+
   const clients = [
-    { name: 'Заказчик 1', projects: 45 },
-    { name: 'Заказчик 2', projects: 12 },
-    { name: 'Заказчик 3', projects: 28 },
-    { name: 'Заказчик 4', projects: 35 },
-    { name: 'Заказчик 5', projects: 31 },
-    { name: 'Заказчик 6', projects: 52 },
+    { name: 'Газпром', logo: gazpromLogo },
+    { name: 'Газпром добыча Ноябрьск', logo: gazpromNoyabrskLogo },
+    { name: 'Газпром нефтехим Салават', logo: gazpromSalavatLogo },
+    { name: 'Роснефть', logo: rosneftLogo },
+    { name: 'РН-Снабжение', logo: rnSnabzhenieLogo },
+    { name: 'РН-Юганскнефтегаз', logo: rnYuganskLogo },
+    { name: 'РН-Пурнефтегаз', logo: rnPurneftegazLogo },
+    { name: 'РН-Уватнефтегаз', logo: rnUvatLogo },
+    { name: 'ЛУКОЙЛ', logo: lukoilLogo },
+    { name: 'ЛУКОЙЛ-Коми', logo: lukoilKomiLogo },
+    { name: 'Башнефть', logo: bashneftLogo },
+    { name: 'Ванкорнефть', logo: vankorneftLogo },
+    { name: 'Иркутская нефтяная компания', logo: inkLogo },
+    { name: 'Сибнефтегаз', logo: sibneftegazLogo },
+    { name: 'Норильсктрансгаз', logo: norilsktransgazLogo },
+    { name: 'ОЗНА', logo: oznaLogo },
+    { name: 'Орскнефтеоргсинтез', logo: orskLogo },
+    { name: 'Салаватнефтемаш', logo: salavatneftemashLogo },
+    { name: 'Конденсат', logo: kondensatLogo },
+    { name: 'Технохим', logo: technohimLogo },
+    { name: 'ЭлПромМаш', logo: elprommashLogo },
+    { name: 'ГСП-Комплектация', logo: gspLogo },
+    { name: 'Гидродинамика', logo: hydrodynamicsLogo },
+    { name: 'Уралтехнострой', logo: uraltekhnostroyLogo },
   ];
+
+  const scrollCarousel = (direction: 1 | -1) => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const firstCard = carousel.firstElementChild as HTMLElement | null;
+    if (!firstCard) return;
+
+    const gap = Number.parseFloat(getComputedStyle(carousel).gap) || 0;
+    const distance = firstCard.offsetWidth + gap;
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+    const nextPosition = carousel.scrollLeft + direction * distance;
+
+    carousel.scrollTo({
+      left: direction > 0 && nextPosition >= maxScroll - 1 ? 0 : Math.max(0, nextPosition),
+      behavior: 'smooth',
+    });
+  };
+
+  useEffect(() => {
+    if (isCarouselPaused) return;
+
+    const timer = window.setInterval(() => scrollCarousel(1), 2000);
+    return () => window.clearInterval(timer);
+  }, [isCarouselPaused]);
 
   const projects = [
     {
-      title: 'Теплообменное оборудование',
-      client: 'Заказчик 1',
+      title: 'Комплект монтажных вставок для ГПК в Усть-Луге',
+      client: 'ГСП-Комплектация',
       year: '2025',
-      value: '850 млн ₽',
-      scope: 'Комплект теплообменников для ГПЗ',
-      status: 'Выполнен',
+      scope: 'Поставка монтажных вставок фланцевых DN 100–800 для газоперерабатывающего комплекса по переработке этансодержащего газа.',
+      status: 'Завершен',
     },
     {
-      title: 'Сепараторы высокого давления',
-      client: 'Заказчик 2',
-      year: '2024',
-      value: '420 млн ₽',
-      scope: 'Серия сепараторов 3-фазных',
-      status: 'Выполнеен',
+      title: 'Факельные оголовки для ЛУКОЙЛ-Волгограднефтепереработка',
+      client: 'ЛУКОЙЛ',
+      year: '2025',
+      scope: 'Изготовление и поставка двух факельных оголовков ГФНГ-1200-399,418-0,005-П.',
+      status: 'Завершен',
     },
     {
-      title: 'Реакторное оборудование',
-      client: 'Заказчик 3',
-      year: '2024',
-      value: '1.2 млрд ₽',
-      scope: 'Реакторы для нефтехимии',
-      status: 'Выполнен',
+      title: 'Факельная установка для СИБУР',
+      client: 'СИБУР',
+      year: '2023',
+      scope: 'Изготовление факельной установки УФ-Н50-Ду700-h7500 с оголовком ГФНГ-1000 для нефтехимического производства.',
+      status: 'Завершен',
     },
   ];
 
@@ -75,47 +143,54 @@ export function ProjectsPreview() {
           </p>
         </motion.div>
 
-        {/* Clients grid */}
+        {/* Clients carousel */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-20"
+          onMouseEnter={() => setIsCarouselPaused(true)}
+          onMouseLeave={() => setIsCarouselPaused(false)}
+          onFocus={() => setIsCarouselPaused(true)}
+          onBlur={() => setIsCarouselPaused(false)}
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {clients.map((client, index) => (
-              <motion.div
+          <div className="mb-5 flex items-center justify-end gap-2">
+            <button
+              type="button"
+              aria-label="Предыдущие заказчики"
+              onClick={() => scrollCarousel(-1)}
+              className="flex h-10 w-10 items-center justify-center border border-[#A7A9AC]/30 bg-white text-[#50626C] transition-colors hover:border-[#50626C] hover:bg-[#50626C] hover:text-white"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              type="button"
+              aria-label="Следующие заказчики"
+              onClick={() => scrollCarousel(1)}
+              className="flex h-10 w-10 items-center justify-center border border-[#A7A9AC]/30 bg-white text-[#50626C] transition-colors hover:border-[#50626C] hover:bg-[#50626C] hover:text-white"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+
+          <div
+            ref={carouselRef}
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            aria-label="Заказчики реализованных проектов"
+          >
+            {clients.map((client) => (
+              <div
                 key={client.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group relative aspect-square bg-white border border-[#A7A9AC]/20 hover:border-[#8D9DA6]/60 transition-all duration-300 cursor-pointer overflow-hidden"
+                className="group flex aspect-[4/3] min-w-full snap-start items-center justify-center border border-[#A7A9AC]/20 bg-white p-5 transition-all duration-300 hover:border-[#8D9DA6]/60 hover:shadow-lg sm:min-w-[42%] md:min-w-[30%] lg:min-w-[calc((100%-5rem)/4)]"
               >
-                {/* Gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] to-[#8D9DA6] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                {/* Content */}
-                <div className="relative h-full flex flex-col items-center justify-center p-4">
-                  <Building2 className="text-[#8D9DA6] group-hover:text-white mb-3 transition-colors" size={32} strokeWidth={1.5} />
-                  <div
-                    className="text-[#50626C] group-hover:text-white text-center mb-2 transition-colors"
-                    style={{ fontSize: '14px', fontWeight: 700, lineHeight: 1.2 }}
-                  >
-                    {client.name}
-                  </div>
-                  <div
-                    className="text-[#A7A9AC] group-hover:text-white/70 transition-colors"
-                    style={{ fontSize: '11px', fontWeight: 600 }}
-                  >
-                    {client.projects} проектов
-                  </div>
-                </div>
-
-                {/* Corner accent */}
-                <div className="absolute top-0 right-0 w-0 h-0 border-t-[30px] border-r-[30px] border-t-[#50626C] border-r-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </motion.div>
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="h-full max-h-24 w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
             ))}
           </div>
         </motion.div>
@@ -137,9 +212,8 @@ export function ProjectsPreview() {
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#50626C] to-[#8D9DA6] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top" />
 
               <div className="relative p-8 md:p-10">
-                <div className="grid md:grid-cols-12 gap-6 md:gap-8 items-center">
-                  {/* Left: Project info */}
-                  <div className="md:col-span-7">
+                <div>
+                  <div>
                     <div className="flex flex-wrap items-center gap-3 mb-4">
                       <span
                         className="px-3 py-1 bg-[#50626C]/5 text-[#50626C] border border-[#50626C]/10"
@@ -176,32 +250,6 @@ export function ProjectsPreview() {
                     >
                       {project.scope}
                     </p>
-
-                  </div>
-
-                  {/* Right: Stats */}
-                  <div className="md:col-span-5">
-                    <div className="flex md:justify-end">
-                      <div className="relative">
-                        <div className="text-right">
-                          <div
-                            className="text-[#A7A9AC] mb-2 uppercase"
-                            style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em' }}
-                          >
-                            Стоимость контракта
-                          </div>
-                          <div
-                            className="text-[#50626C]"
-                            style={{ fontSize: 'clamp(28px, 4vw, 38px)', fontWeight: 800, letterSpacing: '-0.02em' }}
-                          >
-                            {project.value}
-                          </div>
-                        </div>
-
-                        {/* Decorative element */}
-                        <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-20 h-20 border-2 border-[#A7A9AC]/20 -rotate-12 opacity-0 group-hover:opacity-100 group-hover:rotate-0 transition-all duration-500" />
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -6,7 +6,7 @@ export function AdvantagesSection() {
     {
       icon: Factory,
       title: 'Собственное производство',
-      description: '4 000 м² современных цехов с полным циклом изготовления оборудования',
+      description: 'Универсальное оборудование и ЧПУ, кран-балки до 15 тонн и стенд гидравлических испытаний до 40 МПа',
       accent: 'from-[#50626C] to-[#595B5C]',
     },
     {
@@ -29,14 +29,14 @@ export function AdvantagesSection() {
     },
     {
       icon: Award,
-      title: 'более 20 лет на рынке',
-      description: 'Надежность, проверенная временем и сотнями успешных проектов',
+      title: 'С 2003 года',
+      description: 'Опыт работы на рынке оборудования для нефтегазовой, химической и энергетической отраслей',
       accent: 'from-[#595B5C] to-[#A7A9AC]',
     },
     {
       icon: Shield,
       title: 'Полная сертификация',
-      description: 'ASME, ГОСТ, ТР ТС, лицензии Ростехнадзора и аттестации НАКС',
+      description: 'ТР ТС, ISO 9001, STO INTI S.QS.7 и аттестации НАКС',
       accent: 'from-[#8D9DA6] to-[#50626C]',
     },
   ];
@@ -68,7 +68,7 @@ export function AdvantagesSection() {
             className="text-[#50626C] mb-6"
             style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.2 }}
           >
-            Почему выбирают нас
+            Наши преимущества
           </h2>
           <p
             className="text-[#595B5C] max-w-2xl mx-auto"
@@ -98,7 +98,7 @@ export function AdvantagesSection() {
                 <div className={`absolute inset-0 bg-gradient-to-br ${advantage.accent} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
 
                 {/* Content */}
-                <div className="relative p-8">
+                <div className="relative p-8 h-full">
                   {/* Icon */}
                   <div className="mb-6">
                     <div className={`inline-flex p-4 bg-gradient-to-br ${advantage.accent} group-hover:scale-110 transition-transform duration-300`}>
