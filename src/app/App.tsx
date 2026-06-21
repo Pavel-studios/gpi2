@@ -23,14 +23,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={
-            // <LandingPage />
-            <>
-            <HeroSection />
-            <AdvantagesSection />
-            <IndustriesSection />
-            <ProjectsPreview />
-            <ProductionPreview />
-            </>
+            <LandingPage />
           } />
           <Route path="/about" element={<AboutSection />} />
           <Route path="/equipment" element={<EquipmentSection />} />
