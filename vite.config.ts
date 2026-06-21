@@ -16,8 +16,10 @@ function figmaAssetResolver() {
   }
 }
 
-export default defineConfig({
-  base: '/gpi2',
+export default defineConfig(({ command }) => ({
+  // В dev-среде сайт открывается из корня localhost. Базовая папка нужна
+  // только для публикации собранной версии на /gpi2/.
+  base: '/gpi2/',
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if
@@ -34,4 +36,4 @@ export default defineConfig({
 
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
-})
+}))
