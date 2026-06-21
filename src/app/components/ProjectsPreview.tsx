@@ -78,7 +78,7 @@ export function ProjectsPreview() {
   useEffect(() => {
     if (isCarouselPaused) return;
 
-    const timer = window.setInterval(() => scrollCarousel(1), 3500);
+    const timer = window.setInterval(() => scrollCarousel(1), 2000);
     return () => window.clearInterval(timer);
   }, [isCarouselPaused]);
 

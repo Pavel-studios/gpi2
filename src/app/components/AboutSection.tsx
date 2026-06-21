@@ -4,6 +4,7 @@ import { Users, Shield, MapPin, Award, Building2, Calendar, CheckCircle2, Trendi
 import pattern from '@/imports/pattern.svg'
 import backgroundImage from '@/imports/DJI_20260520153109_0571_D.jpg'
 import activityMapMarkup from '@/imports/map-edited-2.svg?raw'
+import { StrategyPartnerSection } from './StrategyPartnerSection';
 
 const MAP_WIDTH = 806;
 const MAP_HEIGHT = 748;
@@ -636,6 +637,8 @@ export function AboutSection() {
           </div>
         </div>
       </section>
+
+      <StrategyPartnerSection />
     </div>
   );
 }
