@@ -29,7 +29,7 @@ export function Footer() {
               className="text-white/70"
               style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6 }}
             >
-              Проектирование и производство промышленного оборудования с 2005 года
+              Проектирование и производство промышленного оборудования с 2003 года
             </p>
           </div>
 
@@ -89,7 +89,7 @@ export function Footer() {
             className="text-white/50"
             style={{ fontSize: '12px', fontWeight: 400 }}
           >
-            © 2005–2026 ООО «Газ-Проект Инжиниринг». Все права защищены.
+            © 2003–2026 ООО «Газ-Проект Инжиниринг». Все права защищены.
           </div>
           <div className="flex items-center gap-6">
             <a href="#" className="text-white/50 hover:text-white transition-colors" style={{ fontSize: '12px', fontWeight: 500 }}>

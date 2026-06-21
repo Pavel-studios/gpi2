@@ -1,11 +1,158 @@
 import { motion } from 'motion/react';
-import { Users, Shield, MapPin, Award, Building2, Calendar, CheckCircle2, TrendingUp, Target, Lightbulb, ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Users, Shield, MapPin, Award, Building2, Calendar, CheckCircle2, TrendingUp, Target, Lightbulb, ArrowRight, Plus, Minus } from 'lucide-react';
 import pattern from '@/imports/pattern.svg'
 import backgroundImage from '@/imports/DJI_20260520153109_0571_D.jpg'
+import activityMapMarkup from '@/imports/map-edited-2.svg?raw'
+import { StrategyPartnerSection } from './StrategyPartnerSection';
+
+const MAP_WIDTH = 806;
+const MAP_HEIGHT = 748;
 
 export function AboutSection() {
+  const [mapView, setMapView] = useState({ centerX: MAP_WIDTH / 2, centerY: MAP_HEIGHT / 2, scale: 1 });
+  const [isMapDragging, setIsMapDragging] = useState(false);
+  const mapDrag = useRef({ pointerId: -1, x: 0, y: 0 });
+  const mapElement = useRef<HTMLDivElement>(null);
+  const mapPointers = useRef(new Map<number, { x: number; y: number }>());
+  const pinch = useRef({ distance: 0, scale: 1 });
+  const mapViewRef = useRef(mapView);
+
+  const clampMapCenter = (centerX, centerY, scale) => {
+    const visibleWidth = MAP_WIDTH / scale;
+    const visibleHeight = MAP_HEIGHT / scale;
+
+    return {
+      centerX: Math.min(MAP_WIDTH - visibleWidth / 2, Math.max(visibleWidth / 2, centerX)),
+      centerY: Math.min(MAP_HEIGHT - visibleHeight / 2, Math.max(visibleHeight / 2, centerY)),
+    };
+  };
+
+  useEffect(() => {
+    mapViewRef.current = mapView;
+
+    const svg = mapElement.current?.querySelector('svg');
+    if (!svg) return;
+
+    const width = MAP_WIDTH / mapView.scale;
+    const height = MAP_HEIGHT / mapView.scale;
+    const x = mapView.centerX - width / 2;
+    const y = mapView.centerY - height / 2;
+
+    svg.setAttribute('viewBox', `${x} ${y} ${width} ${height}`);
+  }, [mapView]);
+
+  const handleMapPointerDown = (event) => {
+    if (event.pointerType === 'touch') {
+      event.preventDefault();
+      mapPointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      event.currentTarget.setPointerCapture(event.pointerId);
+
+      if (mapPointers.current.size === 2) {
+        const [first, second] = [...mapPointers.current.values()];
+        pinch.current = {
+          distance: Math.hypot(second.x - first.x, second.y - first.y),
+          scale: mapViewRef.current.scale,
+        };
+        mapDrag.current.pointerId = -1;
+      } else {
+        mapDrag.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
+      }
+
+      setIsMapDragging(true);
+      return;
+    }
+
+    if (event.button !== 0 && event.button !== 2) return;
+
+    event.preventDefault();
+    mapDrag.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setIsMapDragging(true);
+  };
+
+  const handleMapPointerMove = (event) => {
+    if (event.pointerType === 'touch') {
+      if (!mapPointers.current.has(event.pointerId)) return;
+
+      mapPointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+      if (mapPointers.current.size === 2) {
+        const [first, second] = [...mapPointers.current.values()];
+        const distance = Math.hypot(second.x - first.x, second.y - first.y);
+
+        if (pinch.current.distance > 0) {
+          setMapScale(pinch.current.scale * (distance / pinch.current.distance));
+        }
+        return;
+      }
+    }
+
+    if (mapDrag.current.pointerId !== event.pointerId) return;
+
+    const deltaX = event.clientX - mapDrag.current.x;
+    const deltaY = event.clientY - mapDrag.current.y;
+
+    mapDrag.current = { ...mapDrag.current, x: event.clientX, y: event.clientY };
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const mapAspectRatio = MAP_WIDTH / MAP_HEIGHT;
+    const viewportAspectRatio = bounds.width / bounds.height;
+    const renderedWidth = viewportAspectRatio > mapAspectRatio ? bounds.height * mapAspectRatio : bounds.width;
+    const renderedHeight = viewportAspectRatio > mapAspectRatio ? bounds.height : bounds.width / mapAspectRatio;
+
+    setMapView((current) => {
+      const visibleWidth = MAP_WIDTH / current.scale;
+      const visibleHeight = MAP_HEIGHT / current.scale;
+      const center = clampMapCenter(
+        current.centerX - (deltaX * visibleWidth) / renderedWidth,
+        current.centerY - (deltaY * visibleHeight) / renderedHeight,
+        current.scale,
+      );
+
+      return { ...current, ...center };
+    });
+  };
+
+  const handleMapPointerUp = (event) => {
+    if (event.pointerType === 'touch') {
+      mapPointers.current.delete(event.pointerId);
+
+      if (mapPointers.current.size === 1) {
+        const [remainingPointerId, remainingPointer] = [...mapPointers.current.entries()][0];
+        mapDrag.current = { pointerId: remainingPointerId, x: remainingPointer.x, y: remainingPointer.y };
+        pinch.current.distance = 0;
+      } else if (mapPointers.current.size === 0) {
+        mapDrag.current.pointerId = -1;
+        pinch.current.distance = 0;
+        setIsMapDragging(false);
+      }
+
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      }
+      return;
+    }
+
+    if (mapDrag.current.pointerId !== event.pointerId) return;
+
+    mapDrag.current.pointerId = -1;
+    setIsMapDragging(false);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  const setMapScale = (scale) => {
+    setMapView((current) => {
+      const nextScale = Math.min(4, Math.max(0.75, scale));
+      const center = clampMapCenter(current.centerX, current.centerY, nextScale);
+
+      return { ...center, scale: nextScale };
+    });
+  };
+
   const timeline = [
-    { year: '2005', event: 'Основание предприятия', description: 'Запуск первого производственного цеха' },
+    { year: '2003', event: 'Основание предприятия', description: 'Запуск первого производственного цеха' },
     { year: '2010', event: 'Расширение производства', description: 'Увеличение площадей до 4 000 м²' },
     { year: '2015', event: 'Получение лицензий Ростехнадзора', description: 'Аттестация по всем направлениям' },
     { year: '2018', event: 'Запуск нового сварочного цеха', description: 'Внедрение современного оборудования' },
@@ -35,21 +182,17 @@ export function AboutSection() {
   ];
 
   const certificates = [
-    { name: 'Лицензия Ростехнадзора', code: 'РТН-2024-001' },
-    { name: 'Аттестация НАКС', code: 'НАКС-2024-156' },
-    { name: 'Свидетельство СРО', code: 'СРО-П-123-456' },
-    { name: 'Сертификат ГОСТ', code: 'РОСС RU.001.456' },
-    { name: 'Сертификат ТР ТС', code: 'ТС RU C-RU.АЛ15.В' },
-    { name: 'Сертификат ASME', code: 'ASME U-2024' },
+    { name: 'Сертификация ТР ТС', code: 'ТР ТС' },
+    { name: 'Система менеджмента качества', code: 'ISO 9001' },
+    { name: 'Отраслевой стандарт', code: 'STO INTI S.QS.7' },
+    { name: 'Аттестация персонала', code: 'НАКС' },
   ];
 
   const regions = [
-    { name: 'Москва и МО', projects: 45 },
-    { name: 'Санкт-Петербург', projects: 28 },
-    { name: 'Сибирь', projects: 52 },
-    { name: 'Урал', projects: 38 },
-    { name: 'Дальний Восток', projects: 15 },
-    { name: 'Казахстан', projects: 22 },
+    { name: 'Россия' },
+    { name: 'Белоруссия' },
+    { name: 'Казахстан' },
+    { name: 'Узбекистан' },
   ];
 
   return (
@@ -83,7 +226,7 @@ export function AboutSection() {
                 className="text-white mb-6"
                 style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}
               >
-                21 год инженерного
+                Более 20 лет инженерного
                 <br />
                 <span className="bg-gradient-to-r from-[#A7A9AC] to-white bg-clip-text text-transparent">
                   совершенства
@@ -100,8 +243,8 @@ export function AboutSection() {
 
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: Calendar, value: 'с 2005', label: 'На рынке' },
-                  { icon: Award, value: '200+', label: 'Проектов' },
+                  { icon: Calendar, value: 'с 2003', label: 'На рынке' },
+                  { icon: Award, value: '2000+', label: 'Проектов' },
                 ].map((item, index) => {
                   const Icon = item.icon;
                   return (
@@ -304,7 +447,7 @@ export function AboutSection() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {certificates.map((cert, index) => (
               <motion.div
                 key={index}
@@ -368,8 +511,59 @@ export function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative aspect-video bg-gradient-to-br from-[#50626C] to-[#8D9DA6] mb-12 overflow-hidden shadow-2xl"
+            className={`relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-video mb-8 sm:mb-12 overflow-hidden bg-white select-none touch-none ${
+              isMapDragging ? 'cursor-grabbing' : 'cursor-grab'
+            }`}
+            onPointerDown={handleMapPointerDown}
+            onPointerMove={handleMapPointerMove}
+            onPointerUp={handleMapPointerUp}
+            onPointerCancel={handleMapPointerUp}
+            onContextMenu={(event) => event.preventDefault()}
           >
+            <div
+              className="absolute inset-0"
+            >
+              <div
+              ref={mapElement}
+              className="activity-map"
+              role="img"
+              aria-label="География деятельности компании"
+              dangerouslySetInnerHTML={{ __html: activityMapMarkup }}
+              />
+            </div>
+            <div
+              className="absolute right-2 top-1/2 z-10 flex -translate-y-1/2 flex-col items-center gap-2 bg-white/90 p-1.5 shadow-lg backdrop-blur-sm sm:right-4 sm:gap-3 sm:p-2"
+              onPointerDown={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                aria-label="Приблизить карту"
+                className="flex h-8 w-8 items-center justify-center text-[#50626C] transition-colors hover:bg-[#50626C] hover:text-white sm:h-9 sm:w-9"
+                onClick={() => setMapScale(mapView.scale + 0.25)}
+              >
+                <Plus className="h-[18px] w-[18px] sm:h-5 sm:w-5" />
+              </button>
+              <input
+                aria-label="Масштаб карты"
+                className="map-zoom-slider"
+                type="range"
+                min="0.75"
+                max="4"
+                step="0.05"
+                value={mapView.scale}
+                onChange={(event) => setMapScale(Number(event.target.value))}
+              />
+              <button
+                type="button"
+                aria-label="Отдалить карту"
+                className="flex h-8 w-8 items-center justify-center text-[#50626C] transition-colors hover:bg-[#50626C] hover:text-white sm:h-9 sm:w-9"
+                onClick={() => setMapScale(mapView.scale - 0.25)}
+              >
+                <Minus className="h-[18px] w-[18px] sm:h-5 sm:w-5" />
+              </button>
+            </div>
+            {false && (
+              <>
             {/* Pattern */}
             <div
               className="absolute inset-0 opacity-10"
@@ -417,6 +611,8 @@ export function AboutSection() {
                 <div className="absolute inset-0 rounded-full bg-white/40 animate-ping" />
               </motion.div>
             ))}
+              </>
+            )}
           </motion.div>
 
           {/* Regions grid */}
@@ -431,14 +627,8 @@ export function AboutSection() {
                 className="group p-6 bg-white border border-[#A7A9AC]/20 hover:border-[#8D9DA6]/60 transition-all duration-300 hover:shadow-lg"
               >
                 <div
-                  className="text-[#50626C] mb-2"
-                  style={{ fontSize: '24px', fontWeight: 800 }}
-                >
-                  {region.projects}
-                </div>
-                <div
                   className="text-[#595B5C]"
-                  style={{ fontSize: '13px', fontWeight: 600 }}
+                  style={{ fontSize: '16px', fontWeight: 700 }}
                 >
                   {region.name}
                 </div>
@@ -447,6 +637,8 @@ export function AboutSection() {
           </div>
         </div>
       </section>
+
+      <StrategyPartnerSection />
     </div>
   );
 }
