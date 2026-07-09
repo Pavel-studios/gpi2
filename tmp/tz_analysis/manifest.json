@@ -1,0 +1,30 @@
+[
+  {
+    "key": "01_initial_tz_docx",
+    "path": "C:\\WebDev\\gpi2\\dev\\26-06\\ТЗ_Сайт_визитка_ГПИ (1).docx",
+    "text_path": "C:\\WebDev\\gpi2\\tmp\\tz_analysis\\01_initial_tz_docx.txt",
+    "chars": 16494,
+    "lines": 316
+  },
+  {
+    "key": "02_concept_book_pdf",
+    "path": "C:\\WebDev\\gpi2\\dev\\26-06\\Концепт-бук_ГПИ (1).pdf",
+    "text_path": "C:\\WebDev\\gpi2\\tmp\\tz_analysis\\02_concept_book_pdf.txt",
+    "chars": 11366,
+    "lines": 275
+  },
+  {
+    "key": "03_site_docx",
+    "path": "C:\\WebDev\\gpi2\\dev\\26-06\\Сайт.docx",
+    "text_path": "C:\\WebDev\\gpi2\\tmp\\tz_analysis\\03_site_docx.txt",
+    "chars": 3225,
+    "lines": 53
+  },
+  {
+    "key": "04_materials_docx",
+    "path": "C:\\WebDev\\gpi2\\dev\\26-06\\Материалы к сайту.docx",
+    "text_path": "C:\\WebDev\\gpi2\\tmp\\tz_analysis\\04_materials_docx.txt",
+    "chars": 17200,
+    "lines": 329
+  }
+]

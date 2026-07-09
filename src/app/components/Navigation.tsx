@@ -1,137 +1,133 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import Logo from './ui/logo'
+import Logo from './ui/logo';
+
+const menuItems = [
+  { path: '/', label: 'Главная' },
+  { path: '/about', label: 'О компании' },
+  { path: '/equipment', label: 'Оборудование' },
+  { path: '/production', label: 'Производство' },
+  { path: '/contacts', label: 'Контакты' },
+];
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [language, setLanguage] = useState('RU');
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const isActive = (path: string) => (path === '/' ? location.pathname === '/' : location.pathname.startsWith(path));
+  const isSolid = isScrolled || mobileMenuOpen;
+  const isHomeTop = location.pathname === '/' && !isSolid;
+  const isDarkTop = !isSolid && !isHomeTop;
 
-  const menuItems = [
-    { path: '/', label: 'Главная' },
-    { path: '/about', label: 'О компании' },
-    { path: '/equipment', label: 'Оборудование' },
-    { path: '/production', label: 'Производство' },
-    { path: '/contacts', label: 'Контакты' },
-  ];
+  useEffect(() => {
+    const updateScrollState = () => setIsScrolled(window.scrollY > 12);
 
-  const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(path);
-  };
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
 
-  const handleMenuClick = () => {
-    setMobileMenuOpen(false);
-  };
+    return () => window.removeEventListener('scroll', updateScrollState);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/98 backdrop-blur-md z-50 border-b border-[#A7A9AC]/10 shadow-sm">
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <Logo width={100}/>
+    <nav
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        isSolid
+          ? 'border-b border-[#50626c]/12 bg-white/92 shadow-[0_18px_60px_rgba(38,55,64,0.10)] backdrop-blur-2xl'
+          : isHomeTop
+            ? 'border-b border-[#50626c]/10 bg-transparent'
+            : 'border-b border-white/10 bg-transparent'
+      }`}
+    >
+      <div className="mx-auto max-w-[1920px] px-6 lg:px-12">
+        <div className="flex h-20 items-center justify-between">
+          <Link to="/" aria-label="Газ-Проект Инжиниринг — главная" className="group flex items-center">
+            <Logo
+              width={100}
+              fill={isDarkTop ? '#ffffff' : '#595b5c'}
+              className="transition-all duration-500 group-hover:scale-[1.03]"
+            />
           </Link>
 
-          {/* Desktop menu */}
-          <div className="hidden md:flex items-center gap-1">
+          <div
+            className={`hidden items-center gap-1 rounded-full border px-1.5 py-1.5 transition-all duration-500 md:flex ${
+              isSolid
+                ? 'border-[#50626c]/10 bg-[#eef0f1]/70'
+                : isHomeTop
+                  ? 'border-[#50626c]/12 bg-white/[0.18] backdrop-blur-md'
+                  : 'border-white/12 bg-white/[0.08] backdrop-blur-md'
+            }`}
+          >
             {menuItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                onClick={handleMenuClick}
-                className={`relative px-4 py-2 transition-all duration-300 group ${
-                  isActive(item.path) ? 'text-[#50626C]' : 'text-[#595B5C] hover:text-[#50626C]'
+                className={`group relative rounded-full px-4 py-2 text-sm transition-all duration-300 ${
+                  isActive(item.path)
+                    ? isSolid
+                      ? 'bg-white font-semibold text-[#263740] shadow-sm'
+                      : isHomeTop
+                        ? 'bg-[#50626c]/10 font-semibold text-[#263740]'
+                        : 'bg-white/16 font-semibold text-white'
+                    : isSolid
+                      ? 'font-medium text-[#69777d] hover:bg-white/70 hover:text-[#263740]'
+                      : isHomeTop
+                        ? 'font-medium text-[#69777d] hover:bg-[#50626c]/8 hover:text-[#263740]'
+                        : 'font-medium text-white/70 hover:bg-white/10 hover:text-white'
                 }`}
-                style={{ fontSize: '14px', fontWeight: isActive(item.path) ? 700 : 500, letterSpacing: '0.02em' }}
               >
                 {item.label}
-                {isActive(item.path) ? (
-                  <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#50626C] to-[#8D9DA6]" />
-                ) : (
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#50626C] to-[#8D9DA6] group-hover:w-full transition-all duration-300" />
-                )}
+                <span
+                  className={`absolute inset-x-4 -bottom-1 h-px transition-transform duration-300 ${
+                    isDarkTop ? 'bg-white/45' : 'bg-[#50626c]/40'
+                  } ${isActive(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}
+                />
               </Link>
             ))}
           </div>
 
-          {/* Language switcher */}
-          <div className="hidden md:flex items-center gap-2 bg-[#F5F5F5] p-1">
-            {['RU', 'EN', 'CN'].map((lang) => (
-              <button
-                key={lang}
-                onClick={() => setLanguage(lang)}
-                className={`px-3 py-1.5 transition-all duration-300 ${
-                  language === lang
-                    ? 'bg-gradient-to-r from-[#50626C] to-[#8D9DA6] text-white shadow-sm'
-                    : 'text-[#595B5C]'
-                }
-                ${
-                  lang != 'RU'
-                    ? 'text-[#A7A9AC]'
-                    : 'hover:text-[#50626C]'
-                }`}
-                disabled={lang != 'RU' ? true : false}
-                style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.05em' }}
-              >
-                {lang}
-              </button>
-            ))}
+          <div className="hidden items-center gap-2 md:flex">
+            <span
+              className={`px-3 py-1.5 text-xs font-bold transition-colors duration-500 ${
+                isDarkTop ? 'bg-white/16 text-white' : 'bg-[#50626c] text-white'
+              }`}
+            >
+              RU
+            </span>
+            <span className={`px-2 text-xs font-bold transition-colors duration-500 ${isDarkTop ? 'text-white/45' : 'text-[#a7a9ac]'}`}>
+              EN
+            </span>
+            <span className={`px-2 text-xs font-bold transition-colors duration-500 ${isDarkTop ? 'text-white/45' : 'text-[#a7a9ac]'}`}>
+              CN
+            </span>
           </div>
 
-          {/* Mobile menu button */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center text-[#50626C] hover:bg-[#F5F5F5] transition-colors"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-500 md:hidden ${
+              isDarkTop ? 'border-white/16 text-white' : 'border-[#50626c]/14 text-[#50626c]'
+            }`}
+            aria-label={mobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-[#A7A9AC]/10 shadow-lg">
-          <div className="px-6 py-6 space-y-2">
-            {menuItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={handleMenuClick}
-                className={`block w-full text-left px-4 py-3 transition-all duration-300 ${
-                  isActive(item.path)
-                    ? 'bg-gradient-to-r from-[#50626C] to-[#8D9DA6] text-white'
-                    : 'text-[#595B5C] hover:bg-[#F5F5F5]'
-                }`}
-                style={{ fontSize: '15px', fontWeight: isActive(item.path) ? 700 : 500 }}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="flex gap-2 pt-4 px-4">
-              {['RU', 'EN', 'CN'].map((lang) => (
-                <button
-                key={lang}
-                onClick={() => setLanguage(lang)}
-                className={`px-3 py-1.5 transition-all duration-300 ${
-                  language === lang
-                    ? 'bg-gradient-to-r from-[#50626C] to-[#8D9DA6] text-white shadow-sm'
-                    : 'text-[#595B5C]'
-                }
-                ${
-                  lang != 'RU'
-                    ? 'text-[#A7A9AC]'
-                    : 'hover:text-[#50626C]'
-                }`}
-                disabled={lang != 'RU' ? true : false}
-                style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.05em' }}
-              >
-                {lang}
-              </button>
-              ))}
-            </div>
-          </div>
+        <div className="border-t border-[#50626c]/10 bg-white px-6 py-5 shadow-lg md:hidden">
+          {menuItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`block border-b border-[#50626c]/10 px-1 py-3 text-sm ${
+                isActive(item.path) ? 'font-semibold text-[#40515a]' : 'text-[#69777d]'
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
       )}
     </nav>

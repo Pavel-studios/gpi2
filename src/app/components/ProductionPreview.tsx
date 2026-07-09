@@ -1,170 +1,131 @@
-import { motion } from 'motion/react';
-import { Cog, Flame, Shield, Gauge, CheckCircle2, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
+import machiningImage from '../../imports/tz-photos/prod-machining-1.webp';
+import weldingImage from '../../imports/tz-photos/prod-welding-1.webp';
+import qualityImage from '../../imports/tz-photos/prod-quality-1.webp';
+import heatImage from '../../imports/tz-photos/prod-heat-1.webp';
+import automationImage from '../../imports/tz-photos/prod-automation-1.webp';
+
+const capabilities = [
+  {
+    number: '01',
+    title: 'Механическая обработка',
+    description: 'Оборудование универсальное и с ЧПУ для изготовления деталей сложной геометрии.',
+    tags: ['Токарная обработка', 'Фрезерование', 'ЧПУ'],
+    image: machiningImage,
+  },
+  {
+    number: '02',
+    title: 'Сварочное производство',
+    description: 'Сварка с аттестацией НАКС оборудования, технологий и персонала.',
+    tags: ['TIG', 'MIG/MAG', 'SAW'],
+    image: heatImage,
+  },
+  {
+    number: '03',
+    title: 'Контроль качества',
+    description: 'Многоступенчатый контроль материалов, сварных соединений и готового оборудования.',
+    tags: ['Визуально-измерительный', 'Ультразвуковой', 'Радиографический'],
+    image: qualityImage,
+  },
+  {
+    number: '04',
+    title: 'Участок термообработки',
+    description: 'Термическая обработка сварных соединений и изделий по заданным технологическим режимам.',
+    tags: ['Нагрев', 'Выдержка', 'Контроль режима'],
+    image: weldingImage,
+  },
+  {
+    number: '05',
+    title: 'Участок АСУ ТП',
+    description: 'Разработка, сборка и настройка систем автоматизированного управления технологическими процессами.',
+    tags: ['Проектирование', 'Сборка шкафов', 'Пусконаладка'],
+    image: automationImage,
+  },
+];
 
 export function ProductionPreview() {
-  const capabilities = [
-    {
-      icon: Cog,
-      title: 'Механообработка',
-      description: 'Токарные, фрезерные, карусельные и расточные станки; универсальное оборудование и ЧПУ',
-      features: ['Токарные станки', 'Фрезерные станки', 'Карусельные станки'],
-      area: 'ЧПУ',
-    },
-    {
-      icon: Flame,
-      title: 'Сварочное производство',
-      description: 'TIG, MIG/MAG, SAW сварка с аттестацией НАКС',
-      features: ['TIG сварка', 'Аттестация НАКС', 'Нержавеющие стали'],
-      area: 'НАКС',
-    },
-    {
-      icon: Shield,
-      title: 'Контроль качества',
-      description: 'Многоступенчатая система контроля на всех этапах',
-      features: ['ВИК, РК, УЗК', 'РФА-контроль', 'Контроль герметичности'],
-      area: 'Аттестованная лаборатория',
-    },
-  ];
-
-  const stats = [
-    { value: '15', unit: ' тонн', label: 'Грузоподъёмность кран-балок' },
-    { value: '40', unit: ' МПа', label: 'Стенд гидравлических испытаний' },
-    { value: '300', unit: ' мм', label: 'Лентопильные станки' },
-  ];
+  const [active, setActive] = useState(0);
+  const current = capabilities[active];
 
   return (
-    <section className="relative py-16 px-6 overflow-hidden bg-white">
-      {/* Background pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.015]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0V0zm50 2v96M2 50h96' stroke='%2350626C' stroke-width='2' fill='none'/%3E%3C/svg%3E")`,
-        }}
-      />
+    <section className="relative overflow-hidden bg-[#eef0f1] px-5 py-20 text-[#263740] sm:px-8 lg:py-28">
+      <div className="pointer-events-none absolute inset-0 opacity-50 [background-image:linear-gradient(to_right,rgba(80,98,108,.09)_1px,transparent_1px),linear-gradient(to_bottom,rgba(80,98,108,.09)_1px,transparent_1px)] [background-size:80px_80px]" />
+      <div className="pointer-events-none absolute -right-[18%] top-[-20%] h-[70%] w-[55%] -skew-x-[24deg] bg-[#50626c]/[0.055]" />
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* Header with stats */}
-        <div className="grid gap-12 mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-center"
-          >
-            <div className="inline-block px-4 py-2 bg-[#50626C]/5 border border-[#50626C]/10 mb-6">
-              <span className="text-[#50626C] uppercase" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-                Производство
-              </span>
+      <div className="relative mx-auto max-w-[1920px]">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="mb-12 grid gap-7 lg:grid-cols-[1fr_0.7fr] lg:items-end"
+        >
+          <div>
+            <div className="mb-5 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#50626c]">
+              <span className="h-px w-14 bg-[#50626c]" />Полный цикл
             </div>
-
-            <h2
-              className="text-[#50626C] mb-6 text-center"
-              style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.2 }}
-            >
-              Производственные
-              <br />
-              мощности
+            <h2 className="max-w-4xl text-4xl font-semibold leading-[0.98] tracking-[-0.04em] sm:text-6xl xl:text-7xl">
+              Производственные мощности
             </h2>
+          </div>
+          <p className="max-w-xl text-base leading-relaxed text-[#50626c] lg:justify-self-end lg:text-lg">
+            Собственные участки позволяют контролировать каждый этап — от заготовки и обработки до испытаний готового оборудования.
+          </p>
+        </motion.div>
 
-            <p
-              className="text-[#595B5C] mb-8 text-center"
-              style={{ fontSize: '18px', fontWeight: 400, lineHeight: 1.7 }}
-            >
-              Полный цикл изготовления на современном оборудовании под контролем специалистов высшей квалификации
-            </p>
-
-          </motion.div>
-
-        </div>
-
-        {/* Capabilities cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {capabilities.map((capability, index) => {
-            const Icon = capability.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative"
+        <div className="grid min-h-[680px] overflow-hidden bg-[#263740] shadow-[0_30px_80px_rgba(38,55,64,.18)] lg:grid-cols-[minmax(300px,0.75fr)_1.6fr]">
+          <div className="relative z-10 flex flex-col border-white/10 lg:border-r">
+            {capabilities.map((item, index) => (
+              <button
+                key={item.number}
+                type="button"
+                onClick={() => setActive(index)}
+                className={`group relative flex flex-1 items-center gap-5 border-b border-white/10 px-6 py-6 text-left transition-colors duration-500 last:border-b-0 sm:px-8 ${active === index ? 'bg-[#50626c]' : 'hover:bg-white/[0.045]'}`}
               >
-                {/* Card container */}
-                <div className="relative h-full bg-white border border-[#A7A9AC]/20 overflow-hidden">
-                  {/* Top colored section */}
-                  <div className="relative aspect-[16/10] bg-gradient-to-br from-[#50626C] to-[#595B5C] overflow-hidden">
-                    {/* Pattern */}
-                    <div
-                      className="absolute inset-0 opacity-10"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                      }}
-                    />
+                <span className={`text-xs font-semibold tracking-[0.2em] transition-colors ${active === index ? 'text-white/65' : 'text-white/30'}`}>{item.number}</span>
+                <span className="text-lg font-medium leading-tight text-white sm:text-xl">{item.title}</span>
+                <ArrowUpRight className={`ml-auto shrink-0 transition-all duration-300 ${active === index ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-60'}`} size={21} />
+                {active === index && <motion.span layoutId="production-active" className="absolute bottom-0 left-0 top-0 w-1 bg-white" />}
+              </button>
+            ))}
+          </div>
 
-                    {/* Icon */}
-                    <div className="absolute top-6 left-6">
-                      <div className="p-4 bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-all duration-300">
-                        <Icon className="text-white" size={32} strokeWidth={1.5} />
-                      </div>
-                    </div>
+          <div className="relative min-h-[560px] overflow-hidden lg:min-h-0">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={current.title}
+                src={current.image}
+                alt={current.title}
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.02 }}
+                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </AnimatePresence>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#17252c] via-[#263740]/20 to-transparent" />
+            <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#263740]/35 to-transparent" />
 
-                    {/* Area badge */}
-                    <div className="absolute top-6 right-6 px-3 py-2 bg-white/10 backdrop-blur-sm border border-white/20">
-                      <span
-                        className="text-white"
-                        style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.05em' }}
-                      >
-                        {capability.area}
-                      </span>
-                    </div>
-
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#50626C] via-transparent to-transparent" />
-                  </div>
-
-                  {/* Content section */}
-                  <div className="p-6">
-                    <h3
-                      className="text-[#50626C] mb-3"
-                      style={{ fontSize: '20px', fontWeight: 700, lineHeight: 1.3 }}
-                    >
-                      {capability.title}
-                    </h3>
-
-                    <p
-                      className="text-[#595B5C] mb-6"
-                      style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6 }}
-                    >
-                      {capability.description}
-                    </p>
-
-                    {/* Features list */}
-                    <div className="space-y-2 mb-6">
-                      {capability.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#8D9DA6]" />
-                          <span
-                            className="text-[#595B5C]"
-                            style={{ fontSize: '13px', fontWeight: 500 }}
-                          >
-                            {feature}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                  </div>
-
-                  {/* Bottom accent */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#50626C] via-[#8D9DA6] to-[#A7A9AC] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${current.title}-content`}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 12 }}
+                transition={{ duration: 0.4, delay: 0.12 }}
+                className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-10 lg:p-14"
+              >
+                <p className="mb-7 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">{current.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {current.tags.map((tag) => (
+                    <span key={tag} className="border border-white/25 bg-[#263740]/35 px-4 py-2 text-xs font-medium uppercase tracking-[0.08em] backdrop-blur-md">{tag}</span>
+                  ))}
                 </div>
               </motion.div>
-            );
-          })}
+            </AnimatePresence>
+          </div>
         </div>
-
       </div>
     </section>
   );
