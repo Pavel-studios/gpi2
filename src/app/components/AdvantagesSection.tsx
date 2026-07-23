@@ -1,134 +1,163 @@
-import { motion } from 'motion/react';
-import { Factory, Users, Cog, Award, TrendingUp, Shield } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
+import productionImage from '@/imports/tz-photos/adv-production-exact.webp';
+import teamImage from '@/imports/tz-photos/adv-team-exact.webp';
+import projectsImage from '@/imports/tz-photos/adv-projects-exact.webp';
+import certQuality1 from '@/imports/about/certificates/cert-quality-1.webp';
+import certQuality2 from '@/imports/about/certificates/cert-quality-2.webp';
+import certTrts1 from '@/imports/about/certificates/cert-trts-1.webp';
+import certTrts2 from '@/imports/about/certificates/cert-trts-2.webp';
+import certTrts3 from '@/imports/about/certificates/cert-trts-3.webp';
+import certTrts4 from '@/imports/about/certificates/cert-trts-4.webp';
+import certWelding1 from '@/imports/about/certificates/cert-welding-1.webp';
+import certWelding2 from '@/imports/about/certificates/cert-welding-2.webp';
+import certWelding3 from '@/imports/about/certificates/cert-welding-3.webp';
+import certWelding4 from '@/imports/about/certificates/cert-welding-4.webp';
+
+const certificationMockupCertificates = [
+  certTrts1,
+  certQuality1,
+  certWelding1,
+  certTrts2,
+  certQuality2,
+  certWelding2,
+  certTrts3,
+  certWelding3,
+  certTrts4,
+  certWelding4,
+  certQuality1,
+  certTrts1,
+  certWelding2,
+  certTrts2,
+  certQuality2,
+  certWelding3,
+  certTrts3,
+  certWelding4,
+  certTrts4,
+  certWelding1,
+];
+
+const advantages = [
+  {
+    title: 'Собственное производство',
+    value: 'Полный цикл',
+    description: 'Оборудование универсальное и с ЧПУ, цеховая грузоподъемность до 15 тонн, испытательный стенд до 40 МПа, лаборатория НК, участок термообработки.',
+    image: productionImage,
+  },
+  {
+    title: 'Команда профессионалов',
+    value: '150',
+    description: 'Инженеры, конструкторы и производственные специалисты, объединённые опытом реализации сложных промышленных задач.',
+    image: teamImage,
+  },
+  {
+    title: 'Реализованные проекты',
+    value: '2000+',
+    description: 'Успешно реализованные поставки для ведущих компаний России и стран СНГ в нефтегазовой, химической и энергетической отраслях.',
+    image: projectsImage,
+  },
+  {
+    title: 'Полная сертификация',
+    value: 'ТР ТС · ISO · ИНТИ · НАКС',
+    description: 'Сертификация оборудования, системы менеджмента качества и аттестованные технологии сварки.',
+    image: null,
+  },
+];
 
 export function AdvantagesSection() {
-  const advantages = [
-    {
-      icon: Factory,
-      title: 'Собственное производство',
-      description: 'Универсальное оборудование и ЧПУ, кран-балки до 15 тонн и стенд гидравлических испытаний до 40 МПа',
-      accent: 'from-[#50626C] to-[#595B5C]',
-    },
-    {
-      icon: Users,
-      title: '150+ сотрудников',
-      description: 'Инженеры, конструкторы, рабочие производства и административный персонал',
-      accent: 'from-[#595B5C] to-[#8D9DA6]',
-    },
-    {
-      icon: TrendingUp,
-      title: '2000+ проектов',
-      description: 'Поставки промышленного оборудования для российских и зарубежных объектов',
-      accent: 'from-[#8D9DA6] to-[#A7A9AC]',
-    },
-    {
-      icon: Cog,
-      title: 'Конструкторское бюро',
-      description: 'Собственный отдел разработки и проектирования оборудования',
-      accent: 'from-[#50626C] to-[#8D9DA6]',
-    },
-    {
-      icon: Award,
-      title: 'С 2003 года',
-      description: 'Опыт работы на рынке оборудования для нефтегазовой, химической и энергетической отраслей',
-      accent: 'from-[#595B5C] to-[#A7A9AC]',
-    },
-    {
-      icon: Shield,
-      title: 'Полная сертификация',
-      description: 'ТР ТС, ISO 9001, STO INTI S.QS.7 и аттестации НАКС',
-      accent: 'from-[#8D9DA6] to-[#50626C]',
-    },
-  ];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [cycleKey, setCycleKey] = useState(0);
+  const active = advantages[activeIndex];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % advantages.length);
+    }, 7000);
+
+    return () => window.clearInterval(timer);
+  }, [cycleKey]);
+
+  const selectAdvantage = (index: number) => {
+    setActiveIndex(index);
+    setCycleKey((current) => current + 1);
+  };
 
   return (
-    <section className="relative py-16 px-6 overflow-hidden">
-      {/* Background with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F5F5F5] to-white" />
+    <section className="relative min-h-[100svh] overflow-hidden bg-[#50626c]">
+      <AnimatePresence mode="wait">
+        <motion.div key={activeIndex} initial={{ opacity: 0, scale: 1.025 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.65 }} className="absolute inset-0">
+          {active.image ? (
+            <img src={active.image} alt="" className={`h-full w-full object-cover transition-transform duration-[7000ms] ease-linear ${activeIndex === 0 ? 'object-center' : ''} ${activeIndex === 1 ? 'object-[52%_center]' : ''} ${activeIndex === 2 ? 'object-center' : ''}`} />
+          ) : (
+            <div className="absolute inset-0 overflow-hidden bg-[#dfe4e6]">
+              <div className="absolute inset-[-18%] rotate-[-18deg] scale-110 opacity-95">
+                <div className="grid h-full grid-cols-4 gap-5 md:grid-cols-5 lg:gap-8">
+                  {certificationMockupCertificates.map((certificate, index) => (
+                    <div key={index} className="relative aspect-[0.72] overflow-hidden bg-white p-3 shadow-[0_18px_44px_rgba(38,55,64,0.16)]">
+                      <img
+                        src={certificate}
+                        alt=""
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-[#50626c]/[0.08]" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-[#263740]/18" />
+            </div>
+          )}
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#263740]/90 via-[#34454e]/45 to-transparent" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#263740]/85 via-transparent to-[#263740]/15" />
+        </motion.div>
+      </AnimatePresence>
 
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-radial from-[#8D9DA6]/10 to-transparent blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-radial from-[#50626C]/10 to-transparent blur-3xl" />
-
-      <div className="relative max-w-7xl mx-auto">
-        {/* Section header */}
+      <div className="relative z-20 mx-auto flex min-h-[100svh] max-w-[1920px] flex-col justify-end px-6 pb-52 pt-24 sm:pb-36 lg:px-12 lg:pb-16">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          viewport={{ once: true, margin: '-120px' }}
+          transition={{ duration: 0.55 }}
+          className="absolute left-6 top-20 text-white sm:top-24 lg:left-12 lg:top-16"
         >
-          <div className="inline-block px-4 py-2 bg-[#50626C]/5 border border-[#50626C]/10 mb-6">
-            <span className="text-[#50626C] uppercase" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-              Преимущества компании
-            </span>
+          <div className="mb-4 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.18em] text-white/62">
+            <span className="h-px w-12 bg-white/35" />
+            Сильные стороны
           </div>
-          <h2
-            className="text-[#50626C] mb-6"
-            style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.2 }}
-          >
+          <h2 className="text-[clamp(2.25rem,5vw,5.75rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
             Наши преимущества
           </h2>
-          <p
-            className="text-[#595B5C] max-w-2xl mx-auto"
-            style={{ fontSize: '18px', fontWeight: 400, lineHeight: 1.7 }}
-          >
-            Факты, необходимые для первичной оценки предприятия как промышленного поставщика
-          </p>
         </motion.div>
+        <div className="max-w-3xl pl-0 lg:pl-[430px]">
+          <AnimatePresence mode="wait">
+            <motion.div key={`copy-${activeIndex}`} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.45 }} className="text-white">
+              <div className="mb-5 text-[clamp(2.5rem,7vw,6.5rem)] font-semibold leading-none tracking-[-0.05em]">{active.value}</div>
+              <p className="max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">{active.description}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
 
-        {/* Advantages grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {advantages.map((advantage, index) => {
-            const Icon = advantage.icon;
+      <div className="absolute bottom-4 left-5 right-5 z-30 grid grid-cols-2 overflow-hidden border border-white/25 bg-[#263740]/75 backdrop-blur-md sm:bottom-5 sm:grid-cols-4 lg:bottom-auto lg:left-12 lg:right-auto lg:top-1/2 lg:w-[350px] lg:-translate-y-1/2 lg:grid-cols-1">
+          {advantages.map((item, index) => {
+            const isActive = index === activeIndex;
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative"
+              <button
+                key={item.title}
+                type="button"
+                onClick={() => selectAdvantage(index)}
+                className={`group relative flex min-h-[62px] w-full items-start gap-2 border-r border-b border-white/15 px-3 py-2.5 text-left text-white transition-colors even:border-r-0 sm:min-h-20 sm:items-center sm:gap-3 sm:border-b-0 sm:even:border-r sm:last:border-r-0 lg:min-h-24 lg:border-b lg:border-r-0 lg:px-5 ${isActive ? 'bg-white/18' : 'hover:bg-white/10'}`}
+                aria-pressed={isActive}
               >
-                {/* Card background */}
-                <div className="absolute inset-0 bg-white border border-[#A7A9AC]/20 group-hover:border-[#8D9DA6]/60 transition-all duration-300" />
-
-                {/* Gradient accent on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${advantage.accent} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-
-                {/* Content */}
-                <div className="relative p-8 h-full">
-                  {/* Icon */}
-                  <div className="mb-6">
-                    <div className={`inline-flex p-4 bg-gradient-to-br ${advantage.accent} group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="text-white" size={32} strokeWidth={1.5} />
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h3
-                    className="text-[#50626C] mb-3 group-hover:text-[#595B5C] transition-colors"
-                    style={{ fontSize: '20px', fontWeight: 700, lineHeight: 1.3 }}
-                  >
-                    {advantage.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p
-                    className="text-[#595B5C]"
-                    style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6 }}
-                  >
-                    {advantage.description}
-                  </p>
-
-                  {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-[#50626C] to-[#8D9DA6] group-hover:w-full transition-all duration-500" />
-                </div>
-              </motion.div>
+                <span className="text-[10px] font-semibold tabular-nums text-white/55 lg:w-7 lg:text-xs">0{index + 1}</span>
+                <span className={`flex-1 text-[13px] leading-tight transition-transform sm:text-base lg:text-lg ${isActive ? 'font-semibold lg:translate-x-1' : 'font-medium group-hover:translate-x-1'}`}>{item.title}</span>
+                <ArrowUpRight size={18} className={`ml-auto hidden transition-all lg:block ${isActive ? 'rotate-45 text-white' : 'text-white/50 group-hover:text-white'}`} />
+                {isActive && <motion.span key={cycleKey} className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-white" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 7, ease: 'linear' }} />}
+              </button>
             );
           })}
-        </div>
       </div>
     </section>
   );

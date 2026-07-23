@@ -1,69 +1,233 @@
+import { PointerEvent, useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
-import { Users, Shield, MapPin, Award, Building2, Calendar, CheckCircle2, TrendingUp, Target, Lightbulb, ArrowRight, Plus, Minus } from 'lucide-react';
-import pattern from '@/imports/pattern.svg'
-import backgroundImage from '@/imports/DJI_20260520153109_0571_D.jpg'
-import activityMapMarkup from '@/imports/map-edited-2.svg?raw'
+import {
+  Atom,
+  Building2,
+  Factory,
+  Flame,
+  Globe2,
+  Handshake,
+  Landmark,
+  MapPinned,
+  Minus,
+  Plus,
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-react';
+
+import gallery01 from '@/imports/about/gallery/about-gallery-01.webp';
+import gallery02 from '@/imports/about/gallery/about-gallery-02.webp';
+import gallery03 from '@/imports/about/gallery/about-gallery-03.webp';
+import gallery04 from '@/imports/about/gallery/about-gallery-04.webp';
+import gallery05 from '@/imports/about/gallery/about-gallery-05.webp';
+import gallery06 from '@/imports/about/gallery/about-gallery-06.webp';
+import gallery07 from '@/imports/about/gallery/about-gallery-07.webp';
+import gallery08 from '@/imports/about/gallery/about-gallery-08.webp';
+import gallery09 from '@/imports/about/gallery/about-gallery-09.webp';
+import gallery10 from '@/imports/about/gallery/about-gallery-10.webp';
+import gallery11 from '@/imports/about/gallery/about-gallery-11.webp';
+import gallery12 from '@/imports/about/gallery/about-gallery-12.webp';
+import gallery13 from '@/imports/about/gallery/about-gallery-13.webp';
+import gallery14 from '@/imports/about/gallery/about-gallery-14.webp';
+import gallery15 from '@/imports/about/gallery/about-gallery-15.webp';
+import gallery16 from '@/imports/about/gallery/about-gallery-16.webp';
+import gallery17 from '@/imports/about/gallery/about-gallery-17.webp';
+import gallery18 from '@/imports/about/gallery/about-gallery-18.webp';
+import gallery19 from '@/imports/about/gallery/about-gallery-19.webp';
+import gallery20 from '@/imports/about/gallery/about-gallery-20.webp';
+import gallery21 from '@/imports/about/gallery/about-gallery-21.webp';
+import gallery22 from '@/imports/about/gallery/about-gallery-22.webp';
+import gallery23 from '@/imports/about/gallery/about-gallery-23.webp';
+import gallery24 from '@/imports/about/gallery/about-gallery-24.webp';
+import gallery25 from '@/imports/about/gallery/about-gallery-25.webp';
+import gallery26 from '@/imports/about/gallery/about-gallery-26.webp';
+import gallery27 from '@/imports/about/gallery/about-gallery-27.webp';
+import gallery28 from '@/imports/about/gallery/about-gallery-28.webp';
+import gallery29 from '@/imports/about/gallery/about-gallery-29.webp';
+import gallery30 from '@/imports/about/gallery/about-gallery-30.webp';
+import gallery31 from '@/imports/about/gallery/about-gallery-31.webp';
+import aboutMapBg from '@/imports/about/about-map-bg-20241125.webp';
+import activityMapMarkup from '@/imports/map-edited-2.svg?raw';
+import logoGazprom from '@/imports/clients/gazprom_logo.webp';
+import logoGazpromKomplekt from '@/imports/clients/057_1-2-4.png';
+import logoRosneft from '@/imports/clients/a2ddf127393db4380ee610d7b9e31e66.jpg';
+import logoBashneft from '@/imports/clients/580f14163611fefad60da78d5c9b904c.png';
+import logoLukoil from '@/imports/clients/png-klev-club-fdy1-p-lukoil-png-1.png';
+import logoSinopec from '@/imports/clients/index_img.png';
+import logoInk from '@/imports/clients/big-catalog-16344744171.jpg';
+import logoKondensat from '@/imports/clients/Untitled-1.jpg';
+import logoCkti from '@/imports/clients/partner_5.png';
+import logoSibneftegaz from '@/imports/clients/sibneftegaz_logo.png';
+import logoPurneftegaz from '@/imports/clients/purneftegaz.jpg';
+import logoRnUvat from '@/imports/clients/rn-uvatneftegaz.jpg';
+import logoSibur from '@/imports/clients/s1200.png';
+import Logo2 from './ui/logo2';
+import { FadingPattern } from './ui/fading-pattern';
+import { AboutCertificatesSection } from './AboutCertificatesSection';
 import { StrategyPartnerSection } from './StrategyPartnerSection';
 
-const MAP_WIDTH = 806;
-const MAP_HEIGHT = 748;
+const heroSlides = [
+  gallery01,
+  gallery02,
+  gallery03,
+  gallery04,
+  gallery05,
+  gallery06,
+  gallery07,
+  gallery08,
+  gallery09,
+  gallery10,
+  gallery11,
+  gallery12,
+  gallery13,
+  gallery14,
+  gallery15,
+  gallery16,
+  gallery17,
+  gallery18,
+  gallery19,
+  gallery20,
+  gallery21,
+  gallery22,
+  gallery23,
+  gallery24,
+  gallery25,
+  gallery26,
+  gallery27,
+  gallery28,
+  gallery29,
+  gallery30,
+  gallery31,
+];
+
+const timeline = [
+  {
+    year: '2003',
+    icon: Building2,
+    title: 'Основание компании',
+    description:
+      'Компания «Газ-Проект Инжиниринг» была основана в г. Уфа в Республике Башкоротостан. Изначально это было специализированное производственно-инжиниринговое предприятие по разработке и поставке оборудования для нефтегазовой отрасли, в частности факельных систем и индукционного обогрева.',
+  },
+  // {
+  //   year: '2004',
+  //   icon: Flame,
+  //   title: 'Испытания факельных оголовков',
+  //   description:
+  //     'Проведены испытания факельных оголовков со средствами контроля пламени и розжига, сформирована база для сертификации оборудования.',
+  // },
+  {
+    year: '2004–2010',
+    icon: Handshake,
+    title: 'Первые комплексные проекты',
+    description:
+      'Работа в сотрудничестве с крупными российскими компаниями. Разработка технических решений, позволяющих минимизировать влияние на экологию выбросов с промышленных предприятий, и оптимизировать расходы при добыче и переработке нефти и газа.',
+  },
+  {
+    year: '2010–2018',
+    icon: Factory,
+    title: 'Новые технологии и оборудование',
+    description:
+      'ООО «Газ-Проект Инжиниринг» - компания с уже многолетним опытом разработки и внедрения новых технологий и оборудования в нефтегазовом секторе, модернизирующая производства на различных предприятиях по добыче, переработке и транспорту углеводородов и попутного газа.',
+  },
+  // {
+  //   year: '2018–2023',
+  //   icon: MapPinned,
+  //   title: 'Расширение географии',
+  //   description:
+  //     'Поставки и проекты в ключевых регионах России, странах СНГ и на международных направлениях сотрудничества.',
+  // },
+  // {
+  //   year: '2023',
+  //   icon: Atom,
+  //   title: 'Новые отраслевые компетенции',
+  //   description:
+  //     'Изготовление оборудования для тепловых и атомных станций, расширение промышленного профиля производства.',
+  // },
+  {
+    year: '2023–2024',
+    icon: Landmark,
+    title: 'Сотрудничество с отраслевыми институтами',
+    description:
+      'Компания развивает  взаимодействие с ведущими институтами страны – НПО ЦКТИ, Газпром ВНИИГАЗ, Газпром Проектирование, ВНИИ Нефтемаш, АО НИИ Химмаш, Иркутск НИИ Химмаш.',
+  },
+  {
+    year: '2024–2026',
+    icon: Globe2,
+    title: 'Международное направление',
+    description:
+      'Развитие международных связей с Китаем в части поставки оборудования по техническим проектам компании «Газ-Проект Инжиниринг».',
+  },
+];
+
+const presencePoints = [
+  { label: 'Россия', top: '43%', left: '50%' },
+  { label: 'Беларусь', top: '25%', left: '20%' },
+  { label: 'Казахстан', top: '57%', left: '34%' },
+  { label: 'Узбекистан', top: '63%', left: '29%' },
+  { label: 'Китай', top: '78%', left: '57%' },
+];
+
+const partnerLogos = [
+  { name: 'Газпром', logo: logoGazprom },
+  { name: 'Газпром комплектация', logo: logoGazpromKomplekt },
+  { name: 'Роснефть', logo: logoRosneft },
+  { name: 'Башнефть', logo: logoBashneft },
+  { name: 'ЛУКОЙЛ', logo: logoLukoil },
+  { name: 'Sinopec', logo: logoSinopec },
+  { name: 'Иркутская нефтяная компания', logo: logoInk },
+  { name: 'Конденсат', logo: logoKondensat },
+  { name: 'НПО ЦКТИ', logo: logoCkti },
+  { name: 'Сибнефтегаз', logo: logoSibneftegaz },
+  { name: 'Пурнефтегаз', logo: logoPurneftegaz },
+  { name: 'РН-Уватнефтегаз', logo: logoRnUvat },
+  { name: 'СИБУР', logo: logoSibur },
+];
 
 export function AboutSection() {
-  const [mapView, setMapView] = useState({ centerX: MAP_WIDTH / 2, centerY: MAP_HEIGHT / 2, scale: 1 });
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [mapScale, setMapScale] = useState(1);
+  const [mapOffset, setMapOffset] = useState({ x: 0, y: 0 });
   const [isMapDragging, setIsMapDragging] = useState(false);
   const mapDrag = useRef({ pointerId: -1, x: 0, y: 0 });
-  const mapElement = useRef<HTMLDivElement>(null);
-  const mapPointers = useRef(new Map<number, { x: number; y: number }>());
-  const pinch = useRef({ distance: 0, scale: 1 });
-  const mapViewRef = useRef(mapView);
+  const historyRailRef = useRef<HTMLDivElement>(null);
 
-  const clampMapCenter = (centerX, centerY, scale) => {
-    const visibleWidth = MAP_WIDTH / scale;
-    const visibleHeight = MAP_HEIGHT / scale;
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length);
+    }, 4200);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const clampMapOffset = (x: number, y: number, scale = mapScale) => {
+    if (scale <= 1) return { x: 0, y: 0 };
+
+    const maxX = ((scale - 1) * 100) / scale;
+    const maxY = ((scale - 1) * 100) / scale;
 
     return {
-      centerX: Math.min(MAP_WIDTH - visibleWidth / 2, Math.max(visibleWidth / 2, centerX)),
-      centerY: Math.min(MAP_HEIGHT - visibleHeight / 2, Math.max(visibleHeight / 2, centerY)),
+      x: Math.min(maxX, Math.max(-maxX, x)),
+      y: Math.min(maxY, Math.max(-maxY, y)),
     };
   };
 
-  useEffect(() => {
-    mapViewRef.current = mapView;
+  const setNextMapScale = (nextScale: number) => {
+    const scale = Math.min(1.9, Math.max(1, Number(nextScale.toFixed(2))));
+    setMapScale(scale);
+    setMapOffset((current) => clampMapOffset(current.x, current.y, scale));
+  };
 
-    const svg = mapElement.current?.querySelector('svg');
-    if (!svg) return;
 
-    const width = MAP_WIDTH / mapView.scale;
-    const height = MAP_HEIGHT / mapView.scale;
-    const x = mapView.centerX - width / 2;
-    const y = mapView.centerY - height / 2;
 
-    svg.setAttribute('viewBox', `${x} ${y} ${width} ${height}`);
-  }, [mapView]);
+  const scrollHistory = (direction: 1 | -1) => {
+    const rail = historyRailRef.current;
+    if (!rail) return;
 
-  const handleMapPointerDown = (event) => {
-    if (event.pointerType === 'touch') {
-      event.preventDefault();
-      mapPointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
-      event.currentTarget.setPointerCapture(event.pointerId);
+    rail.scrollBy({ left: direction * Math.min(560, rail.clientWidth * 0.72), behavior: 'smooth' });
+  };
 
-      if (mapPointers.current.size === 2) {
-        const [first, second] = [...mapPointers.current.values()];
-        pinch.current = {
-          distance: Math.hypot(second.x - first.x, second.y - first.y),
-          scale: mapViewRef.current.scale,
-        };
-        mapDrag.current.pointerId = -1;
-      } else {
-        mapDrag.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
-      }
-
-      setIsMapDragging(true);
-      return;
-    }
-
-    if (event.button !== 0 && event.button !== 2) return;
+  const handleMapPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (mapScale <= 1) return;
 
     event.preventDefault();
     mapDrag.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
@@ -71,68 +235,18 @@ export function AboutSection() {
     setIsMapDragging(true);
   };
 
-  const handleMapPointerMove = (event) => {
-    if (event.pointerType === 'touch') {
-      if (!mapPointers.current.has(event.pointerId)) return;
+  const handleMapPointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (mapDrag.current.pointerId !== event.pointerId || mapScale <= 1) return;
 
-      mapPointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
-
-      if (mapPointers.current.size === 2) {
-        const [first, second] = [...mapPointers.current.values()];
-        const distance = Math.hypot(second.x - first.x, second.y - first.y);
-
-        if (pinch.current.distance > 0) {
-          setMapScale(pinch.current.scale * (distance / pinch.current.distance));
-        }
-        return;
-      }
-    }
-
-    if (mapDrag.current.pointerId !== event.pointerId) return;
-
-    const deltaX = event.clientX - mapDrag.current.x;
-    const deltaY = event.clientY - mapDrag.current.y;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const deltaX = ((event.clientX - mapDrag.current.x) / bounds.width) * 100;
+    const deltaY = ((event.clientY - mapDrag.current.y) / bounds.height) * 100;
 
     mapDrag.current = { ...mapDrag.current, x: event.clientX, y: event.clientY };
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const mapAspectRatio = MAP_WIDTH / MAP_HEIGHT;
-    const viewportAspectRatio = bounds.width / bounds.height;
-    const renderedWidth = viewportAspectRatio > mapAspectRatio ? bounds.height * mapAspectRatio : bounds.width;
-    const renderedHeight = viewportAspectRatio > mapAspectRatio ? bounds.height : bounds.width / mapAspectRatio;
-
-    setMapView((current) => {
-      const visibleWidth = MAP_WIDTH / current.scale;
-      const visibleHeight = MAP_HEIGHT / current.scale;
-      const center = clampMapCenter(
-        current.centerX - (deltaX * visibleWidth) / renderedWidth,
-        current.centerY - (deltaY * visibleHeight) / renderedHeight,
-        current.scale,
-      );
-
-      return { ...current, ...center };
-    });
+    setMapOffset((current) => clampMapOffset(current.x + deltaX, current.y + deltaY));
   };
 
-  const handleMapPointerUp = (event) => {
-    if (event.pointerType === 'touch') {
-      mapPointers.current.delete(event.pointerId);
-
-      if (mapPointers.current.size === 1) {
-        const [remainingPointerId, remainingPointer] = [...mapPointers.current.entries()][0];
-        mapDrag.current = { pointerId: remainingPointerId, x: remainingPointer.x, y: remainingPointer.y };
-        pinch.current.distance = 0;
-      } else if (mapPointers.current.size === 0) {
-        mapDrag.current.pointerId = -1;
-        pinch.current.distance = 0;
-        setIsMapDragging(false);
-      }
-
-      if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-        event.currentTarget.releasePointerCapture(event.pointerId);
-      }
-      return;
-    }
-
+  const handleMapPointerUp = (event: PointerEvent<HTMLDivElement>) => {
     if (mapDrag.current.pointerId !== event.pointerId) return;
 
     mapDrag.current.pointerId = -1;
@@ -142,213 +256,299 @@ export function AboutSection() {
     }
   };
 
-  const setMapScale = (scale) => {
-    setMapView((current) => {
-      const nextScale = Math.min(4, Math.max(0.75, scale));
-      const center = clampMapCenter(current.centerX, current.centerY, nextScale);
-
-      return { ...center, scale: nextScale };
-    });
-  };
-
-  const timeline = [
-    { year: '2003', event: 'Основание предприятия', description: 'Запуск первого производственного цеха' },
-    { year: '2010', event: 'Расширение производства', description: 'Увеличение площадей до 4 000 м²' },
-    { year: '2015', event: 'Получение лицензий Ростехнадзора', description: 'Аттестация по всем направлениям' },
-    { year: '2018', event: 'Запуск нового сварочного цеха', description: 'Внедрение современного оборудования' },
-    { year: '2022', event: 'Сертификация по ASME', description: 'Международное признание качества' },
-    { year: '2026', event: 'Внедрение системы контроля качества', description: 'Полная цифровизация процессов' },
-  ];
-
-  const values = [
-    {
-      icon: Target,
-      title: 'Контроль качества',
-      description: 'Входной, операционный и приемочный контроль на производственных этапах',
-      gradient: 'from-[#50626C] to-[#595B5C]',
-    },
-    {
-      icon: Shield,
-      title: 'Сертификация',
-      description: 'Лицензии, аттестации и подтверждение соответствия отраслевым требованиям',
-      gradient: 'from-[#595B5C] to-[#8D9DA6]',
-    },
-    {
-      icon: Lightbulb,
-      title: 'Инжиниринг',
-      description: 'Конструкторская документация, расчеты и 3D-моделирование оборудования',
-      gradient: 'from-[#8D9DA6] to-[#A7A9AC]',
-    },
-  ];
-
-  const certificates = [
-    { name: 'Сертификация ТР ТС', code: 'ТР ТС' },
-    { name: 'Система менеджмента качества', code: 'ISO 9001' },
-    { name: 'Отраслевой стандарт', code: 'STO INTI S.QS.7' },
-    { name: 'Аттестация персонала', code: 'НАКС' },
-  ];
-
-  const regions = [
-    { name: 'Россия' },
-    { name: 'Белоруссия' },
-    { name: 'Казахстан' },
-    { name: 'Узбекистан' },
-  ];
-
   return (
-    <div className="pt-20">
-      {/* Hero section */}
-      <section className="relative py-32 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(167,169,172,0.2),transparent_50%)]" />
-        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/> */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ background: `linear-gradient(to right, rgba(89, 91, 92, 0.2), rgba(255, 255, 255,0.2) 100%), url(${backgroundImage}) center / cover no-repeat`}}/>
+    <div className="bg-[#eef0f1]">
+      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-[#263740]">
+        {heroSlides.map((slide, index) => (
+          <motion.img
+            key={slide}
+            src={slide}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            initial={false}
+            animate={{
+              opacity: activeSlide === index ? 1 : 0,
+              scale: activeSlide === index ? 1.03 : 1,
+            }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
 
-        {/* Geometric decorations */}
-        <div className="absolute top-20 right-20 w-64 h-64 border border-white/10 rotate-45" />
-        <div className="absolute bottom-20 left-20 w-48 h-48 border border-white/10 -rotate-12" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#263740]/94 via-[#263740]/64 to-[#263740]/14" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#263740]/82 via-transparent to-transparent" />
+        <FadingPattern opacity="0.06" />
 
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-[1920px] items-end px-6 pb-14 pt-28 sm:px-10 lg:px-16 lg:pb-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="grid lg:grid-cols-2 gap-16 items-center"
+            className="max-w-5xl"
           >
-            <div>
-              <div className="inline-block px-4 py-2 bg-[#5a5c5eb2] mb-6 border border-white/20">
-                <span className="text-white/90 uppercase" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-                  О Компании
-                </span>
-              </div>
-
-              <h1
-                className="text-white mb-6"
-                style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}
-              >
-                Более 20 лет инженерного
-                <br />
-                <span className="bg-gradient-to-r from-[#A7A9AC] to-white bg-clip-text text-transparent">
-                  совершенства
-                </span>
-              </h1>
-
-              <p
-                className="text-white/80 mb-8"
-                style={{ fontSize: '18px', fontWeight: 400, lineHeight: 1.7 }}
-              >
-                ООО «Газ-Проект Инжиниринг» — российское машиностроительное предприятие полного цикла.
-                Проектируем, производим и поставляем промышленное оборудование для ключевых отраслей экономики.
-              </p>
-
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: Calendar, value: 'с 2003', label: 'На рынке' },
-                  { icon: Award, value: '2000+', label: 'Проектов' },
-                ].map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={index} className="p-6 bg-[#5a5c5eb2] border border-white/20">
-                      <Icon className="text-white/70 mb-3" size={28} strokeWidth={1.5} />
-                      <div
-                        className="text-white mb-1"
-                        style={{ fontSize: '28px', fontWeight: 800 }}
-                      >
-                        {item.value}
-                      </div>
-                      <div
-                        className="text-white/70"
-                        style={{ fontSize: '13px', fontWeight: 500 }}
-                      >
-                        {item.label}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+            <div className="mb-8 inline-flex items-center gap-3 border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-white/80 backdrop-blur-md">
+              О компании
             </div>
 
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                {values.map((value, index) => {
-                  const Icon = value.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                      className={`p-6 bg-[#5a5c5eb2] border border-white/20 hover:bg-white/20 transition-all duration-300 ${
-                        index === 2 ? 'col-span-2' : ''
-                      }`}
-                    >
-                      <div className={`inline-flex p-3 bg-gradient-to-br ${value.gradient} mb-4`}>
-                        <Icon className="text-white" size={24} strokeWidth={1.5} />
-                      </div>
-                      <h3
-                        className="text-white mb-2"
-                        style={{ fontSize: '18px', fontWeight: 700 }}
-                      >
-                        {value.title}
-                      </h3>
-                      <p
-                        className="text-white/70"
-                        style={{ fontSize: '13px', fontWeight: 400, lineHeight: 1.5 }}
-                      >
-                        {value.description}
-                      </p>
-                    </motion.div>
-                  );
-                })}
-              </div>
+            <h1
+              className="max-w-4xl text-white"
+              style={{
+                fontSize: 'clamp(46px, 8vw, 120px)',
+                fontWeight: 800,
+                letterSpacing: '-0.07em',
+                lineHeight: 0.92,
+              }}
+            >
+              Более 20 лет
+              <span className="block text-white/62">на рынке</span>
+            </h1>
+
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/74 sm:text-xl">
+              Самостоятельное производственное предприятие полного цикла для нефтегазовой,
+              химической и энергетической отраслей.
+            </p>
+
+            <div className="mt-10 flex max-w-xl flex-wrap gap-2">
+              {heroSlides.map((slide, index) => (
+                <button
+                  key={slide}
+                  type="button"
+                  aria-label={`Показать фото ${index + 1}`}
+                  onClick={() => setActiveSlide(index)}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    activeSlide === index ? 'w-12 bg-white' : 'w-5 bg-white/30 hover:bg-white/60'
+                  }`}
+                />
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2
-            className="text-[#50626C] mb-6 text-center"
-            style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em' }}
-          >
-            История предприятия
-          </h2>
+      <section className="relative overflow-hidden bg-[#eef1f2] px-6 py-24 sm:px-10 lg:px-16">
+        <img
+          src={aboutMapBg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-[0.5] grayscale saturate-0"
+        />
+        <div className="absolute inset-0 bg-[#eef1f2]/42" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#eef1f2]/72 via-[#eef1f2]/36 to-[#eef1f2]/58" />
+        <div className="absolute inset-0 bg-[#50626c]/8 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(80,98,108,0.055)_1px,transparent_1px),linear-gradient(180deg,rgba(80,98,108,0.055)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-          <div className="relative">
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#8D9DA6] via-[#A7A9AC] to-transparent" />
+        <div className="relative mx-auto max-w-[1680px]">
+          <div className="mb-16 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <div>
+              <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
+                Наша история
+              </div>
+              <h2
+                className="max-w-3xl text-[#263740]"
+                style={{
+                  fontSize: 'clamp(36px, 5.4vw, 76px)',
+                  fontWeight: 800,
+                  letterSpacing: '-0.055em',
+                  lineHeight: 0.96,
+                }}
+              >
+                Ключевые этапы развития компании
+              </h2>
+            </div>
+          </div>
 
-            <div className="space-y-12">
-              {timeline.map((item, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center gap-8 ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
-                >
-                  <div
-                    className={`flex-1 ${
-                      index % 2 === 0 ? 'md:text-right' : 'md:text-left'
-                    }`}
+          <div className="relative -mx-6 sm:-mx-10 lg:mx-0">
+            <button
+              type="button"
+              onClick={() => scrollHistory(-1)}
+              aria-label="Предыдущие события"
+              className="absolute left-1 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#50626c]/16 bg-white/70 text-[#50626c]/78 shadow-[0_14px_34px_rgba(38,55,64,0.12)] backdrop-blur-md transition hover:text-[#263740] sm:left-3 lg:left-0 lg:h-16 lg:w-16 lg:-translate-x-1/2 lg:border-0 lg:bg-transparent lg:shadow-none xl:-translate-x-full"
+            >
+              <ChevronLeft className="h-9 w-9 lg:h-[54px] lg:w-[54px]" strokeWidth={1.1} />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollHistory(1)}
+              aria-label="Следующие события"
+              className="absolute right-1 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#50626c]/16 bg-white/70 text-[#50626c]/78 shadow-[0_14px_34px_rgba(38,55,64,0.12)] backdrop-blur-md transition hover:text-[#263740] sm:right-3 lg:right-0 lg:h-16 lg:w-16 lg:translate-x-1/2 lg:border-0 lg:bg-transparent lg:shadow-none xl:translate-x-full"
+            >
+              <ChevronRight className="h-9 w-9 lg:h-[54px] lg:w-[54px]" strokeWidth={1.1} />
+            </button>
+
+            <div
+              ref={historyRailRef}
+              className="relative overflow-x-auto scroll-smooth px-16 pb-4 [scrollbar-width:none] sm:px-20 lg:px-20 [&::-webkit-scrollbar]:hidden"
+            >
+              <div className="relative flex min-w-max py-12 lg:py-16">
+                <div className="absolute left-0 right-0 top-1/2 h-px bg-[#50626c]/45" />
+
+              {timeline.map((item, index) => {
+                const isTop = index % 2 === 0;
+
+                return (
+                  <motion.article
+                    key={`${item.year}-${item.title}`}
+                    initial={{ opacity: 0, y: isTop ? -22 : 22 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.55, delay: Math.min(index * 0.04, 0.18) }}
+                    className="group relative h-[620px] w-[calc(100vw-8rem)] max-w-[310px] shrink-0 sm:w-[340px] sm:max-w-none lg:h-[700px] lg:w-[430px]"
                   >
-                    <div
-                      className="text-[#50626C] mb-2"
-                      style={{ fontSize: '28px', fontWeight: 700 }}
-                    >
+                    <div className={`absolute left-0 w-px bg-[#50626c] ${isTop ? 'bottom-[310px] h-[230px] lg:bottom-[350px] lg:h-[270px]' : 'top-[310px] h-[230px] lg:top-[350px] lg:h-[270px]'}`} />
+                    <div className={`absolute left-0 z-10 bg-[#50626c] px-3 py-1.5 text-[clamp(1.9rem,12vw,2.8rem)] font-black leading-none tracking-[0.02em] text-white shadow-[0_14px_34px_rgba(38,55,64,0.18)] sm:text-[3rem] lg:px-4 lg:text-[clamp(2.2rem,4vw,3.55rem)] ${isTop ? 'top-[248px] lg:top-[282px]' : 'bottom-[248px] lg:bottom-[282px]'}`}>
                       {item.year}
                     </div>
-                    <div
-                      className="text-[#595B5C]"
-                      style={{ fontSize: '16px', fontWeight: 400 }}
-                    >
-                      {item.event}
+                    <div className={`absolute left-3 w-[min(260px,calc(100%-1.5rem))] sm:w-[300px] lg:w-[330px] ${isTop ? 'top-0 max-h-[230px] lg:max-h-[260px]' : 'top-[390px] max-h-[220px] lg:top-[440px] lg:max-h-[250px]'}`}>
+                      <div className="mb-2 max-w-[230px] text-[13px] font-black uppercase leading-4 tracking-[-0.02em] text-[#50626c] sm:max-w-[260px] sm:text-[15px] sm:leading-5">
+                        {item.title}
+                      </div>
+                      <p className="max-w-[250px] text-xs leading-5 text-[#595b5c] sm:max-w-[300px] sm:text-sm sm:leading-6 lg:max-w-[330px]">
+                        {item.description}
+                      </p>
                     </div>
+                  </motion.article>
+                );
+              })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-[#263740] px-6 py-24 text-white sm:px-10 lg:px-16">
+        <img
+          src={aboutMapBg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.82] grayscale"
+        />
+        <div className="absolute inset-0 bg-[#263740]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#263740]/72 via-[#263740]/18 to-[#263740]/34" />
+        <div className="absolute right-[7vw] top-0 hidden h-full w-[18vw] skew-x-[-16deg] bg-white/[0.06] lg:block" />
+        <div className="absolute right-[19vw] top-0 hidden h-full w-[9vw] skew-x-[-16deg] bg-white/[0.035] lg:block" />
+
+        <div className="relative mx-auto grid max-w-[1680px] gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-white/52">
+              География
+            </div>
+            <h2
+              className="max-w-3xl"
+              style={{
+                fontSize: 'clamp(36px, 5.2vw, 74px)',
+                fontWeight: 800,
+                letterSpacing: '-0.06em',
+                lineHeight: 0.96,
+              }}
+            >
+              Масштаб деятельности
+            </h2>
+            <p className="mt-7 max-w-xl text-lg leading-8 text-white/70">
+              Деятельность компании ООО «Газ-Проект Инжиниринг» охватывала в разное время более 20 субъектов РФ на более, чем 100 предприятиях. Развитие компании позволило активно развивать сотрудничество с деловыми кругами стран СНГ: Беларуси, Казахстана, Узбекистана и укреплять взаимодействие с Китаем.
+            </p>
+            <div className="mt-10 w-[min(440px,82vw)] text-[#263740]">
+              <Logo2 className="h-auto w-full drop-shadow-[0_24px_50px_rgba(0,0,0,0.28)]" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            className="relative min-w-0 overflow-hidden"
+          >
+            <div className="mb-4 flex items-center justify-end gap-4">
+              <div className="flex shrink-0 gap-2">
+                <button
+                  type="button"
+                  aria-label="Уменьшить карту"
+                  onClick={() => setNextMapScale(mapScale - 0.25)}
+                  className="flex h-10 w-10 items-center justify-center border border-white/16 bg-white/8 text-white transition-colors hover:bg-white hover:text-[#263740]"
+                >
+                  <Minus size={18} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Увеличить карту"
+                  onClick={() => setNextMapScale(mapScale + 0.25)}
+                  className="flex h-10 w-10 items-center justify-center border border-white/16 bg-white/8 text-white transition-colors hover:bg-white hover:text-[#263740]"
+                >
+                  <Plus size={18} />
+                </button>
+              </div>
+            </div>
+
+            <div
+              className={`relative mx-auto aspect-[16/11] w-full max-w-[980px] overflow-hidden touch-none select-none lg:max-w-[1120px] ${
+                mapScale > 1 ? (isMapDragging ? 'cursor-grabbing' : 'cursor-grab') : ''
+              }`}
+              onPointerDown={handleMapPointerDown}
+              onPointerMove={handleMapPointerMove}
+              onPointerUp={handleMapPointerUp}
+              onPointerCancel={handleMapPointerUp}
+              onContextMenu={(event) => event.preventDefault()}
+            >
+              <div
+                className={`activity-map absolute inset-0 origin-center ${isMapDragging ? '' : 'transition-transform duration-500'}`}
+                style={{ transform: `translate(${mapOffset.x}%, ${mapOffset.y}%) scale(${mapScale})` }}
+                role="img"
+                aria-label="Карта географии деятельности компании"
+                dangerouslySetInnerHTML={{ __html: activityMapMarkup }}
+              />
+              <div
+                className={`absolute inset-0 origin-center ${isMapDragging ? '' : 'transition-transform duration-500'}`}
+                style={{ transform: `translate(${mapOffset.x}%, ${mapOffset.y}%) scale(${mapScale})` }}
+              >
+                {presencePoints.map((point, index) => (
+                  <div
+                    key={point.label}
+                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    style={{ top: point.top, left: point.left }}
+                  >
+                    <span className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-[#50626c]/50" />
+                    <span className="relative block h-3.5 w-3.5 rounded-full border-2 border-white bg-[#50626c] shadow-[0_0_0_6px_rgba(80,98,108,0.22)]" />
+                    <span
+                      className={`absolute left-5 top-1/2 -translate-y-1/2 whitespace-nowrap bg-[#263740]/90 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-white shadow-lg transition-all duration-500 ${
+                        mapScale > 1.05 || index === 0 ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0'
+                      }`}
+                    >
+                      {point.label}
+                    </span>
                   </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
 
-                  <div className="hidden md:block w-4 h-4 rounded-full bg-[#50626C] border-4 border-white shadow-lg relative z-10" />
+        <div className="relative mx-auto mt-20 max-w-[1680px] border-t border-white/14 pt-10">
+          <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div>
+              <div className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-white/52">
+                Кооперация
+              </div>
+              <h3 className="text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
+                Наши партнеры
+              </h3>
+            </div>
+            <p className="max-w-xl text-sm leading-6 text-white/54">
+              Компании и организации, с которыми связаны реализованные проекты, поставки и инженерное взаимодействие.
+            </p>
+          </div>
 
-                  <div className="flex-1" />
+          <div className="overflow-hidden">
+            <div className="flex w-max animate-[partners-scroll_38s_linear_infinite] gap-3 hover:[animation-play-state:paused]">
+              {[...partnerLogos, ...partnerLogos].map((partner, index) => (
+                <div
+                  key={`${partner.name}-${index}`}
+                  className="flex h-28 w-56 shrink-0 items-center justify-center border border-white/10 bg-white px-6"
+                >
+                  <img src={partner.logo} alt={partner.name} className="max-h-16 w-full object-contain" loading="lazy" />
                 </div>
               ))}
             </div>
@@ -356,289 +556,8 @@ export function AboutSection() {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="relative py-16 px-6 overflow-hidden bg-gradient-to-r from-[#50626C] to-[#8D9DA6]">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-radial from-[#8D9DA6]/10 to-transparent blur-3xl" />
-
-        <div className="relative max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block px-4 py-2 bg-[#FFFFFF] border border-[#FFFFFF]/10 mb-6">
-              <span className="text-[#50626C] uppercase" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-                Команда
-              </span>
-            </div>
-            <h2
-              className="text-[#FFFFFF] mb-6"
-              style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em' }}
-            >
-              Штат сотрудников
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {[
-              { count: '50+', label: 'Инженеры и конструкторы', icon: Users, color: 'bg-[#FFFFFF]' },
-              { count: '80+', label: 'Рабочие производства', icon: Award, color: 'bg-[#FFFFFF]' },
-              { count: '20+', label: 'Административный персонал', icon: Building2, color: 'bg-[#FFFFFF]' },
-            ].map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 border border-[#FFFFFF] group-hover:border-[#8D9DA6]/60 transition-all duration-300" />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-
-                  <div className="relative p-8 text-center">
-                    <div className={`inline-flex p-5 bg-gradient-to-br ${item.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="text-[#50626C]" size={32} strokeWidth={1.5} />
-                    </div>
-                    <div
-                      className="text-[#FFFFFF] mb-2"
-                      style={{ fontSize: '36px', fontWeight: 800, letterSpacing: '-0.02em' }}
-                    >
-                      {item.count}
-                    </div>
-                    <div
-                      className="text-[#FFFFFF]"
-                      style={{ fontSize: '14px', fontWeight: 500 }}
-                    >
-                      {item.label}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Certificates */}
-      <section className="relative py-16 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block px-4 py-2 bg-[#50626C]/5 border border-[#50626C]/10 mb-6">
-              <span className="text-[#50626C] uppercase" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-                Аккредитация
-              </span>
-            </div>
-            <h2
-              className="text-[#50626C] mb-6"
-              style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em' }}
-            >
-              Сертификаты и лицензии
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {certificates.map((cert, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group relative aspect-[3/4] cursor-pointer overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#F5F5F5] to-white border-2 border-[#A7A9AC]/30 group-hover:border-[#50626C]/60 transition-all duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] to-[#8D9DA6] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                <div className="relative h-full flex flex-col items-center justify-center p-4">
-                  <Shield className="text-[#8D9DA6] group-hover:text-white mb-4 transition-colors" size={40} strokeWidth={1.5} />
-                  <div
-                    className="text-[#50626C] group-hover:text-white text-center mb-2 transition-colors"
-                    style={{ fontSize: '12px', fontWeight: 700, lineHeight: 1.2 }}
-                  >
-                    {cert.name}
-                  </div>
-                  <div
-                    className="text-[#A7A9AC] group-hover:text-white/70 text-center transition-colors"
-                    style={{ fontSize: '10px', fontWeight: 600 }}
-                  >
-                    {cert.code}
-                  </div>
-
-                  <div className="absolute top-2 right-2 w-6 h-6 border border-[#A7A9AC]/30 group-hover:border-white/50 group-hover:rotate-45 transition-all duration-300" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Geography */}
-      <section className="relative py-16 px-6 overflow-hidden bg-gradient-to-b from-white to-[#F5F5F5]">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block px-4 py-2 bg-[#50626C]/5 border border-[#50626C]/10 mb-6">
-              <span className="text-[#50626C]" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-                ГЕОГРАФИЯ
-              </span>
-            </div>
-            <h2
-              className="text-[#50626C] mb-6"
-              style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em' }}
-            >
-              Масштаб деятельности
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className={`relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-video mb-8 sm:mb-12 overflow-hidden bg-white select-none touch-none ${
-              isMapDragging ? 'cursor-grabbing' : 'cursor-grab'
-            }`}
-            onPointerDown={handleMapPointerDown}
-            onPointerMove={handleMapPointerMove}
-            onPointerUp={handleMapPointerUp}
-            onPointerCancel={handleMapPointerUp}
-            onContextMenu={(event) => event.preventDefault()}
-          >
-            <div
-              className="absolute inset-0"
-            >
-              <div
-              ref={mapElement}
-              className="activity-map"
-              role="img"
-              aria-label="География деятельности компании"
-              dangerouslySetInnerHTML={{ __html: activityMapMarkup }}
-              />
-            </div>
-            <div
-              className="absolute right-2 top-1/2 z-10 flex -translate-y-1/2 flex-col items-center gap-2 bg-white/90 p-1.5 shadow-lg backdrop-blur-sm sm:right-4 sm:gap-3 sm:p-2"
-              onPointerDown={(event) => event.stopPropagation()}
-            >
-              <button
-                type="button"
-                aria-label="Приблизить карту"
-                className="flex h-8 w-8 items-center justify-center text-[#50626C] transition-colors hover:bg-[#50626C] hover:text-white sm:h-9 sm:w-9"
-                onClick={() => setMapScale(mapView.scale + 0.25)}
-              >
-                <Plus className="h-[18px] w-[18px] sm:h-5 sm:w-5" />
-              </button>
-              <input
-                aria-label="Масштаб карты"
-                className="map-zoom-slider"
-                type="range"
-                min="0.75"
-                max="4"
-                step="0.05"
-                value={mapView.scale}
-                onChange={(event) => setMapScale(Number(event.target.value))}
-              />
-              <button
-                type="button"
-                aria-label="Отдалить карту"
-                className="flex h-8 w-8 items-center justify-center text-[#50626C] transition-colors hover:bg-[#50626C] hover:text-white sm:h-9 sm:w-9"
-                onClick={() => setMapScale(mapView.scale - 0.25)}
-              >
-                <Minus className="h-[18px] w-[18px] sm:h-5 sm:w-5" />
-              </button>
-            </div>
-            {false && (
-              <>
-            {/* Pattern */}
-            <div
-              className="absolute inset-0 opacity-10"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }}
-            />
-
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="text-white mx-auto mb-4" size={64} strokeWidth={1.5} />
-                <div
-                  className="text-white mb-2"
-                  style={{ fontSize: '28px', fontWeight: 700 }}
-                >
-                  Вся Россия и СНГ
-                </div>
-                <div
-                  className="text-white/70"
-                  style={{ fontSize: '16px', fontWeight: 400 }}
-                >
-                  Поставки в ключевые промышленные регионы
-                </div>
-              </div>
-            </div>
-
-            {/* Animated points */}
-            {[
-              { top: '30%', left: '35%' },
-              { top: '45%', left: '55%' },
-              { top: '50%', left: '70%' },
-              { top: '60%', left: '45%' },
-              { top: '35%', left: '65%' },
-              { top: '55%', left: '80%' },
-            ].map((pos, index) => (
-              <motion.div
-                key={index}
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="absolute w-4 h-4 rounded-full bg-white"
-                style={{ top: pos.top, left: pos.left }}
-              >
-                <div className="absolute inset-0 rounded-full bg-white/40 animate-ping" />
-              </motion.div>
-            ))}
-              </>
-            )}
-          </motion.div>
-
-          {/* Regions grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {regions.map((region, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group p-6 bg-white border border-[#A7A9AC]/20 hover:border-[#8D9DA6]/60 transition-all duration-300 hover:shadow-lg"
-              >
-                <div
-                  className="text-[#595B5C]"
-                  style={{ fontSize: '16px', fontWeight: 700 }}
-                >
-                  {region.name}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <StrategyPartnerSection />
+      <AboutCertificatesSection />
     </div>
   );
 }

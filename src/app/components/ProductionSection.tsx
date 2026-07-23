@@ -1,387 +1,261 @@
-import { motion } from 'motion/react';
-import { Cog, Flame, Shield, FlaskConical, Gauge, CheckCircle2, ArrowRight, Factory, TrendingUp, Award } from 'lucide-react';
-import pattern from '@/imports/pattern.svg'
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+} from 'lucide-react';
+
+import pattern from '@/imports/pattern.svg';
+import machining1 from '@/imports/tz-photos/prod-machining-1.webp';
+import machining2 from '@/imports/tz-photos/prod-machining-2.webp';
+import machining3 from '@/imports/tz-photos/prod-machining-3.webp';
+import welding1 from '@/imports/tz-photos/prod-welding-1.webp';
+import welding2 from '@/imports/tz-photos/prod-welding-2.webp';
+import welding3 from '@/imports/tz-photos/prod-welding-3.webp';
+import quality1 from '@/imports/tz-photos/prod-quality-1.webp';
+import quality2 from '@/imports/tz-photos/prod-quality-2.webp';
+import quality3 from '@/imports/tz-photos/prod-quality-3.webp';
+import quality4 from '@/imports/tz-photos/prod-quality-4.webp';
+import quality5 from '@/imports/tz-photos/prod-quality-5.webp';
+import heat1 from '@/imports/tz-photos/prod-heat-1.webp';
+import heat2 from '@/imports/tz-photos/prod-heat-2.jpg';
+import automation1 from '@/imports/tz-photos/prod-automation-1.webp';
+import automation2 from '@/imports/tz-photos/prod-automation-2.webp';
+import automation3 from '@/imports/tz-photos/prod-automation-3.webp';
+import automation4 from '@/imports/tz-photos/prod-automation-4.webp';
+import coating1 from '@/imports/tz-photos/prod-coating-1.webp';
+import coating2 from '@/imports/tz-photos/prod-coating-2.webp';
+import coating3 from '@/imports/tz-photos/prod-coating-3.webp';
+import { FadingPattern } from './ui/fading-pattern';
+
+const publicBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const heroVideo = `${publicBase}/media/production-hero-n59a2574.mp4`;
+
+const productionAreas = [
+  {
+    number: '01',
+    title: 'Заготовительные участки',
+    description:
+      'Лентопильные станки до Ø300 мм, портал газо-плазменной резки до δ=70 мм и листогибочные станки до δ=30 мм.',
+    bullets: ['Лентопильные станки', 'Газо-плазменная резка', 'Листогибочные станки'],
+    images: [machining1, machining2, machining3],
+  },
+  {
+    number: '02',
+    title: 'Сварочные участки',
+    description:
+      'Полный спектр аттестованных сварочных технологий и персонала для работы с различными материалами.',
+    bullets: ['TIG — аргонодуговая сварка', 'MIG/MAG — полуавтоматическая сварка', 'SAW — сварка под флюсом', 'Ручная электродуговая сварка'],
+    images: [welding1, welding2, welding3],
+  },
+  {
+    number: '03',
+    title: 'Служба контроля качества',
+    description:
+      'Контроль материалов, сварных соединений и готового оборудования на ключевых этапах производства.',
+    bullets: ['Визуально-измерительный контроль', 'Радиографический контроль', 'Ультразвуковой контроль', 'Контроль герметичности', 'Рентгенфлуорисцентный контроль', 'Капиллярный контроль'],
+    images: [quality1, quality2, quality3, quality4, quality5],
+  },
+  {
+    number: '04',
+    title: 'Участок АСУ ТП',
+    description:
+      'Автоматизация управления сложным оборудованием, сборка и настройка систем управления технологическими процессами.',
+    bullets: ['Сборка шкафов управления', 'Автоматизация параметров', 'Пусконаладочные работы'],
+    images: [automation1, automation2, automation3, automation4],
+  },
+  {
+    number: '05',
+    title: 'Участок термообработки',
+    description:
+      'Индукционная термообработка — прогрессивный метод термической обработки металлов.',
+    bullets: ['Индукционная термообработка', 'Контроль режимов нагрева', 'Подготовка деталей к дальнейшей обработке'],
+    images: [heat1, heat2],
+  },
+  {
+    number: '06',
+    title: 'Участок нанесения лакокрасочного покрытия',
+    description:
+      'Нанесение однослойных и многослойных покрытий с контролем адгезии и толщинометрией каждого слоя.',
+    bullets: ['Однослойные покрытия', 'Многослойные покрытия', 'Контроль адгезии', 'Толщинометрия'],
+    images: [coating1, coating2, coating3],
+  },
+];
 
 export function ProductionSection() {
-  const productionAreas = [
-    {
-      title: 'Заготовительные участки',
-      icon: Cog,
-      description: 'Современный станочный парк с ЧПУ оборудованием для изготовления деталей любой сложности',
-      details: [
-        'Токарные станки с ЧПУ',
-        'Фрезерные центры',
-        'Расточные станки',
-        'Карусельные станки',
-      ],
-      stats: [
-        { label: 'Оснащение', value: 'Универсальное и ЧПУ' },
-        { label: 'Кран-балки', value: 'до 15 тонн' },
-        { label: 'Лентопильные станки', value: 'до 300 мм' },
-      ],
-      gradient: 'from-[#50626C] to-[#595B5C]',
-    },
-    {
-      title: 'Сварочные цеха',
-      icon: Flame,
-      description: 'Полный спектр сварочных технологий с аттестацией сварщиков для работы с различными материалами',
-      details: [
-        'TIG (аргонодуговая)',
-        'MIG/MAG (полуавтомат)',
-        'SAW (автоматическая)',
-        'Электродуговая сварка',
-      ],
-      materials: [
-        'Углеродистые стали',
-        'Нержавеющие стали',
-        'Низколегированные стали',
-        'Алюминиевые сплавы',
-      ],
-      gradient: 'from-[#595B5C] to-[#8D9DA6]',
-    },
-    {
-      title: 'Служба контроля качества',
-      icon: Shield,
-      description: 'Многоступенчатая система контроля с применением современных методов неразрушающего контроля',
-      controls: [
-        'Визуально-измерительный контроль',
-        'Радиографический контроль до 60 мм',
-        'Ультразвуковой контроль',
-        'Рентгенофлуоресцентный контроль',
-        'Контроль герметичности',
-      ],
-      gradient: 'from-[#8D9DA6] to-[#A7A9AC]',
-    },
-    {
-      title: 'АСУТП цеха',
-      icon: Gauge,
-      description: 'Автоматизированная система управления технологическими процессами с контролем в реальном времени',
-      features: [
-        'Системы мониторинга производственных операций',
-        'Автоматизация контроля параметров',
-        'Электронный документооборот',
-      ],
-      gradient: 'from-[#50626C] to-[#8D9DA6]',
-    },
-    {
-      title: 'Испытательные зоны',
-      icon: FlaskConical,
-      description: 'Оборудованные стенды для проведения гидравлических и пневматических испытаний',
-      details: [
-        'Гидравлические испытания',
-        'Пневматические испытания',
-        'Тепловые испытания',
-        'Статические испытания',
-      ],
-      stats: [
-        { label: 'Давление', value: 'до 40 МПа' },
-        { label: 'Назначение', value: 'Гидравлические испытания' },
-      ],
-      gradient: 'from-[#595B5C] to-[#A7A9AC]',
-    },
-  ];
+  const [activeImages, setActiveImages] = useState<Record<string, number>>({});
 
-  const capabilities = [
-    { icon: Factory, value: '15', unit: ' тонн', label: 'Грузоподъёмность кран-балок' },
-    { icon: Cog, value: '40', unit: ' МПа', label: 'Гидравлические испытания' },
-    { icon: Award, value: '300', unit: ' мм', label: 'Лентопильные станки' },
-  ];
+  const switchImage = (areaTitle: string, direction: 1 | -1, total: number) => {
+    setActiveImages((current) => {
+      const active = current[areaTitle] ?? 0;
+      return {
+        ...current,
+        [areaTitle]: (active + direction + total) % total,
+      };
+    });
+  };
 
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="relative py-32 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(80,98,108,0.4),transparent_50%)]" style={{ backgroundImage: `linear-gradient(to right, transparent 0%, rgba(255, 255, 255,0.2) 100%)`, maskImage: `url(${pattern})`, maskPosition: `center`}}/>
+    <div className="bg-[#eef0f1]">
+      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-[#263740]">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#263740]/96 via-[#263740]/70 to-[#263740]/28" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#263740]/86 via-transparent to-transparent" />
+        <div className="absolute right-[8vw] top-0 hidden h-full w-[22vw] skew-x-[-18deg] bg-white/[0.07] lg:block" />
+        <div className="absolute right-[19vw] top-0 hidden h-full w-[10vw] skew-x-[-18deg] bg-white/[0.04] lg:block" />
+        <FadingPattern opacity="0.065" />
 
-        {/* Decorative elements */}
-        {/* <div className="absolute top-20 right-0 w-[500px] h-[500px] border border-white/10 rounded-full" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 border border-white/10 rotate-45" /> */}
-
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-[1920px] items-end px-6 py-12 sm:px-10 lg:px-16 lg:py-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="grid lg:grid-cols-2 gap-16 items-center"
+            className="max-w-5xl"
           >
-            <div>
-              <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm mb-6 border border-white/20">
-                <span className="text-white/90 uppercase" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-                  Производство
-                </span>
-              </div>
-
-              <h1
-                className="text-white mb-6"
-                style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}
-              >
-                Собственное
-                <br />
-                <span className="bg-gradient-to-r from-[#A7A9AC] to-white bg-clip-text text-transparent">
-                  производство
-                </span>
-              </h1>
-
-              <p
-                className="text-white/80 mb-8"
-                style={{ fontSize: '18px', fontWeight: 400, lineHeight: 1.7 }}
-              >
-                Производственные участки полного цикла: механическая обработка, сварка, контроль качества и испытания оборудования.
-                Визуальное подтверждение наличия собственного производства.
-              </p>
-
-              <div className="space-y-3">
-                {[
-                  'Собственные производственные цеха',
-                  'Современное станочное оборудование',
-                  'Многоступенчатый контроль качества',
-                  'Соответствие всем стандартам',
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                    className="flex items-center gap-3"
-                  >
-                    <CheckCircle2 className="text-[#A7A9AC] flex-shrink-0" size={20} />
-                    <span
-                      className="text-white/90"
-                      style={{ fontSize: '15px', fontWeight: 500 }}
-                    >
-                      {item}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
+            <div className="mb-8 inline-flex border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-white/76 backdrop-blur-md">
+              Производство
             </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              {capabilities.map((cap, index) => {
-                const Icon = cap.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                    className="col-span-3 md:col-span-1"
-                  >
-                    <div className="p-6 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
-                      <Icon className="text-white/70 mb-4" size={32} strokeWidth={1.5} />
-                      <div className="flex items-baseline gap-1 mb-2">
-                        <span
-                          className="text-white"
-                          style={{ fontSize: '32px', fontWeight: 800, letterSpacing: '-0.02em' }}
-                        >
-                          {cap.value}
-                        </span>
-                        <span
-                          className="text-[#A7A9AC]"
-                          style={{ fontSize: '18px', fontWeight: 700 }}
-                        >
-                          {cap.unit}
-                        </span>
-                      </div>
-                      <div
-                        className="text-white/70"
-                        style={{ fontSize: '13px', fontWeight: 500 }}
-                      >
-                        {cap.label}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+            <h1
+              className="max-w-5xl text-white"
+              style={{
+                fontSize: 'clamp(46px, 8vw, 118px)',
+                fontWeight: 800,
+                letterSpacing: '-0.07em',
+                lineHeight: 0.92,
+              }}
+            >
+              Собственное
+              <span className="block text-white/62">производство</span>
+            </h1>
+            <p className="mt-8 max-w-3xl text-lg leading-8 text-white/74 sm:text-xl">
+              Производственные участки полного цикла: механическая обработка,
+              сварка, контроль качества и испытания оборудования.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Production Areas */}
-      <section className="relative py-16 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-block px-4 py-2 bg-[#50626C]/5 border border-[#50626C]/10 mb-6">
-              <span className="text-[#50626C]" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em' }}>
-                ПРОИЗВОДСТВО
-              </span>
+      <section className="relative overflow-hidden px-6 py-24 sm:px-10 lg:px-16">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(80,98,108,0.08)_1px,transparent_1px),linear-gradient(180deg,rgba(80,98,108,0.08)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        <div
+          className="absolute -right-32 top-32 h-[560px] w-[560px] opacity-[0.05]"
+          style={{
+            backgroundColor: '#263740',
+            maskImage: `url(${pattern})`,
+            maskSize: '170px 170px',
+            WebkitMaskImage: `url(${pattern})`,
+            WebkitMaskSize: '170px 170px',
+          }}
+        />
+        <div className="absolute left-0 top-0 h-full w-[18vw] skew-x-[-16deg] bg-[#50626c]/8" />
+
+        <div className="relative mx-auto max-w-[1680px]">
+          <div className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
+                Участки
+              </div>
+              <h2
+                className="max-w-4xl text-[#263740]"
+                style={{
+                  fontSize: 'clamp(36px, 5.2vw, 74px)',
+                  fontWeight: 800,
+                  letterSpacing: '-0.06em',
+                  lineHeight: 0.96,
+                }}
+              >
+                Производственные участки полного цикла
+              </h2>
             </div>
-            <h2
-              className="text-[#50626C] mb-6"
-              style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, letterSpacing: '-0.02em' }}
-            >
-              Наши производственные участки
-            </h2>
-          </motion.div>
+          </div>
 
-          <div className="space-y-6">
+          <div className="grid gap-6 lg:grid-cols-2">
             {productionAreas.map((area, index) => {
-              const Icon = area.icon;
+              const activeIndex = activeImages[area.title] ?? 0;
+
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                <motion.article
+                  key={area.title}
+                  initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative"
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.55, delay: (index % 2) * 0.08 }}
+                  className="group relative overflow-hidden border border-[#50626c]/12 bg-white shadow-[0_24px_80px_rgba(38,55,64,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#50626c]/28"
                 >
-                  <div className="absolute inset-0 bg-white border border-[#A7A9AC]/20 group-hover:border-[#8D9DA6]/60 transition-all duration-300 group-hover:shadow-xl" />
-
-                  {/* Accent line */}
-                  <div className={`absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b ${area.gradient} transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top`} />
-
-                  <div className="relative grid lg:grid-cols-12 gap-8">
-                    {/* Left: Visual placeholder */}
-                    <div className="lg:col-span-5">
-                      <div className={`aspect-[4/3] bg-gradient-to-br ${area.gradient} relative overflow-hidden`}>
-                        {/* Pattern */}
-                        <div
-                          className="absolute inset-0 opacity-10"
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.6'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 65.523 0 60s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                          }}
+                  <div className="grid min-h-[560px] lg:grid-cols-[0.95fr_1.05fr]">
+                    <div className="relative min-h-[330px] overflow-hidden bg-[#263740]">
+                      <AnimatePresence mode="wait">
+                        <motion.img
+                          key={`${area.title}-${activeIndex}`}
+                          src={area.images[activeIndex]}
+                          alt={area.title}
+                          initial={{ opacity: 0, scale: 1.04 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 1.02 }}
+                          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                          className="absolute inset-0 h-full w-full object-cover"
                         />
-
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Icon className="text-white/40 group-hover:text-white/60 group-hover:scale-110 transition-all duration-300" size={80} strokeWidth={1} />
-                        </div>
-
-                        <div className="absolute bottom-6 left-6 right-6">
-                          <div
-                            className="text-white/60"
-                            style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em' }}
-                          >
-                            {area.title === 'Испытательные зоны' ? 'ФОТО СТЕНДОВ' : area.title === 'Сварочные цеха' ? 'ФОТО СВАРОЧНЫХ ПОСТОВ' : 'ФОТО/ВИДЕО ЦЕХА'}
-                          </div>
-                        </div>
+                      </AnimatePresence>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#17252c]/82 via-transparent to-transparent" />
+                      <div className="absolute left-5 top-5 text-sm font-black tracking-[0.18em] text-white/62">
+                        {area.number}
+                      </div>
+                      <div className="absolute bottom-5 left-5 right-5 flex justify-between gap-3">
+                        <button
+                          type="button"
+                          onClick={() => switchImage(area.title, -1, area.images.length)}
+                          className="flex h-11 w-11 items-center justify-center border border-white/25 bg-[#263740]/45 text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-[#263740]"
+                          aria-label="Предыдущее фото"
+                        >
+                          <ArrowLeft size={18} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => switchImage(area.title, 1, area.images.length)}
+                          className="flex h-11 w-11 items-center justify-center border border-white/25 bg-[#263740]/45 text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-[#263740]"
+                          aria-label="Следующее фото"
+                        >
+                          <ArrowRight size={18} />
+                        </button>
                       </div>
                     </div>
 
-                    {/* Right: Content */}
-                    <div className="lg:col-span-7 p-4 sm:p-8 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className={`p-4 bg-gradient-to-br ${area.gradient}`}>
-                            <Icon className="text-white" size={28} strokeWidth={1.5} />
-                          </div>
-                          <h3
-                            className="text-[#50626C] text-[20px] sm:text-[28px]"
-                            style={{ fontWeight: 700 }}
-                          >
-                            {area.title}
-                          </h3>
-                        </div>
-
-                        <p
-                          className="text-[#595B5C] mb-6"
-                          style={{ fontSize: '15px', fontWeight: 400, lineHeight: 1.7 }}
-                        >
+                    <div className="relative flex flex-col p-7 sm:p-8">
+                      <div className="absolute right-0 top-0 h-full w-20 skew-x-[-18deg] bg-[#50626c]/6" />
+                      <div className="relative">
+                        <h3 className="text-3xl font-extrabold leading-tight tracking-[-0.05em] text-[#263740]">
+                          {area.title}
+                        </h3>
+                        <p className="mt-5 text-[15px] leading-7 text-[#595b5c]">
                           {area.description}
                         </p>
-
-                        {/* Details list */}
-                        {(area.details || area.controls || area.features) && (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                            {(area.details || []).map((detail, idx) => (
-                              <div key={idx} className="flex items-center gap-2">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#8D9DA6]" />
-                                <span
-                                  className="text-[#595B5C]"
-                                  style={{ fontSize: '13px', fontWeight: 500 }}
-                                >
-                                  {detail}
-                                </span>
-                              </div>
-                            ))}
-                            {(area.controls || []).map((control, idx) => (
-                              <div key={idx} className="flex items-center gap-2">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#8D9DA6]" />
-                                <span
-                                  className="text-[#595B5C]"
-                                  style={{ fontSize: '13px', fontWeight: 500 }}
-                                >
-                                  {control}
-                                </span>
-                              </div>
-                            ))}
-                            {(area.features || []).map((feature, idx) => (
-                              <div key={idx} className="flex items-center gap-2">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#8D9DA6]" />
-                                <span
-                                  className="text-[#595B5C]"
-                                  style={{ fontSize: '13px', fontWeight: 500 }}
-                                >
-                                  {feature}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* Materials */}
-                        {area.materials && (
-                          <div className="mb-6">
-                            <div
-                              className="text-[#50626C] mb-3"
-                              style={{ fontSize: '15px', fontWeight: 600 }}
-                            >
-                              Свариваемые материалы:
-                            </div>
-                            <div className="flex flex-wrap gap-2">
-                              {area.materials.map((material, idx) => (
-                                <span
-                                  key={idx}
-                                  className="px-3 py-1 bg-[#F5F5F5] text-[#595B5C] text-sm border border-[#A7A9AC]/10"
-                                  style={{ fontSize: '12px', fontWeight: 500 }}
-                                >
-                                  {material}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Stats */}
-                        {area.stats && (
-                          <div className="grid grid-cols-3 gap-1 ms:gap-4">
-                            {area.stats.map((stat, idx) => (
-                              <div key={idx} className="p-1 sm:p-4 bg-[#F5F5F5] text-[14px] sm:text-[18px] border border-[#A7A9AC]/10">
-                                <div
-                                  className="text-[#A7A9AC] mb-1"
-                                  style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.05em' }}
-                                >
-                                  {stat.label}
-                                </div>
-                                <div
-                                  className="text-[#50626C]"
-                                  style={{ fontWeight: 800 }}
-                                >
-                                  {stat.value}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
                       </div>
 
+                      <div className="relative mt-8 grid gap-3">
+                        {area.bullets.map((bullet) => (
+                          <div key={bullet} className="flex items-start gap-3 text-sm font-medium leading-6 text-[#595b5c]">
+                            <CheckCircle2 className="mt-0.5 shrink-0 text-[#50626c]" size={18} strokeWidth={1.7} />
+                            <span>{bullet}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </motion.div>
+                </motion.article>
               );
             })}
           </div>
         </div>
       </section>
-
     </div>
   );
 }

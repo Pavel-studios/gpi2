@@ -1,101 +1,115 @@
-import { Phone, Mail } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+import pattern from '@/imports/pattern.svg';
 import Logo from './ui/logo';
 
-export function Footer() {
-  const navigationLinks = [
-    { name: 'Главная', path: '/' },
-    { name: 'О компании', path: '/about' },
-    { name: 'Оборудование', path: '/equipment' },
-    { name: 'Производство', path: '/production' },
-    { name: 'Контакты', path: '/contacts' }
-  ];
+const navigationLinks = [
+  { name: 'Главная', path: '/' },
+  { name: 'О компании', path: '/about' },
+  { name: 'Оборудование', path: '/equipment' },
+  { name: 'Производство', path: '/production' },
+  { name: 'Контакты', path: '/contacts' },
+];
 
+const contactItems = [
+  {
+    icon: Mail,
+    label: 'Почта',
+    value: 'mail@gpiufa.ru',
+    href: 'mailto:mail@gpiufa.ru',
+  },
+  {
+    icon: MapPin,
+    label: 'Почтовый адрес',
+    value: '450005, Республика Башкортостан, г. Уфа, ул. Мингажева, дом 129',
+  },
+];
+
+export function Footer() {
   return (
-    <footer className="relative py-16 px-6 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#50626C] via-[#595B5C] to-[#8D9DA6]" />
+    <footer className="relative overflow-hidden bg-[#263740] px-6 py-16 text-white sm:px-10 lg:px-16">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(255,255,255,0.12),transparent_32%),linear-gradient(135deg,#263740_0%,#334650_48%,#1f3038_100%)]" />
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute -right-32 top-0 h-full w-[72vw]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 2v36M2 20h36' stroke='%23ffffff' stroke-width='1' fill='none'/%3E%3C/svg%3E")`,
+          backgroundImage: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.012) 24%, rgba(255,255,255,0.045) 58%, rgba(255,255,255,0.075) 100%)',
+          maskImage: `url(${pattern})`,
+          maskRepeat: 'no-repeat',
+          maskPosition: 'right center',
+          maskSize: 'cover',
+          WebkitMaskImage: `url(${pattern})`,
+          WebkitMaskRepeat: 'no-repeat',
+          WebkitMaskPosition: 'right center',
+          WebkitMaskSize: 'cover',
         }}
       />
+      <div className="absolute right-[8vw] top-0 hidden h-full w-[18vw] skew-x-[-16deg] bg-white/[0.055] lg:block" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/24 to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+      <div className="relative mx-auto max-w-[1680px]">
+        <div className="border-b border-white/12 pb-10">
+          <Logo fill="#ffffff" width={128} />
+        </div>
+
+        <div className="grid gap-10 py-12 lg:grid-cols-[0.9fr_0.7fr_1.1fr]">
           <div>
-            <Logo className="pb-4" fill="#FFFFFF" width={100}/>
-            <p
-              className="text-white/70"
-              style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6 }}
-            >
-              Проектирование и производство промышленного оборудования с 2003 года
+            <div className="mb-5 text-xs font-bold uppercase tracking-[0.24em] text-white/42">Компания</div>
+            <p className="max-w-sm text-sm leading-7 text-white/58">
+              ООО «Газ-Проект Инжиниринг» — российский производитель промышленного оборудования с собственной производственной базой в Уфе.
             </p>
           </div>
 
           <div>
-            <div
-              className="text-white/90 mb-4"
-              style={{ fontSize: '14px', fontWeight: 700 }}
-            >
-              Разделы
-            </div>
-            <div className="space-y-2">
+            <div className="mb-5 text-xs font-bold uppercase tracking-[0.24em] text-white/42">Разделы</div>
+            <div className="grid grid-cols-1 gap-2">
               {navigationLinks.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className="block text-white/60 hover:text-white transition-colors"
-                  style={{ fontSize: '13px', fontWeight: 500 }}
+                  className="group flex items-center justify-between border-b border-white/10 py-2.5 text-sm font-medium text-white/62 transition-colors hover:text-white"
                 >
                   {item.name}
+                  <ArrowUpRight size={14} className="opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
                 </Link>
               ))}
             </div>
           </div>
 
           <div>
-            <div
-              className="text-white/90 mb-4"
-              style={{ fontSize: '14px', fontWeight: 700 }}
-            >
-              Контакты
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-start gap-2">
-                <Phone className="text-white/50 flex-shrink-0 mt-0.5" size={16} />
-                <span
-                  className="text-white/70"
-                  style={{ fontSize: '13px', fontWeight: 500 }}
-                >
-                  +7 (495) 123-45-67
-                </span>
-              </div>
-              <div className="flex items-start gap-2">
-                <Mail className="text-white/50 flex-shrink-0 mt-0.5" size={16} />
-                <span
-                  className="text-white/70"
-                  style={{ fontSize: '13px', fontWeight: 500 }}
-                >
-                  info@gazproektengineering.ru
-                </span>
-              </div>
+            <div className="mb-5 text-xs font-bold uppercase tracking-[0.24em] text-white/42">Контакты</div>
+            <div className="grid gap-3">
+              {contactItems.map((item) => {
+                const Icon = item.icon;
+                const content = (
+                  <div className="flex gap-4 border border-white/10 bg-white/[0.045] p-5 transition-colors hover:bg-white/[0.075]">
+                    <Icon className="mt-1 shrink-0 text-white/42" size={18} />
+                    <div>
+                      <div className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-white/34">{item.label}</div>
+                      <div className="text-sm leading-6 text-white/72">{item.value}</div>
+                    </div>
+                  </div>
+                );
+
+                return item.href ? (
+                  <a key={item.label} href={item.href}>
+                    {content}
+                  </a>
+                ) : (
+                  <div key={item.label}>{content}</div>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div
-            className="text-white/50"
-            style={{ fontSize: '12px', fontWeight: 400 }}
-          >
-            © 2003–2026 ООО «Газ-Проект Инжиниринг». Все права защищены.
-          </div>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-white/50 hover:text-white transition-colors" style={{ fontSize: '12px', fontWeight: 500 }}>
+        <div className="flex flex-col gap-4 border-t border-white/12 pt-8 text-xs text-white/38 md:flex-row md:items-center md:justify-between">
+          <div>© 2003–2026 ООО «Газ-Проект Инжиниринг». Все права защищены.</div>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <a href="#" className="transition-colors hover:text-white/70">
               Политика конфиденциальности
             </a>
-            <a href="#" className="text-white/50 hover:text-white transition-colors" style={{ fontSize: '12px', fontWeight: 500 }}>
+            <a href="#" className="transition-colors hover:text-white/70">
               Пользовательское соглашение
             </a>
           </div>

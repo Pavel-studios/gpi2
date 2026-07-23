@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { AdvantagesSection } from './components/AdvantagesSection';
-import { IndustriesSection } from './components/IndustriesSection';
 import { ProjectsPreview } from './components/ProjectsPreview';
 import { ProductionPreview } from './components/ProductionPreview';
 import { AboutSection } from './components/AboutSection';
@@ -24,8 +23,7 @@ export default function App() {
           <Route path="/" element={
             <>
               <HeroSection />
-              <AdvantagesSection />
-              <IndustriesSection />
+              <div id="advantages"><AdvantagesSection /></div>
               <ProjectsPreview />
               <ProductionPreview />
             </>

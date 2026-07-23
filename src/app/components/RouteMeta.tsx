@@ -71,12 +71,13 @@ function upsertOrganizationSchema() {
     name: 'Газ-Проект Инжиниринг',
     legalName: 'ООО «Газ-Проект Инжиниринг»',
     foundingDate: '2003',
-    email: 'info@gazproektengineering.ru',
-    telephone: '+7 (495) 123-45-67',
+    email: 'mail@gpiufa.ru',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'RU',
       addressLocality: 'Уфа',
+      streetAddress: 'ул. Производственная, дом 5 корпус 1',
+      postalCode: '450069',
     },
   });
 }
