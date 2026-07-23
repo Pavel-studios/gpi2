@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowUpRight, X } from 'lucide-react';
-import gazpromLogo from '@/imports/clients/logo-gazprom-white.png';
+import gazpromLogo from '@/imports/clients/gazprom_logo.webp';
+import gazpromKomplektLogo from '@/imports/clients/057_1-2-4.png';
 import rosneftLogo from '@/imports/clients/a2ddf127393db4380ee610d7b9e31e66.jpg';
-import lukoilLogo from '@/imports/clients/b3f61e122a.jpg';
+import lukoilLogo from '@/imports/clients/png-klev-club-fdy1-p-lukoil-png-1.png';
 import bashneftLogo from '@/imports/clients/580f14163611fefad60da78d5c9b904c.png';
 import inkLogo from '@/imports/clients/big-catalog-16344744171.jpg';
 import sibneftegazLogo from '@/imports/clients/sibneftegaz_logo.png';
 import norilsktransgazLogo from '@/imports/clients/381564_1.png';
 import kondensatLogo from '@/imports/clients/Untitled-1.jpg';
+import sinopecLogo from '@/imports/clients/index_img.png';
+import cktiLogo from '@/imports/clients/partner_5.png';
+import purneftegazLogo from '@/imports/clients/purneftegaz.jpg';
+import rnUvatLogo from '@/imports/clients/rn-uvatneftegaz.jpg';
+import siburLogo from '@/imports/clients/s1200.png';
+import transterminalLogo from '@/imports/clients/S_height.webp';
 import flare1 from '@/imports/tz-photos/project-flare-1.webp';
 import flare2 from '@/imports/tz-photos/project-flare-2.webp';
 import flare3 from '@/imports/tz-photos/project-flare-3.webp';
@@ -24,38 +31,45 @@ import screen3 from '@/imports/tz-photos/project-screen-3.webp';
 
 const clients = [
   { name: 'Газпром', logo: gazpromLogo },
+  { name: 'Газпром комплектация', logo: gazpromKomplektLogo },
   { name: 'Роснефть', logo: rosneftLogo },
-  { name: 'ЛУКОЙЛ', logo: lukoilLogo },
   { name: 'Башнефть', logo: bashneftLogo },
+  { name: 'ЛУКОЙЛ', logo: lukoilLogo },
+  { name: 'Sinopec', logo: sinopecLogo },
   { name: 'Иркутская нефтяная компания', logo: inkLogo },
-  { name: 'Сибнефтегаз', logo: sibneftegazLogo },
-  { name: 'Норильсктрансгаз', logo: norilsktransgazLogo },
   { name: 'Конденсат', logo: kondensatLogo },
+  { name: 'НПО ЦКТИ', logo: cktiLogo },
+  { name: 'Сибнефтегаз', logo: sibneftegazLogo },
+  { name: 'Пурнефтегаз', logo: purneftegazLogo },
+  { name: 'РН-Уватнефтегаз', logo: rnUvatLogo },
+  { name: 'Норильсктрансгаз', logo: norilsktransgazLogo },
+  { name: 'СИБУР', logo: siburLogo },
+  { name: 'Транстерминал', logo: transterminalLogo },
 ];
 
 const projects = [
   {
     title: 'Факельные установки',
     images: [flare1, flare2, flare3, flare4, flare5],
-    description: 'Предназначены для сброса и сжигания горючего газа и жидкостей на нефтегазодобывающих, нефтеперерабатывающих и химических предприятиях.',
-    clients: 'АО «Конденсат», ООО «НПП «Нефтегазинжиниринг», ООО «Башнефть-Полюс», ИНК, «Норильсктрансгаз», «ЛУКОЙЛ-ПЕРМЬ», СИБУР и другие.',
+    description: 'Факельные установки предназначены для сброса и сжигания горючего газа и жидкостей. Применяются на нефтегазодобывающих, нефтеперерабатывающих и химических предприятиях для нейтрализации постоянных, периодических и аварийных сбросов, предотвращая их выброс в атмосферу.',
+    clients: 'АО «Конденсат» (Республика Казахстан), ООО «НПП «Нефтегазинжиниринг», ООО «Башнефть-Полюс», ООО «Иркутская нефтяная компания», АО «Норильсктрансгаз», ООО «ЛУКОЙЛ-ПЕРМЬ», ООО «Сибур» и другие.',
   },
   {
-    title: 'Монтажные вставки',
+    title: 'Элементы трубопроводов (монтажные вставки)',
     images: [insert1, insert2],
-    description: 'Узлы технологических трубопроводов для комплектации, сборки и реконструкции трубопроводов DN 50–DN 1200.',
-    clients: 'ООО «Газпромкомплектация» — газоперерабатывающий комплекс в составе комплекса переработки этансодержащего газа в Усть-Луге.',
+    description: 'Являются узлами технологических трубопроводов, предназначенных для комплектации, сборки и реконструкции технологических трубопроводов DN 50 – DN 1200.',
+    clients: 'ООО «Газпромкомплектация» для газоперерабатывающего комплекса в составе комплекса переработки этансодержащего газа в районе посёлка Усть-Луга.',
   },
   {
     title: 'Смесители',
     images: [mixer1, mixer2],
-    description: 'Оборудование для смешивания основного конденсата в составе технологических систем энергетических объектов.',
+    description: 'Предназначен для смешивания основного конденсата. Устанавливается в помещении машинного зала на трубопроводе основного конденсата между ПНД-5 и питательным насосом первой ступени (ПЭН-1) перед подводом силовой воды от ПГТН турбоустановки К-306-15,7/50 с реакторной установкой БРЕСТ-ОД-300.',
     clients: 'ОАО «НПО ЦКТИ», АО «КОНЦЕРН ТИТАН-2».',
   },
   {
-    title: 'Ширмовые блоки',
+    title: 'Поверхности нагрева',
     images: [screen1, screen2, screen3],
-    description: 'Элементы паровых стационарных котлов, предназначенные для перегрева поступающего в котёл насыщенного пара.',
+    description: 'Являются элементом паровых стационарных котлов. Предназначены для перегрева поступающего в котел насыщенного пара.',
     clients: 'ООО «Башкирская генерирующая компания».',
   },
 ];
@@ -81,7 +95,7 @@ export function ProjectsPreview() {
             <div className="mb-5 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#91a0a8]"><span className="h-px w-14 bg-[#50626c]" />Практика и опыт</div>
             <h2 className="max-w-4xl text-[clamp(2.25rem,5vw,5rem)] font-semibold leading-[0.98] tracking-[-0.045em] text-white">Реализованные проекты</h2>
           </div>
-          <p className="max-w-md border-l border-white/20 pl-5 text-base leading-relaxed text-white/65">Поставки оборудования для ведущих компаний России и стран СНГ</p>
+          <p className="max-w-md border-l border-white/20 pl-5 text-base leading-relaxed text-white/65">Поставки оборудования для ведущих компаний России</p>
         </div>
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
@@ -94,7 +108,7 @@ export function ProjectsPreview() {
               <div className="absolute -right-24 top-0 h-full w-64 -skew-x-[20deg] bg-[#50626c]/0 transition-colors duration-500 group-hover:bg-[#50626c]/25" />
               <div className="absolute left-7 top-7 text-5xl font-light tracking-[-0.05em] text-white/25 sm:left-9 sm:top-9">0{index + 1}</div>
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-7 sm:p-9">
-                <div><div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#a7b1b6]">Промышленное оборудование</div><h3 className="text-2xl font-semibold text-white sm:text-3xl">{project.title}</h3></div>
+                <div><h3 className="text-2xl font-semibold text-white sm:text-3xl">{project.title}</h3></div>
                 <button type="button" onClick={() => setActiveProject(index)} aria-label={`Подробнее: ${project.title}`} className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#50626c] text-white transition hover:bg-white hover:text-[#50626c]">
                   <ArrowUpRight size={22} />
                 </button>
@@ -142,11 +156,11 @@ export function ProjectsPreview() {
 
         <div className="relative mt-20 border-t border-white/15 pt-9">
           <div className="mb-8 flex items-end justify-between gap-6"><div><div className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#91a0a8]">Нам доверяют</div><h3 className="text-3xl font-semibold text-white sm:text-4xl">Заказчики</h3></div><div className="hidden text-right text-sm leading-relaxed text-white/45 sm:block">Российские и международные<br />промышленные компании</div></div>
-          <div className="grid grid-cols-1 items-center gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-2 items-stretch gap-3 lg:grid-cols-5">
             {clients.map((client) => (
-              <div key={client.name} className="group relative flex h-32 w-full items-center justify-center overflow-hidden border border-white/10 bg-white px-8 grayscale transition duration-500 hover:-translate-y-1 hover:border-[#71838c]/80 hover:grayscale-0 sm:h-36 xl:h-40">
+              <div key={client.name} className="group relative flex h-28 w-full items-center justify-center overflow-hidden border border-white/10 bg-white px-5 transition duration-500 hover:-translate-y-1 hover:border-[#71838c]/80 sm:h-32 lg:h-34 xl:h-36">
                 <span className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#50626c] transition-all duration-500 group-hover:w-full" />
-                <img src={client.logo} alt={client.name} className="max-h-20 w-full max-w-72 object-contain transition-transform duration-500 group-hover:scale-105 sm:max-h-24" loading="lazy" />
+                <img src={client.logo} alt={client.name} className="max-h-16 w-full max-w-56 object-contain transition-transform duration-500 group-hover:scale-105 sm:max-h-20 lg:max-h-24" loading="lazy" />
               </div>
             ))}
           </div>

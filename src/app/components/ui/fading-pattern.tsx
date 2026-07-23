@@ -8,16 +8,16 @@ type FadingPatternProps = {
 export function FadingPattern({ className = '', opacity = '0.075' }: FadingPatternProps) {
   return (
     <div
-      className={`pointer-events-none absolute -right-32 top-0 h-full w-[72vw] ${className}`}
+      className={`pointer-events-none absolute -left-[12vw] top-0 h-full w-[72vw] ${className}`}
       style={{
-        backgroundImage: `linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.012) 24%, rgba(255,255,255,0.045) 58%, rgba(255,255,255,${opacity}) 100%)`,
+        backgroundImage: `linear-gradient(90deg, rgba(255,255,255,${opacity}) 0%, rgba(255,255,255,0.045) 42%, rgba(255,255,255,0.012) 76%, transparent 100%)`,
         maskImage: `url(${pattern})`,
         maskRepeat: 'no-repeat',
-        maskPosition: 'right center',
+        maskPosition: 'left center',
         maskSize: 'cover',
         WebkitMaskImage: `url(${pattern})`,
         WebkitMaskRepeat: 'no-repeat',
-        WebkitMaskPosition: 'right center',
+        WebkitMaskPosition: 'left center',
         WebkitMaskSize: 'cover',
       }}
     />

@@ -3,14 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import {
   ArrowLeft,
   ArrowRight,
-  Bot,
   CheckCircle2,
-  Factory,
-  FlaskConical,
-  PaintBucket,
-  Scissors,
-  ShieldCheck,
-  Sparkles,
 } from 'lucide-react';
 
 import pattern from '@/imports/pattern.svg';
@@ -26,7 +19,7 @@ import quality3 from '@/imports/tz-photos/prod-quality-3.webp';
 import quality4 from '@/imports/tz-photos/prod-quality-4.webp';
 import quality5 from '@/imports/tz-photos/prod-quality-5.webp';
 import heat1 from '@/imports/tz-photos/prod-heat-1.webp';
-import heat2 from '@/imports/tz-photos/prod-heat-2.webp';
+import heat2 from '@/imports/tz-photos/prod-heat-2.jpg';
 import automation1 from '@/imports/tz-photos/prod-automation-1.webp';
 import automation2 from '@/imports/tz-photos/prod-automation-2.webp';
 import automation3 from '@/imports/tz-photos/prod-automation-3.webp';
@@ -43,16 +36,14 @@ const productionAreas = [
   {
     number: '01',
     title: 'Заготовительные участки',
-    icon: Scissors,
     description:
-      'Лентопильные станки до Ø300 мм, портал газо-плазменной резки до 70 мм и листогибочные станки до δ=30 мм.',
+      'Лентопильные станки до Ø300 мм, портал газо-плазменной резки до δ=70 мм и листогибочные станки до δ=30 мм.',
     bullets: ['Лентопильные станки', 'Газо-плазменная резка', 'Листогибочные станки'],
     images: [machining1, machining2, machining3],
   },
   {
     number: '02',
-    title: 'Сварочные цеха',
-    icon: Sparkles,
+    title: 'Сварочные участки',
     description:
       'Полный спектр аттестованных сварочных технологий и персонала для работы с различными материалами.',
     bullets: ['TIG — аргонодуговая сварка', 'MIG/MAG — полуавтоматическая сварка', 'SAW — сварка под флюсом', 'Ручная электродуговая сварка'],
@@ -61,16 +52,14 @@ const productionAreas = [
   {
     number: '03',
     title: 'Служба контроля качества',
-    icon: ShieldCheck,
     description:
       'Контроль материалов, сварных соединений и готового оборудования на ключевых этапах производства.',
-    bullets: ['Визуально-измерительный контроль', 'Радиографический контроль', 'Ультразвуковой контроль', 'Контроль герметичности'],
+    bullets: ['Визуально-измерительный контроль', 'Радиографический контроль', 'Ультразвуковой контроль', 'Контроль герметичности', 'Рентгенфлуорисцентный контроль', 'Капиллярный контроль'],
     images: [quality1, quality2, quality3, quality4, quality5],
   },
   {
     number: '04',
-    title: 'АСУ ТП цеха',
-    icon: Bot,
+    title: 'Участок АСУ ТП',
     description:
       'Автоматизация управления сложным оборудованием, сборка и настройка систем управления технологическими процессами.',
     bullets: ['Сборка шкафов управления', 'Автоматизация параметров', 'Пусконаладочные работы'],
@@ -79,7 +68,6 @@ const productionAreas = [
   {
     number: '05',
     title: 'Участок термообработки',
-    icon: FlaskConical,
     description:
       'Индукционная термообработка — прогрессивный метод термической обработки металлов.',
     bullets: ['Индукционная термообработка', 'Контроль режимов нагрева', 'Подготовка деталей к дальнейшей обработке'],
@@ -88,7 +76,6 @@ const productionAreas = [
   {
     number: '06',
     title: 'Участок нанесения лакокрасочного покрытия',
-    icon: PaintBucket,
     description:
       'Нанесение однослойных и многослойных покрытий с контролем адгезии и толщинометрией каждого слоя.',
     bullets: ['Однослойные покрытия', 'Многослойные покрытия', 'Контроль адгезии', 'Толщинометрия'],
@@ -193,7 +180,6 @@ export function ProductionSection() {
 
           <div className="grid gap-6 lg:grid-cols-2">
             {productionAreas.map((area, index) => {
-              const Icon = area.icon;
               const activeIndex = activeImages[area.title] ?? 0;
 
               return (
@@ -245,13 +231,6 @@ export function ProductionSection() {
 
                     <div className="relative flex flex-col p-7 sm:p-8">
                       <div className="absolute right-0 top-0 h-full w-20 skew-x-[-18deg] bg-[#50626c]/6" />
-                      <div className="relative mb-8 flex items-start justify-between gap-5">
-                        <div className="flex h-14 w-14 shrink-0 rotate-45 items-center justify-center bg-[#263740] text-white">
-                          <Icon className="-rotate-45" size={24} strokeWidth={1.6} />
-                        </div>
-                        <Factory className="text-[#50626c]/18" size={42} strokeWidth={1.4} />
-                      </div>
-
                       <div className="relative">
                         <h3 className="text-3xl font-extrabold leading-tight tracking-[-0.05em] text-[#263740]">
                           {area.title}

@@ -44,8 +44,8 @@ const certificateGroups: CertificateGroup[] = [
       'Документы, подтверждающие систему менеджмента качества и соответствие отраслевым требованиям.',
     icon: FileCheck2,
     images: [
-      { src: certQuality1, alt: 'Сертификат ИСО 9001' },
       { src: certQuality2, alt: 'Сертификат соответствия отраслевым требованиям' },
+      { src: certQuality1, alt: 'Сертификат ИСО 9001' },
     ],
   },
   {
@@ -101,10 +101,6 @@ export function AboutCertificatesSection() {
               Сертификаты и подтверждения
             </h2>
           </div>
-          <p className="max-w-3xl text-lg leading-8 text-[#595b5c]">
-            В блоке оставлены три ключевые группы документов: сертификация ТР ТС,
-            система менеджмента качества и аттестация технологий сварки.
-          </p>
         </div>
 
         <div className="grid gap-5 lg:grid-cols-3">
@@ -137,9 +133,6 @@ export function AboutCertificatesSection() {
                   <h3 className="max-w-sm text-3xl font-extrabold leading-[1.05] tracking-[-0.05em] text-[#263740]">
                     {group.title}
                   </h3>
-                  <p className="mt-5 max-w-md text-[15px] leading-7 text-[#595b5c]">
-                    {group.description}
-                  </p>
                 </div>
 
                 <div className="relative mt-auto p-5 pt-0 sm:p-6 sm:pt-0">
@@ -159,10 +152,7 @@ export function AboutCertificatesSection() {
                     ))}
                   </div>
 
-                  <div className="mt-5 flex items-center justify-between border-t border-[#50626c]/12 pt-5">
-                    <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#50626c]">
-                      {group.images.length} документа
-                    </span>
+                  <div className="mt-5 flex items-center justify-end border-t border-[#50626c]/12 pt-5">
                     <span className="inline-flex items-center gap-2 text-sm font-bold text-[#263740]">
                       Смотреть
                       <ArrowUpRight size={18} />

@@ -3,30 +3,98 @@ import { useEffect, useRef, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
-  Factory,
-  Globe2,
-  ShipWheel,
 } from "lucide-react";
 import factoryVisit from "@/imports/strategy-partner/20250308_143638.webp";
 import teamVisit from "@/imports/strategy-partner/20250308_144550.webp";
 import productionVisit from "@/imports/strategy-partner/20250307_190222.webp";
 import workshopVisit from "@/imports/strategy-partner/20250305_141125.webp";
+import instituteGazpromVniigaz from "@/imports/strategy-partner/institute-gazprom-vniigaz.png";
+import instituteGazpromProject from "@/imports/strategy-partner/institute-gazprom-project.jpg";
+import institutePkbi from "@/imports/strategy-partner/institute-pkbi.png";
+import instituteVnipineftemash from "@/imports/strategy-partner/institute-vnipineftemash.jpg";
+import instituteNiihimmash from "@/imports/strategy-partner/institute-niihimmash.png";
+import instituteNpoCkti from "@/imports/strategy-partner/institute-npo-ckti.png";
+import foreignYanxin from "@/imports/strategy-partner/foreign-yanxin.png";
+import foreignSupezet from "@/imports/strategy-partner/foreign-supezet.png";
+import foreignDoright from "@/imports/strategy-partner/foreign-doright.png";
+import foreignSinopec from "@/imports/strategy-partner/foreign-sinopec.png";
+import logisticsTransterminal from "@/imports/strategy-partner/logistics-transterminal.jpg";
+import logisticsTamarix from "@/imports/strategy-partner/logistics-tamarix.png";
 import tamarixBackground from "@/imports/tz-photos/strategy-tamarix-bg.webp";
+import pattern from "@/imports/pattern.svg";
 import { PhotoViewer } from './PhotoViewer';
 
 const photos = [
   {
     src: factoryVisit,
-    alt: "Делегация ГПИ на производственной площадке партнёра",
+    alt: "Делегация компании на производственной площадке партнёра",
   },
   { src: teamVisit, alt: "Рабочая встреча с представителями партнёра" },
   { src: productionVisit, alt: "Посещение производственной площадки" },
   { src: workshopVisit, alt: "Осмотр оборудования на заводе" },
 ];
 
+const instituteLogos = [
+  {
+    src: instituteGazpromVniigaz,
+    alt: "Газпром ВНИИГАЗ",
+  },
+  {
+    src: instituteGazpromProject,
+    alt: "Газпром проектирование",
+  },
+  {
+    src: institutePkbi,
+    alt: "ПКБИ",
+  },
+  {
+    src: instituteVnipineftemash,
+    alt: "ВНИПИнефтемаш",
+  },
+  {
+    src: instituteNiihimmash,
+    alt: "АО НИИХИММАШ",
+  },
+  {
+    src: instituteNpoCkti,
+    alt: "НПО ЦКТИ",
+  },
+];
+
+const foreignCompanyLogos = [
+  {
+    src: foreignYanxin,
+    alt: "YANXIN",
+  },
+  {
+    src: foreignSupezet,
+    alt: "SUPEZET",
+  },
+  {
+    src: foreignDoright,
+    alt: "DORIGHT",
+  },
+  {
+    src: foreignSinopec,
+    alt: "SINOPEC",
+  },
+];
+
+const logisticsLogos = [
+  {
+    src: logisticsTransterminal,
+    alt: "Транстерминал",
+  },
+  {
+    src: logisticsTamarix,
+    alt: "TAMARIX",
+  },
+];
+
+const directionLogos = [instituteLogos, foreignCompanyLogos, logisticsLogos];
+
 const directions = [
   {
-    icon: Factory,
     number: "01",
     title: "Отраслевые институты",
     intro:
@@ -45,7 +113,6 @@ const directions = [
     ],
   },
   {
-    icon: Globe2,
     number: "02",
     title: "Иностранные компании",
     intro: "Партнёрские связи с зарубежными производителями дают возможность:",
@@ -56,7 +123,6 @@ const directions = [
     partners: ["YANXIN", "SUPEZET", "DORIGHT", "SINOPEC"],
   },
   {
-    icon: ShipWheel,
     number: "03",
     title: "Логистика и таможенное оформление",
     intro:
@@ -108,157 +174,105 @@ export function StrategyPartnerSection() {
   }, [paused]);
 
   return (
-    <section className="relative overflow-hidden bg-[#eef0f1] px-6 py-24 sm:px-10 lg:px-16">
+    <section className="relative overflow-hidden bg-[#dfe2e3] px-6 py-24 text-[#263740] sm:px-10 lg:px-16">
       <img
         src={tamarixBackground}
         alt=""
-        className="pointer-events-none absolute bottom-0 right-0 h-[44rem] w-[58vw] object-cover opacity-[0.08] mix-blend-multiply"
+        className="pointer-events-none absolute bottom-0 right-0 h-[46rem] w-[62vw] object-cover opacity-[0.06] grayscale mix-blend-multiply"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(80,98,108,0.08)_1px,transparent_1px),linear-gradient(180deg,rgba(80,98,108,0.08)_1px,transparent_1px)] bg-[size:64px_64px]" />
-      <div className="absolute inset-x-0 top-0 h-[39rem] bg-[#263740]" />
-      <div className="absolute left-0 top-0 h-[39rem] w-[36vw] skew-x-[-16deg] bg-white/[0.045]" />
-      <div className="absolute right-[8vw] top-0 hidden h-[39rem] w-[18vw] skew-x-[-16deg] bg-white/[0.07] lg:block" />
-      <div className="absolute right-[-9rem] top-[-9rem] h-[34rem] w-[34rem] rotate-45 border border-white/10" />
+      <div
+        className="pointer-events-none absolute bottom-[-8rem] right-[-10rem] h-[44rem] w-[54rem] opacity-[0.06]"
+        style={{
+          backgroundColor: "#263740",
+          maskImage: `url(${pattern})`,
+          maskSize: "220px 220px",
+          WebkitMaskImage: `url(${pattern})`,
+          WebkitMaskSize: "220px 220px",
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#eef0f1]/82 via-[#dfe2e3]/78 to-[#dfe2e3]/92" />
       <div className="relative mx-auto max-w-[1680px]">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="max-w-5xl"
+          className="max-w-4xl"
         >
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-white/65">
-            ГПИ · партнёрства
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
+            Стратегическое партнерство
           </p>
           <h2
-            className="max-w-4xl text-white"
+            className="max-w-3xl text-[#263740]"
             style={{
-              fontSize: "clamp(38px, 5.2vw, 78px)",
+              fontSize: "clamp(40px, 6vw, 86px)",
               fontWeight: 800,
-              letterSpacing: "-0.06em",
-              lineHeight: 0.96,
+              letterSpacing: "-0.055em",
+              lineHeight: 0.98,
             }}
           >
-            Стратегическое партнёрство
+            Объединяем инжиниринг, логистику и международную кооперацию
           </h2>
-          <p className="mt-7 max-w-2xl text-base leading-7 text-white/74 sm:text-lg">
-            Объединяем производственные компетенции, инженерную экспертизу и
-            международные связи для реализации сложных проектов.
+          <p className="mt-8 max-w-4xl text-lg font-medium leading-8 text-[#263740]/78 sm:text-xl sm:leading-9">
+            Производственно-инжиниринговые, транспортно-логистические компетенции
+            и международные связи помогают реализовывать сложные проекты в
+            промышленном оборудовании.
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, delay: 0.15 }}
-          className="mt-14 grid overflow-hidden border border-white/10 bg-white shadow-[0_30px_90px_rgba(20,32,38,0.28)] lg:grid-cols-[0.95fr_1.05fr]"
-        >
-          <div className="relative overflow-hidden p-7 sm:p-10 lg:p-14">
-            <div className="absolute right-0 top-0 h-full w-28 skew-x-[-18deg] bg-[#50626c]/6" />
-            <span className="relative inline-flex h-12 w-12 rotate-45 items-center justify-center bg-[#263740] text-sm font-bold text-white">
-              <span className="-rotate-45">
-              ГПИ
-              </span>
-            </span>
-            <h3 className="relative mt-8 max-w-2xl text-3xl font-extrabold leading-tight tracking-[-0.045em] text-[#263740] sm:text-4xl">
-              Надёжная кооперация для проектов любого масштаба
-            </h3>
-            <p className="relative mt-6 max-w-2xl text-[15px] leading-7 text-[#595B5C] sm:text-base">
-              Партнёрская сеть помогает компании находить оптимальные
-              технические решения, обеспечивать качество поставок и выстраивать
-              устойчивую логистику от завода до объекта.
-            </p>
-          </div>
-          <div className="relative min-h-[390px] overflow-hidden bg-[#233640] lg:min-h-[460px]">
-            <img
-              src={factoryVisit}
-              alt="Посещение производственной площадки партнёра"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1e3038]/78 via-[#1e3038]/12 to-transparent" />
-            <p className="absolute bottom-6 left-7 right-7 max-w-xl text-sm font-medium leading-6 text-white sm:bottom-8 sm:left-10">
-              Рабочие визиты и личный диалог — основа долгосрочного
-              сотрудничества.
-            </p>
-          </div>
-        </motion.div>
-
-        <div className="pt-24">
-          <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#50626c]">
-                Компетенции
-              </p>
-              <h3 className="mt-3 text-4xl font-extrabold tracking-[-0.055em] text-[#263740] sm:text-5xl">
-                Направления сотрудничества
-              </h3>
-            </div>
-            <p className="max-w-md text-sm leading-6 text-[#595B5C] sm:text-base">
-              Три опоры, которые позволяют уверенно вести проект на каждом
-              этапе.
-            </p>
-          </div>
-          <div className="grid gap-5 lg:grid-cols-3">
-            {directions.map((direction, index) => {
-              const Icon = direction.icon;
-              return (
-                <motion.article
-                  key={direction.number}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.18 }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="group relative overflow-hidden border border-[#50626c]/12 bg-white/82 p-7 shadow-[0_22px_70px_rgba(38,55,64,0.08)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-[#50626c]/28 hover:bg-[#263740] sm:p-8"
-                >
-                  <div className="absolute right-0 top-0 h-full w-20 skew-x-[-18deg] bg-[#50626c]/6 transition-colors duration-500 group-hover:bg-white/[0.06]" />
-                  <div className="flex items-start justify-between">
-                    <span className="text-sm font-bold tracking-[0.15em] text-[#8d9da6] group-hover:text-white/55">
-                      {direction.number}
-                    </span>
-                    <Icon
-                      size={25}
-                      strokeWidth={1.6}
-                      className="text-[#50626C] group-hover:text-white"
-                    />
-                  </div>
-                  <h4 className="mt-12 text-2xl font-bold leading-tight text-[#50626C] group-hover:text-white">
+        <div className="pt-16 sm:pt-20">
+          <h3 className="text-3xl font-semibold tracking-[-0.045em] text-[#263740] sm:text-4xl">
+            Направления сотрудничества
+          </h3>
+          <div className="mt-8 max-w-5xl">
+            {directions.map((direction, index) => (
+              <motion.article
+                key={direction.number}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.18 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="grid gap-5 border-t border-[#263740]/16 py-9 sm:grid-cols-[72px_1fr]"
+              >
+                <div className="text-sm font-black tracking-[0.16em] text-[#50626c]/55">
+                  {direction.number}
+                </div>
+                <div>
+                  <h4 className="text-3xl font-extrabold leading-[1.05] tracking-[-0.05em] text-[#263740] sm:text-4xl">
                     {direction.title}
                   </h4>
-                  <p className="mt-5 text-sm leading-6 text-[#595B5C] group-hover:text-white/75">
+                  <p className="mt-5 max-w-3xl text-base font-medium leading-7 text-[#263740]/76 sm:text-lg sm:leading-8">
                     {direction.intro}
                   </p>
-                  <ul className="mt-5 space-y-3 border-t border-[#a7a9ac]/25 pt-5 text-sm leading-5 text-[#595B5C] group-hover:border-white/20 group-hover:text-white/80">
+                  <ul className="mt-6 max-w-3xl space-y-4 text-sm font-medium leading-6 text-[#595b5c] sm:text-base sm:leading-7">
                     {direction.points.map((point) => (
-                      <li key={point} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#8d9da6] group-hover:bg-white" />
-                        {point}
-                      </li>
+                      <li key={point}>{point}</li>
                     ))}
                   </ul>
-                  <div className="mt-7 flex flex-wrap gap-2">
-                    {direction.partners.map((partner) => (
-                      <span
-                        key={partner}
-                        className="border border-[#50626C]/15 px-2.5 py-1 text-[10px] font-bold tracking-[0.06em] text-[#50626C] group-hover:border-white/25 group-hover:text-white"
+                  <div className="mt-10 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+                    {directionLogos[index].map((logo) => (
+                      <div
+                        key={logo.alt}
+                        className="flex h-24 items-center justify-center border border-white/65 bg-white/58 px-4 backdrop-blur-sm"
                       >
-                        {partner}
-                      </span>
+                        <img
+                          src={logo.src}
+                          alt={logo.alt}
+                          className="max-h-14 max-w-full object-contain"
+                        />
+                      </div>
                     ))}
                   </div>
-                </motion.article>
-              );
-            })}
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
 
-        <div className="pt-24">
+        <div className="pt-20">
           <div className="mb-7 flex items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#50626c]">
-                Вместе в деле
-              </p>
-              <h3 className="mt-3 text-4xl font-extrabold tracking-[-0.055em] text-[#263740] sm:text-5xl">
+              <h3 className="text-3xl font-semibold tracking-[-0.045em] text-[#263740] sm:text-4xl">
                 Рабочие встречи
               </h3>
             </div>
@@ -267,7 +281,7 @@ export function StrategyPartnerSection() {
                 type="button"
                 onClick={() => scrollPhotos(-1)}
                 aria-label="Предыдущая фотография"
-                className="flex h-11 w-11 items-center justify-center border border-[#50626C]/20 bg-white text-[#50626C] transition-colors hover:bg-[#263740] hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#50626C]/20 bg-transparent text-[#50626C] transition-colors hover:bg-[#263740] hover:text-white"
               >
                 <ChevronLeft size={19} />
               </button>
@@ -275,7 +289,7 @@ export function StrategyPartnerSection() {
                 type="button"
                 onClick={() => scrollPhotos(1)}
                 aria-label="Следующая фотография"
-                className="flex h-11 w-11 items-center justify-center border border-[#50626C]/20 bg-white text-[#50626C] transition-colors hover:bg-[#263740] hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#50626C]/20 bg-transparent text-[#50626C] transition-colors hover:bg-[#263740] hover:text-white"
               >
                 <ChevronRight size={19} />
               </button>
@@ -291,7 +305,7 @@ export function StrategyPartnerSection() {
             {photos.map((photo, index) => (
               <figure
                 key={photo.src}
-                className="relative h-[22rem] min-w-[86%] snap-start overflow-hidden bg-[#50626C] shadow-[0_20px_60px_rgba(38,55,64,0.12)] sm:min-w-[58%] lg:min-w-[calc((100%_-_2rem)_/_3)] xl:h-[26rem]"
+                className="relative h-[22rem] min-w-[86%] snap-start overflow-hidden bg-[#50626C] sm:min-w-[58%] lg:min-w-[calc((100%_-_2rem)_/_3)] xl:h-[26rem]"
               >
                 <button type="button" onClick={() => setSelectedPhoto(index)} className="h-full w-full cursor-zoom-in" aria-label={`Открыть: ${photo.alt}`}>
                   <img
