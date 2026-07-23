@@ -1,0 +1,363 @@
+[17] FLAGS=['bold', 'highlight:yellow']
+Выделенные желтым фрагменты – это то, что не было учтено
+RUNS=[{'text': 'Выделенные желтым фрагменты – это то, что не было учтено', 'flags': ['highlight:yellow', 'bold']}]
+
+[30] FLAGS=['highlight:yellow']
+Заставка “Логотип + паттерн” (часть паттерна в прозрачном формате) появляется на экране в максимальном размере, затем происходит постепенное появление экрана через заставку (сейчас резкая смена картинки – смотрится плохо).
+RUNS=[{'text': 'Заставка “Логотип + паттерн” (часть паттерна в прозрачном формате) появляется на экране в максимальном размере, затем происходит постепенное появление экрана через заставку (сейчас резкая смена картинки – смотрится плохо). ', 'flags': ['highlight:yellow']}]
+
+[31] FLAGS=['highlight:yellow']
+Референс – компания “Технотекс”.
+RUNS=[{'text': 'Референс', 'flags': ['highlight:yellow']}, {'text': ' – компания “', 'flags': ['highlight:yellow']}, {'text': 'Технотекс', 'flags': ['highlight:yellow']}, {'text': '”.', 'flags': ['highlight:yellow']}]
+
+[32] FLAGS=['highlight:yellow']
+Эта же заставка при переходе со страницы на страницу.
+RUNS=[{'text': 'Эта же заставка при переходе со страницы на страницу.', 'flags': ['highlight:yellow']}]
+
+[124] FLAGS=['highlight:yellow']
+«Полный цикл производства промышленного оборудования для нефтегазовой, химической и энергетической отраслей с 2003 года» - зачеркнутое удалить
+RUNS=[{'text': 'промышленного', 'flags': ['highlight:yellow']}, {'text': 'с 2003 года', 'flags': ['highlight:yellow']}]
+
+[125] FLAGS=['color:40515A', 'highlight:yellow', 'run_shd:EEF1F2']
+Полный цикл производства промышленного оборудования для нефтегазовой, химической и энергетической отраслей – желтое удалить
+RUNS=[{'text': 'Полный цикл производства ', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': 'промышленного', 'flags': ['highlight:yellow', 'run_shd:EEF1F2', 'color:40515A']}, {'text': ' оборудования для нефтегазовой, химической и энергетической отраслей – желтое удалить', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[131] FLAGS=['highlight:yellow']
+Первый визуальный блок – расположить текст, название так, чтобы они полностью не закрывали демонстрационное видео.
+RUNS=[{'text': 'не закрывали демонстрационное видео', 'flags': ['highlight:yellow']}]
+
+[144] FLAGS=['highlight:yellow']
+Кроме отснятого материала, использовать архивные видео со стройплощадок, видео из цеха (работа с чертежами, контроль качества, покраска) и офиса на Мингажева (совещание, деловая встреча).
+RUNS=[{'text': 'Кроме отснятого материала, использовать архивные видео со стройплощадок, видео из цеха (работа с чертежами, контроль качества, покраска) и офиса на ', 'flags': ['highlight:yellow']}, {'text': 'Мингажева', 'flags': ['highlight:yellow']}, {'text': ' (совещание, деловая встреча).', 'flags': ['highlight:yellow']}]
+
+[163] FLAGS=['highlight:yellow']
+Фразу «Полный цикл производства оборудования для нефтегазовой, химической и энергетической отраслей» « с 2003 года» (цифру можно выделить, сделать более крупной) переместить вниз, под видео, перед информацией о преимуществах.
+RUNS=[{'text': 'с', 'flags': ['highlight:yellow']}, {'text': ' 2003 года', 'flags': ['highlight:yellow']}]
+
+[179] FLAGS=['highlight:yellow']
+В старой версии сайта повторялись две одинаковые мысли. Одно нужно было удалить, а одно оставить. Так что здесь не хватает заголовка «Наши преимущества»
+RUNS=[{'text': '»', 'flags': ['highlight:yellow']}]
+
+[225] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+04 Полная сертификация  - к ТР ТС, ISO, НАКС добавить ИНТИ (добавить после ISO)
+RUNS=[{'text': '04 Полная ', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': 'сертификация  -', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': ' к ТР ТС, ', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': 'ISO', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': ', НАКС добавить ИНТИ (добавить после ', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': 'ISO', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': ')', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[247] FLAGS=['highlight:yellow']
+Лента с логотипами клиентов неполная. Логотип должны быть одинаковых размеров в хорошем качестве. Логотип ОЗНА убрать. Последовательность – приоритет топовым и зарубежным компаниям. (папка «Логотипы компаний»)
+RUNS=[{'text': 'Лента с логотипами клиентов неполная. ', 'flags': ['highlight:yellow']}]
+
+[259] FLAGS=['highlight:yellow']
+Фотографии не отцентрованы, обрезанные (как снаружи, так и во вкладыше)
+RUNS=[{'text': 'Фотографии не ', 'flags': ['highlight:yellow']}, {'text': 'отцентрованы', 'flags': ['highlight:yellow']}, {'text': ', обрезанные (как снаружи, так и во вкладыше)', 'flags': ['highlight:yellow']}]
+
+[271] FLAGS=['highlight:yellow']
+Текст не вставлен - Устанавливается в помещении машинного зала на трубопроводе основного конденсата между ПНД-5 и питательным насосом первой ступени (ПЭН-1) перед подводом силовой воды от ПГТН турбоустановки К-306-15,7/50 с реакторной установкой БРЕСТ-ОД-300.
+RUNS=[{'text': 'Текст не вставлен - ', 'flags': ['highlight:yellow']}, {'text': 'Устанавливается в помещении машинного зала на трубопроводе основного конденсата между ПНД-5 и питательным насосом первой ступени (ПЭН-1) перед подводом силовой воды от ПГТН турбоустановки К-306-15,7/50 с реакторной установкой БРЕСТ-ОД-300.', 'flags': ['highlight:yellow']}]
+
+[272] FLAGS=['color:202122', 'run_shd:FFFFFF']
+Заказчики: ОАО «НПО ЦКТИ», АО «КОНЦЕРН ТИТАН-2»
+RUNS=[{'text': 'АО «КОНЦЕРН ТИТАН-2»\xa0', 'flags': ['run_shd:FFFFFF', 'color:202122']}]
+
+[274] FLAGS=['highlight:yellow']
+Фотография 14 обрезана. Улучшить внешний вид объекта.
+RUNS=[{'text': 'Фотография 14 обрезана.', 'flags': ['highlight:yellow']}, {'text': 'лучшить внешний вид объекта.', 'flags': ['highlight:yellow']}]
+
+[280] FLAGS=['color:202122', 'run_shd:FFFFFF']
+Заказчик: ООО «Башкирская генерирующая компания»
+RUNS=[{'text': 'ООО «Башкирская генерирующая компания»', 'flags': ['run_shd:FFFFFF', 'color:202122']}]
+
+[294] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+Реализованные проекты:
+RUNS=[{'text': 'Реализованные проекты:', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[295] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+Монтажные вставки перефразировать  - заменить на «элементы трубопроводов (монтажные вставки)
+RUNS=[{'text': 'Монтажные вставки ', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': 'перефразировать  -', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': ' заменить на «элементы трубопроводов (монтажные вставки)', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[296] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+Ширмовые блоки заменить на «Поверхности нагрева»
+RUNS=[{'text': 'Ширмовые', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': ' блоки заменить на «Поверхности нагрева»', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[297] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+На всех карточках убрать фразу «промышленное оборудование»
+RUNS=[{'text': 'На всех карточках убрать фразу «промышленное оборудование»', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[323] FLAGS=['highlight:yellow']
+Карусельные станки
+RUNS=[{'text': 'Карусельные', 'flags': ['highlight:yellow']}, {'text': ' станки', 'flags': ['highlight:yellow']}]
+
+[324] FLAGS=['highlight:yellow']
+Расточные станки
+RUNS=[{'text': 'Расточные', 'flags': ['highlight:yellow']}, {'text': ' станки', 'flags': ['highlight:yellow']}]
+
+[325] FLAGS=['highlight:yellow']
+Сверлильные станки
+RUNS=[{'text': 'Сверлильные', 'flags': ['highlight:yellow']}, {'text': ' станки', 'flags': ['highlight:yellow']}]
+
+[326] FLAGS=['highlight:yellow']
+Листогибочные станки
+RUNS=[{'text': 'Листог', 'flags': ['highlight:yellow']}, {'text': 'ибочные', 'flags': ['highlight:yellow']}, {'text': ' станки', 'flags': ['highlight:yellow']}]
+
+[327] FLAGS=['highlight:yellow']
+Фото N59A2173, - фото придать  анимированности (в других карточках так же)
+RUNS=[{'text': '- ', 'flags': ['highlight:yellow']}, {'text': 'фото', 'flags': ['highlight:yellow']}, {'text': ' ', 'flags': ['highlight:yellow']}]
+
+[331] FLAGS=['highlight:yellow']
+Сварка с аттестацией НАКС оборудования, технологий и персонала
+RUNS=[{'text': 'Сварка с аттестацией НАКС оборудования, технологий и персонала', 'flags': ['highlight:yellow']}]
+
+[332] FLAGS=['highlight:yellow', 'pStyle:a3']
+TIG
+RUNS=[{'text': 'TIG', 'flags': ['highlight:yellow']}]
+
+[333] FLAGS=['highlight:yellow', 'pStyle:a3']
+MIG/MAG
+RUNS=[{'text': 'MIG/MAG', 'flags': ['highlight:yellow']}]
+
+[334] FLAGS=['highlight:yellow', 'pStyle:a3']
+SAW
+RUNS=[{'text': 'SAW', 'flags': ['highlight:yellow']}]
+
+[335] FLAGS=['highlight:yellow']
+Фото N59A2466, фото именно это (сейчас стоит фото из карточки по термообработке)
+RUNS=[{'text': 'Фото ', 'flags': ['highlight:yellow']}, {'text': 'N', 'flags': ['highlight:yellow']}, {'text': '59', 'flags': ['highlight:yellow']}, {'text': 'A', 'flags': ['highlight:yellow']}, {'text': '2466, ', 'flags': ['highlight:yellow']}, {'text': 'фото именно эт', 'flags': ['highlight:yellow']}, {'text': ' ', 'flags': ['highlight:yellow']}]
+
+[336] FLAGS=['highlight:yellow']
+фото придать  анимированности
+RUNS=[{'text': 'фото', 'flags': ['highlight:yellow']}, {'text': ' ', 'flags': ['highlight:yellow']}]
+
+[341] FLAGS=['highlight:yellow']
+- Визуально-измерительный контроль
+RUNS=[{'text': '- Визуально-измерительный контроль', 'flags': ['highlight:yellow']}]
+
+[342] FLAGS=['highlight:yellow']
+- Радиографический контроль (до 60 мм)
+RUNS=[{'text': '- Радиографический контроль (до 60 мм)', 'flags': ['highlight:yellow']}]
+
+[343] FLAGS=['highlight:yellow']
+- Ультразвуковой контроль
+RUNS=[{'text': '- Ультразвуковой контроль ', 'flags': ['highlight:yellow']}]
+
+[344] FLAGS=['highlight:yellow']
+- рентгенофлуоресцентный контроль
+RUNS=[{'text': '- ', 'flags': ['highlight:yellow']}, {'text': 'рентгенофлуоресцентный', 'flags': ['highlight:yellow']}, {'text': ' контроль', 'flags': ['highlight:yellow']}]
+
+[345] FLAGS=['highlight:yellow']
+- контроль герметичности
+RUNS=[{'text': '- контроль герметичности', 'flags': ['highlight:yellow']}]
+
+[346] FLAGS=['highlight:yellow']
+- контроль проникающими веществами
+RUNS=[{'text': '- контроль проникающими веществами', 'flags': ['highlight:yellow']}]
+
+[347] FLAGS=['highlight:yellow']
+Папка «Дополнительные фото»: IMG_8019, IMG_8003
+RUNS=[{'text': 'Папка «Дополнительные фото»: IMG_8019, IMG_', 'flags': ['highlight:yellow']}, {'text': '8003', 'flags': ['highlight:yellow']}]
+
+[351] FLAGS=['highlight:yellow']
+Индукционная термообработка – прогрессивный метод термической обработки металлов
+RUNS=[{'text': 'Индукционная термообработка – прогрессивный метод термической обработки металлов', 'flags': ['highlight:yellow']}]
+
+[352] FLAGS=['highlight:yellow']
+Сейчас используется не тот текст
+RUNS=[{'text': 'Сейчас используется не тот текст', 'flags': ['highlight:yellow']}]
+
+[355] FLAGS=['highlight:yellow']
+Фото поставлено в раздел Сварки. Оно не отцентровано.
+RUNS=[{'text': 'Фото поставлено в раздел Сварки. Оно не ', 'flags': ['highlight:yellow']}, {'text': 'отцентровано', 'flags': ['highlight:yellow']}, {'text': '.', 'flags': ['highlight:yellow']}]
+
+[361] FLAGS=['highlight:yellow']
+Карточка 6 Участок нанесения лакокрасочного покрытия
+RUNS=[{'text': 'Карточка ', 'flags': ['highlight:yellow']}, {'text': '6', 'flags': ['highlight:yellow']}, {'text': ' ', 'flags': ['highlight:yellow']}, {'text': 'Участок нанесения лакокрасочного покрытия', 'flags': ['highlight:yellow']}]
+
+[362] FLAGS=['highlight:yellow']
+Возможность нанесения однослойных и многослойных покрытий с контролем адгезии и толщинометрией каждого слоя
+RUNS=[{'text': 'Возможность нанесения однослойных и многослойных покрытий с контролем адгезии и ', 'flags': ['highlight:yellow']}, {'text': 'толщинометрией', 'flags': ['highlight:yellow']}, {'text': ' каждого слоя', 'flags': ['highlight:yellow']}]
+
+[363] FLAGS=['highlight:yellow']
+Папка «Дополнительные фото»: IMG-20241108-WA0005, IMG_20251225_104136_455
+RUNS=[{'text': 'Папка «Дополнительные фото»: IMG-20241108-WA0005,', 'flags': ['highlight:yellow']}, {'text': ' ', 'flags': ['highlight:yellow']}, {'text': 'IMG_20251225_104136_455', 'flags': ['highlight:yellow']}]
+
+[401] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+03 Контроль качества – добавить «капиллярный контроль, гидравлические/пневматические испытания»
+RUNS=[{'text': '03 Контроль качества – добавить «капиллярный контроль, гидравлические/пневматические испытания»', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[479] FLAGS=['pStyle:a4', 'p_shd:FFFFFF']
+2003  Основание компании. С момента основания компания
+RUNS=[]
+
+[480] FLAGS=['pStyle:a4', 'p_shd:FFFFFF']
+«Газ-Проект Инжиниринг» прошла долгий путь до самостоятельного производственного предприятия с полным циклом
+RUNS=[]
+
+[486] FLAGS=['color:2C2D2E', 'pStyle:a4', 'p_shd:FFFFFF']
+2023 –Увеличение компетенций. На сегодняшний день предприятие ООО «Газ-Проект Инжиниринг» изготавливает оборудование для тепловых и атомных станций.
+RUNS=[{'text': '. На сегодняшний день ', 'flags': ['color:2C2D2E']}, {'text': 'предприятие ', 'flags': ['color:2C2D2E']}, {'text': 'ООО «Газ-Проект Инжиниринг» ', 'flags': ['color:2C2D2E']}, {'text': 'изготавливае', 'flags': ['color:2C2D2E']}, {'text': 'т', 'flags': ['color:2C2D2E']}, {'text': ' оборудование для тепловых и атомных станций.', 'flags': ['color:2C2D2E']}]
+
+[488] FLAGS=['color:2C2D2E', 'pStyle:a4', 'p_shd:FFFFFF']
+2023 – 2024 –расширение сотрудничества с ведущими институтами страны – НПО ЦКТИ, Газпром ВНИИГАЗ, Газпром Проектирование, ВНИИ Нефтемаш, АО НИИ Химмаш, Иркутск НИИ Химмаш
+RUNS=[{'text': '2023 – 2024 –', 'flags': ['color:2C2D2E']}, {'text': 'расширение сотрудничества', 'flags': ['color:2C2D2E']}, {'text': ' с ведущими институтами страны – ', 'flags': ['color:2C2D2E']}, {'text': 'НПО ', 'flags': ['color:2C2D2E']}, {'text': 'ЦКТИ', 'flags': ['color:2C2D2E']}, {'text': ', Газпром ВНИИГАЗ, ', 'flags': ['color:2C2D2E']}, {'text': 'Газпром Проектирование, ВНИИ Нефтемаш, АО НИИ ', 'flags': ['color:2C2D2E']}, {'text': 'Химмаш', 'flags': ['color:2C2D2E']}, {'text': ', Иркутск НИИ ', 'flags': ['color:2C2D2E']}, {'text': 'Химмаш', 'flags': ['color:2C2D2E']}]
+
+[490] FLAGS=['color:2C2D2E', 'pStyle:a4', 'p_shd:FFFFFF']
+2024 – 2026 – активное развитие международных связей с Китайской народной республикой: поставка оборудования по техническим проектам, разработанным компанией «Газ-Проект Инжиниринг»
+RUNS=[{'text': '2024 – 2026 – активное развитие международных связей с К', 'flags': ['color:2C2D2E']}, {'text': 'итайской народной республикой', 'flags': ['color:2C2D2E']}, {'text': ':', 'flags': ['color:2C2D2E']}, {'text': ' ', 'flags': ['color:2C2D2E']}, {'text': 'поставка оборудования по техническим проектам, разработанным компанией «Газ-Проект Инжиниринг»', 'flags': ['color:2C2D2E']}]
+
+[507] FLAGS=['highlight:yellow']
+Тайм-лайн с текстом на фоне фото (со стройплощадки). Фото не полноцветное, с прозрачностью. (фото из папки «Для фона»)
+RUNS=[{'text': 'Тайм-', 'flags': ['highlight:yellow']}, {'text': 'лайн', 'flags': ['highlight:yellow']}, {'text': ' с текстом на фоне фото (со стройплощадки). Фото не полноцветное, с прозрачностью.', 'flags': ['highlight:yellow']}, {'text': ' ', 'flags': ['highlight:yellow']}, {'text': '(', 'flags': ['highlight:yellow']}, {'text': 'фото', 'flags': ['highlight:yellow']}, {'text': ' из папки «', 'flags': ['highlight:yellow']}, {'text': 'Для фона', 'flags': ['highlight:yellow']}, {'text': '»)', 'flags': ['highlight:yellow']}]
+
+[512] FLAGS=['highlight:yellow']
+Лента времени на большом экране - сделать как на сайте НАТЭК
+RUNS=[{'text': 'Л', 'flags': ['highlight:yellow']}, {'text': 'ента времени на большом экране ', 'flags': ['highlight:yellow']}, {'text': '- сделать как на сайте НАТЭК', 'flags': ['highlight:yellow']}]
+
+[544] FLAGS=['pStyle:a4', 'p_shd:FFFFFF']
+2003  Основание компании
+RUNS=[]
+
+[553] FLAGS=['color:2C2D2E', 'pStyle:a4', 'p_shd:FFFFFF']
+2023 – 2024
+RUNS=[{'text': '2023 – 2024 ', 'flags': ['color:2C2D2E']}]
+
+[554] FLAGS=['color:2C2D2E', 'pStyle:a4', 'p_shd:FFFFFF']
+Сотрудничество с отраслевыми институтами
+RUNS=[{'text': 'Сотрудничество с отраслевыми институтами', 'flags': ['color:2C2D2E']}]
+
+[555] FLAGS=['color:2C2D2E', 'pStyle:a4', 'p_shd:FFFFFF']
+Компания развивает  взаимодействие с ведущими институтами страны – НПО ЦКТИ, Газпром ВНИИГАЗ, Газпром Проектирование, ВНИИ Нефтемаш, АО НИИ Химмаш, Иркутск НИИ Химмаш
+RUNS=[{'text': 'Компания ', 'flags': ['color:2C2D2E']}, {'text': 'развивает  взаимодействие', 'flags': ['color:2C2D2E']}, {'text': ' с ', 'flags': ['color:2C2D2E']}, {'text': 'ведущими институтами страны – НПО ЦКТИ, Газпром ВНИИГАЗ, Газпром Проектирование, ВНИИ Нефтемаш, АО НИИ ', 'flags': ['color:2C2D2E']}, {'text': 'Химмаш', 'flags': ['color:2C2D2E']}, {'text': ', Иркутск НИИ ', 'flags': ['color:2C2D2E']}, {'text': 'Химмаш', 'flags': ['color:2C2D2E']}]
+
+[557] FLAGS=['color:2C2D2E', 'pStyle:a4', 'p_shd:FFFFFF']
+2024 – 2026
+RUNS=[{'text': '2024 – 2026 ', 'flags': ['color:2C2D2E']}]
+
+[558] FLAGS=['color:2C2D2E', 'pStyle:a4', 'p_shd:FFFFFF']
+Международное напрвление
+RUNS=[{'text': 'Международное ', 'flags': ['color:2C2D2E']}, {'text': 'напрвление', 'flags': ['color:2C2D2E']}]
+
+[559] FLAGS=['color:2C2D2E', 'pStyle:a4', 'p_shd:FFFFFF']
+Развитие международных связей с Китаем в части поставки оборудования по техническим проектам компании «Газ-Проект Инжиниринг»
+RUNS=[{'text': 'Р', 'flags': ['color:2C2D2E']}, {'text': 'азвитие международных связей с Кита', 'flags': ['color:2C2D2E']}, {'text': 'ем в части', 'flags': ['color:2C2D2E']}, {'text': ' ', 'flags': ['color:2C2D2E']}, {'text': 'поставки', 'flags': ['color:2C2D2E']}, {'text': ' оборудования по техническим проектам компани', 'flags': ['color:2C2D2E']}, {'text': 'и', 'flags': ['color:2C2D2E']}, {'text': ' «Газ-Проект Инжиниринг»', 'flags': ['color:2C2D2E']}]
+
+[619] FLAGS=['highlight:yellow']
+Блоки с названиями стран
+RUNS=[{'text': 'Блоки с названиями стран', 'flags': ['highlight:yellow']}]
+
+[621] FLAGS=['highlight:yellow']
+ГПИ –эту аббревиатуру нигде не надо использовать
+RUNS=[{'text': 'ГПИ –эту аббревиатуру нигде не надо использовать', 'flags': ['highlight:yellow']}]
+
+[626] FLAGS=['highlight:yellow']
+Папка «Дополнительные фото»: IMG_20241125_145750 – использовать как фон для раздела
+RUNS=[{'text': 'Папка «Дополнительные фото»: IMG_20241125_145750 – использовать как фон для раздела', 'flags': ['highlight:yellow']}]
+
+[680] FLAGS=['highlight:yellow']
+Удалить:
+RUNS=[{'text': 'Удалить:', 'flags': ['highlight:yellow']}]
+
+[681] FLAGS=['highlight:yellow']
+ГПИ Партнерства
+RUNS=[{'text': 'ГПИ Партнерства', 'flags': ['highlight:yellow']}]
+
+[683] FLAGS=['highlight:yellow']
+Фото Рабочие визиты ….
+RUNS=[{'text': 'Фото Рабочие визиты ….', 'flags': ['highlight:yellow']}]
+
+[684] FLAGS=['highlight:yellow']
+Подзаголовок Компетенции
+RUNS=[{'text': 'Подзаголовок Компетенции', 'flags': ['highlight:yellow']}]
+
+[686] FLAGS=['highlight:yellow']
+Объединяем производственные, инженерные и транспортно-логистические компетенции и международные связи для реализации сложных проектов. Партнерская сеть помогает находить……от завода до объекта.
+RUNS=[{'text': 'Объединяем производственные, инженерные и транспортно-логистические компетенции и международные связи для реализации сложных проектов', 'flags': ['highlight:yellow']}, {'text': '. Партнерская сеть помогает находить……от завода до объекта.', 'flags': ['highlight:yellow']}]
+
+[691] FLAGS=['highlight:yellow']
+На фоне графиков (изображение по типу фона для ленты времени) (Документ института ЦКТИ – выбрать отсюда график или схему) В папке «Для фона»
+RUNS=[{'text': 'На фоне графиков (изображение по типу фона для ленты времени)', 'flags': ['highlight:yellow']}, {'text': ' (Документ института ЦКТИ – выбрать отсюда график', 'flags': ['highlight:yellow']}, {'text': ' или схему', 'flags': ['highlight:yellow']}, {'text': ')', 'flags': ['highlight:yellow']}, {'text': ' В папке «Для фона»', 'flags': ['highlight:yellow']}]
+
+[692] FLAGS=['highlight:yellow']
+Добавить логотипы компаний (папка «Логотипы компаний»)
+RUNS=[{'text': 'Добавить логотипы компаний', 'flags': ['highlight:yellow']}, {'text': ' (папка «Логотипы компаний»)', 'flags': ['highlight:yellow']}]
+
+[695] FLAGS=['highlight:yellow']
+Направление 2
+RUNS=[{'text': 'Направление 2', 'flags': ['highlight:yellow']}]
+
+[696] FLAGS=['highlight:yellow']
+Сюда перенести фото встреч (Рабочие встречи), так как это только фото встреч в КНР (на фото – вместо визит 01,02,03,04 – название компании)
+RUNS=[{'text': 'Сюда перенести фото встреч (Рабочие встречи), так как это только фото встреч в КНР (на фото – вместо визит 01,02,03,04 – название компании', 'flags': ['highlight:yellow']}, {'text': ')', 'flags': ['highlight:yellow']}]
+
+[697] FLAGS=['highlight:yellow']
+Добавить логотипы компаний  (папка «Логотипы»)
+RUNS=[{'text': 'Добавить логотипы ', 'flags': ['highlight:yellow']}, {'text': 'компаний', 'flags': ['highlight:yellow']}, {'text': '  (', 'flags': ['highlight:yellow']}, {'text': 'папка «Логотипы»)', 'flags': ['highlight:yellow']}]
+
+[700] FLAGS=['highlight:yellow']
+Направление 3
+RUNS=[{'text': 'Направление 3', 'flags': ['highlight:yellow']}]
+
+[701] FLAGS=['highlight:yellow']
+Убрать блоки с названиями компаний
+RUNS=[{'text': 'Убрать блоки с названиями компаний', 'flags': ['highlight:yellow']}]
+
+[702] FLAGS=['highlight:yellow']
+Добавить логотипы компаний (Тамарикс, Транстерминал) (папка «Логотипы компаний»)
+RUNS=[{'text': 'Добавить логотипы компаний (Тамарикс, ', 'flags': ['highlight:yellow']}, {'text': 'Транстерминал', 'flags': ['highlight:yellow']}, {'text': ')', 'flags': ['highlight:yellow']}, {'text': ' (папка «Логотипы компаний»)', 'flags': ['highlight:yellow']}]
+
+[705] FLAGS=['highlight:yellow']
+Для фона использовать фото Тамарикс (изображение по типу фона для ленты времени)
+RUNS=[{'text': 'Для фона использовать фото Тамарикс', 'flags': ['highlight:yellow']}, {'text': ' ', 'flags': ['highlight:yellow']}, {'text': '(изображение по типу фона для ленты времени)', 'flags': ['highlight:yellow']}]
+
+[749] FLAGS=['highlight:yellow']
+Видео  из цеха с различной продукцией зацикленное – фон для заголовка.
+RUNS=[{'text': 'различной продукцией', 'flags': ['highlight:yellow']}]
+
+[762] FLAGS=['highlight:yellow']
+В блоке должны быть представлены карточки с производимым оборудованием. На следующей неделе будет готов полный каталог картинок с описанием. Образец ниже. Изображение необходимо анимировать, например, применив вращение (или другие способы).
+RUNS=[{'text': 'В блоке должны быть представлены карточки с производимым оборудованием. На следующей неделе будет готов полный каталог картинок с описанием. Образец ниже. Изображение необходимо анимировать, например, применив вращение (или другие способы).', 'flags': ['highlight:yellow']}]
+
+[828] FLAGS=['highlight:yellow']
+Фон для заголовка - видео участков зацикленное
+RUNS=[{'text': 'участков', 'flags': ['highlight:yellow']}]
+
+[844] FLAGS=['highlight:yellow']
+Использовать все фото (фото с первой страницы не делать лицевым) Так  же на других карточках
+RUNS=[{'text': 'Использовать все фото', 'flags': ['highlight:yellow']}]
+
+[858] FLAGS=['highlight:yellow']
+Использовать все фото
+RUNS=[{'text': 'Использовать все фото', 'flags': ['highlight:yellow']}]
+
+[864] FLAGS=['highlight:yellow']
+Фото  4 поставить так, чтобы было хорошо видно сам прибор.
+RUNS=[{'text': 'Фото  4', 'flags': ['highlight:yellow']}, {'text': ' поставить так, чтобы было хорошо видно сам ', 'flags': ['highlight:yellow']}, {'text': 'прибор', 'flags': ['highlight:yellow']}, {'text': '.', 'flags': ['highlight:yellow']}]
+
+[911] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+01 заготовительные участки:
+RUNS=[{'text': '01 заготовительные участки:', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[912] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+Фразу «….портал газо-плазменной резки до 70 мм….» дополнить знаком «δ» перед  «70 мм»
+RUNS=[{'text': 'Фразу ', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': '«….', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': 'портал газо-плазменной резки до 70 мм….» дополнить знаком «δ» перед  «70 мм»', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[914] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+02 Сварочные цеха
+RUNS=[{'text': '02 Сварочные цеха ', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[915] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+Переименовать в «Сварочные участки»
+RUNS=[{'text': 'Переименовать в «Сварочные участки»', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[917] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+03 Служба контроля качества
+RUNS=[{'text': '03 Служба контроля качества', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[918] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+Добавить рентгенфлуорисцентный контроль и капиллярный контроль
+RUNS=[{'text': 'Добавить ', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': 'рентгенфлуорисцентный', 'flags': ['run_shd:EEF1F2', 'color:40515A']}, {'text': ' контроль и капиллярный контроль', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[921] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+04 АСУ ТП цеха переименовать в «Участок АСУ ТП
+RUNS=[{'text': '04 АСУ ТП цеха переименовать в «Участок АСУ ТП', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]
+
+[976] FLAGS=['color:40515A', 'run_shd:EEF1F2']
+Режим работы с 8 до 17
+RUNS=[{'text': 'Режим работы с 8 до 17', 'flags': ['run_shd:EEF1F2', 'color:40515A']}]

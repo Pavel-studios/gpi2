@@ -11,25 +11,93 @@ import {
   MapPinned,
   Minus,
   Plus,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 
-import aboutHero1 from '@/imports/about/about-hero-1.webp';
-import aboutHero2 from '@/imports/about/about-hero-2.webp';
-import aboutHero3 from '@/imports/about/about-hero-3.webp';
-import aboutHero4 from '@/imports/about/about-hero-4.webp';
-import aboutHero5 from '@/imports/about/about-hero-5.webp';
-import aboutMapBg from '@/imports/about/about-map-bg.webp';
+import gallery01 from '@/imports/about/gallery/about-gallery-01.webp';
+import gallery02 from '@/imports/about/gallery/about-gallery-02.webp';
+import gallery03 from '@/imports/about/gallery/about-gallery-03.webp';
+import gallery04 from '@/imports/about/gallery/about-gallery-04.webp';
+import gallery05 from '@/imports/about/gallery/about-gallery-05.webp';
+import gallery06 from '@/imports/about/gallery/about-gallery-06.webp';
+import gallery07 from '@/imports/about/gallery/about-gallery-07.webp';
+import gallery08 from '@/imports/about/gallery/about-gallery-08.webp';
+import gallery09 from '@/imports/about/gallery/about-gallery-09.webp';
+import gallery10 from '@/imports/about/gallery/about-gallery-10.webp';
+import gallery11 from '@/imports/about/gallery/about-gallery-11.webp';
+import gallery12 from '@/imports/about/gallery/about-gallery-12.webp';
+import gallery13 from '@/imports/about/gallery/about-gallery-13.webp';
+import gallery14 from '@/imports/about/gallery/about-gallery-14.webp';
+import gallery15 from '@/imports/about/gallery/about-gallery-15.webp';
+import gallery16 from '@/imports/about/gallery/about-gallery-16.webp';
+import gallery17 from '@/imports/about/gallery/about-gallery-17.webp';
+import gallery18 from '@/imports/about/gallery/about-gallery-18.webp';
+import gallery19 from '@/imports/about/gallery/about-gallery-19.webp';
+import gallery20 from '@/imports/about/gallery/about-gallery-20.webp';
+import gallery21 from '@/imports/about/gallery/about-gallery-21.webp';
+import gallery22 from '@/imports/about/gallery/about-gallery-22.webp';
+import gallery23 from '@/imports/about/gallery/about-gallery-23.webp';
+import gallery24 from '@/imports/about/gallery/about-gallery-24.webp';
+import gallery25 from '@/imports/about/gallery/about-gallery-25.webp';
+import gallery26 from '@/imports/about/gallery/about-gallery-26.webp';
+import gallery27 from '@/imports/about/gallery/about-gallery-27.webp';
+import gallery28 from '@/imports/about/gallery/about-gallery-28.webp';
+import gallery29 from '@/imports/about/gallery/about-gallery-29.webp';
+import gallery30 from '@/imports/about/gallery/about-gallery-30.webp';
+import gallery31 from '@/imports/about/gallery/about-gallery-31.webp';
+import aboutMapBg from '@/imports/about/about-map-bg-20241125.webp';
 import activityMapMarkup from '@/imports/map-edited-2.svg?raw';
+import logoGazprom from '@/imports/clients/gazprom_logo.webp';
+import logoGazpromKomplekt from '@/imports/clients/057_1-2-4.png';
+import logoRosneft from '@/imports/clients/a2ddf127393db4380ee610d7b9e31e66.jpg';
+import logoBashneft from '@/imports/clients/580f14163611fefad60da78d5c9b904c.png';
+import logoLukoil from '@/imports/clients/png-klev-club-fdy1-p-lukoil-png-1.png';
+import logoSinopec from '@/imports/clients/index_img.png';
+import logoInk from '@/imports/clients/big-catalog-16344744171.jpg';
+import logoKondensat from '@/imports/clients/Untitled-1.jpg';
+import logoCkti from '@/imports/clients/partner_5.png';
+import logoSibneftegaz from '@/imports/clients/sibneftegaz_logo.png';
+import logoPurneftegaz from '@/imports/clients/purneftegaz.jpg';
+import logoRnUvat from '@/imports/clients/rn-uvatneftegaz.jpg';
+import logoSibur from '@/imports/clients/s1200.png';
+import Logo2 from './ui/logo2';
 import { FadingPattern } from './ui/fading-pattern';
 import { AboutCertificatesSection } from './AboutCertificatesSection';
 import { StrategyPartnerSection } from './StrategyPartnerSection';
 
 const heroSlides = [
-  { image: aboutHero1, label: 'Производственная площадка' },
-  { image: aboutHero2, label: 'Территория предприятия' },
-  { image: aboutHero3, label: 'Работа производственных участков' },
-  { image: aboutHero4, label: 'Команда и процессы' },
-  { image: aboutHero5, label: 'Офис и деловая среда' },
+  gallery01,
+  gallery02,
+  gallery03,
+  gallery04,
+  gallery05,
+  gallery06,
+  gallery07,
+  gallery08,
+  gallery09,
+  gallery10,
+  gallery11,
+  gallery12,
+  gallery13,
+  gallery14,
+  gallery15,
+  gallery16,
+  gallery17,
+  gallery18,
+  gallery19,
+  gallery20,
+  gallery21,
+  gallery22,
+  gallery23,
+  gallery24,
+  gallery25,
+  gallery26,
+  gallery27,
+  gallery28,
+  gallery29,
+  gallery30,
+  gallery31,
 ];
 
 const timeline = [
@@ -38,64 +106,57 @@ const timeline = [
     icon: Building2,
     title: 'Основание компании',
     description:
-      'С момента основания «Газ-Проект Инжиниринг» прошла путь до самостоятельного производственного предприятия полного цикла.',
+      'Компания «Газ-Проект Инжиниринг» была основана в г. Уфа в Республике Башкоротостан. Изначально это было специализированное производственно-инжиниринговое предприятие по разработке и поставке оборудования для нефтегазовой отрасли, в частности факельных систем и индукционного обогрева.',
   },
-  {
-    year: '2004',
-    icon: Flame,
-    title: 'Испытания факельных оголовков',
-    description:
-      'Проведены успешные испытания факельных оголовков со средствами контроля пламени и розжига, получена сертификационная документация.',
-  },
+  // {
+  //   year: '2004',
+  //   icon: Flame,
+  //   title: 'Испытания факельных оголовков',
+  //   description:
+  //     'Проведены испытания факельных оголовков со средствами контроля пламени и розжига, сформирована база для сертификации оборудования.',
+  // },
   {
     year: '2004–2010',
     icon: Handshake,
     title: 'Первые комплексные проекты',
     description:
-      'Работа с крупными российскими компаниями над техническими решениями для снижения экологического воздействия и оптимизации расходов при добыче и переработке нефти и газа.',
+      'Работа в сотрудничестве с крупными российскими компаниями. Разработка технических решений, позволяющих минимизировать влияние на экологию выбросов с промышленных предприятий, и оптимизировать расходы при добыче и переработке нефти и газа.',
   },
   {
     year: '2010–2018',
     icon: Factory,
-    title: 'Развитие технологий и оборудования',
+    title: 'Новые технологии и оборудование',
     description:
-      'Компания укрепляет экспертизу в разработке и внедрении оборудования для предприятий добычи, переработки, транспорта углеводородов и попутного газа.',
+      'ООО «Газ-Проект Инжиниринг» - компания с уже многолетним опытом разработки и внедрения новых технологий и оборудования в нефтегазовом секторе, модернизирующая производства на различных предприятиях по добыче, переработке и транспорту углеводородов и попутного газа.',
   },
-  {
-    year: '2018–2023',
-    icon: MapPinned,
-    title: 'Расширение географии',
-    description:
-      'Поставки и проекты от западных границ России до берегов Охотского моря, месторождений реки Лена, Западной Сибири, южных регионов РФ и стран СНГ.',
-  },
-  {
-    year: '2023',
-    icon: Atom,
-    title: 'Новые отраслевые компетенции',
-    description:
-      'Предприятие изготавливает оборудование для тепловых и атомных станций, расширяя промышленный профиль производства.',
-  },
+  // {
+  //   year: '2018–2023',
+  //   icon: MapPinned,
+  //   title: 'Расширение географии',
+  //   description:
+  //     'Поставки и проекты в ключевых регионах России, странах СНГ и на международных направлениях сотрудничества.',
+  // },
+  // {
+  //   year: '2023',
+  //   icon: Atom,
+  //   title: 'Новые отраслевые компетенции',
+  //   description:
+  //     'Изготовление оборудования для тепловых и атомных станций, расширение промышленного профиля производства.',
+  // },
   {
     year: '2023–2024',
     icon: Landmark,
-    title: 'Сотрудничество с институтами',
+    title: 'Сотрудничество с отраслевыми институтами',
     description:
-      'Расширено взаимодействие с НПО ЦКТИ, Газпром ВНИИГАЗ, Газпром Проектирование, ВНИИ Нефтемаш, АО НИИ Химмаш и Иркутск НИИ Химмаш.',
+      'Компания развивает  взаимодействие с ведущими институтами страны – НПО ЦКТИ, Газпром ВНИИГАЗ, Газпром Проектирование, ВНИИ Нефтемаш, АО НИИ Химмаш, Иркутск НИИ Химмаш.',
   },
   {
     year: '2024–2026',
     icon: Globe2,
     title: 'Международное направление',
     description:
-      'Развитие связей с Китаем и поставка оборудования по техническим проектам «Газ-Проект Инжиниринг».',
+      'Развитие международных связей с Китаем в части поставки оборудования по техническим проектам компании «Газ-Проект Инжиниринг».',
   },
-];
-
-const competencies = [
-  'производственные участки полного цикла',
-  'инженерная разработка и конструкторская документация',
-  'транспортно-логистическая координация',
-  'партнерская сеть и международные связи',
 ];
 
 const presencePoints = [
@@ -106,17 +167,34 @@ const presencePoints = [
   { label: 'Китай', top: '78%', left: '57%' },
 ];
 
+const partnerLogos = [
+  { name: 'Газпром', logo: logoGazprom },
+  { name: 'Газпром комплектация', logo: logoGazpromKomplekt },
+  { name: 'Роснефть', logo: logoRosneft },
+  { name: 'Башнефть', logo: logoBashneft },
+  { name: 'ЛУКОЙЛ', logo: logoLukoil },
+  { name: 'Sinopec', logo: logoSinopec },
+  { name: 'Иркутская нефтяная компания', logo: logoInk },
+  { name: 'Конденсат', logo: logoKondensat },
+  { name: 'НПО ЦКТИ', logo: logoCkti },
+  { name: 'Сибнефтегаз', logo: logoSibneftegaz },
+  { name: 'Пурнефтегаз', logo: logoPurneftegaz },
+  { name: 'РН-Уватнефтегаз', logo: logoRnUvat },
+  { name: 'СИБУР', logo: logoSibur },
+];
+
 export function AboutSection() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [mapScale, setMapScale] = useState(1);
   const [mapOffset, setMapOffset] = useState({ x: 0, y: 0 });
   const [isMapDragging, setIsMapDragging] = useState(false);
   const mapDrag = useRef({ pointerId: -1, x: 0, y: 0 });
+  const historyRailRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % heroSlides.length);
-    }, 6500);
+    }, 4200);
 
     return () => window.clearInterval(timer);
   }, []);
@@ -137,6 +215,15 @@ export function AboutSection() {
     const scale = Math.min(1.9, Math.max(1, Number(nextScale.toFixed(2))));
     setMapScale(scale);
     setMapOffset((current) => clampMapOffset(current.x, current.y, scale));
+  };
+
+
+
+  const scrollHistory = (direction: 1 | -1) => {
+    const rail = historyRailRef.current;
+    if (!rail) return;
+
+    rail.scrollBy({ left: direction * Math.min(560, rail.clientWidth * 0.72), behavior: 'smooth' });
   };
 
   const handleMapPointerDown = (event: PointerEvent<HTMLDivElement>) => {
@@ -174,26 +261,24 @@ export function AboutSection() {
       <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-[#263740]">
         {heroSlides.map((slide, index) => (
           <motion.img
-            key={slide.image}
-            src={slide.image}
-            alt={slide.label}
-            className="absolute inset-0 h-full w-full object-cover"
+            key={slide}
+            src={slide}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-center"
             initial={false}
             animate={{
               opacity: activeSlide === index ? 1 : 0,
-              scale: activeSlide === index ? 1 : 1.05,
+              scale: activeSlide === index ? 1.03 : 1,
             }}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           />
         ))}
 
-        <div className="absolute inset-0 bg-gradient-to-r from-[#263740]/95 via-[#263740]/72 to-[#263740]/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#263740]/80 via-transparent to-transparent" />
-        <FadingPattern opacity="0.075" />
-        <div className="absolute right-[8vw] top-0 hidden h-full w-[22vw] skew-x-[-18deg] bg-white/[0.07] lg:block" />
-        <div className="absolute right-[18vw] top-0 hidden h-full w-[10vw] skew-x-[-18deg] bg-white/[0.04] lg:block" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#263740]/94 via-[#263740]/64 to-[#263740]/14" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#263740]/82 via-transparent to-transparent" />
+        <FadingPattern opacity="0.06" />
 
-        <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-[1920px] items-end px-6 py-12 sm:px-10 lg:px-16 lg:py-20">
+        <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-[1920px] items-end px-6 pb-14 pt-28 sm:px-10 lg:px-16 lg:pb-20">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
@@ -222,15 +307,15 @@ export function AboutSection() {
               химической и энергетической отраслей.
             </p>
 
-            <div className="mt-12 flex flex-wrap gap-3">
+            <div className="mt-10 flex max-w-xl flex-wrap gap-2">
               {heroSlides.map((slide, index) => (
                 <button
-                  key={slide.image}
+                  key={slide}
                   type="button"
-                  aria-label={`Показать слайд: ${slide.label}`}
+                  aria-label={`Показать фото ${index + 1}`}
                   onClick={() => setActiveSlide(index)}
                   className={`h-1.5 rounded-full transition-all duration-500 ${
-                    activeSlide === index ? 'w-16 bg-white' : 'w-8 bg-white/35 hover:bg-white/60'
+                    activeSlide === index ? 'w-12 bg-white' : 'w-5 bg-white/30 hover:bg-white/60'
                   }`}
                 />
               ))}
@@ -239,16 +324,23 @@ export function AboutSection() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden px-6 py-24 sm:px-10 lg:px-16">
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(80,98,108,0.08)_1px,transparent_1px),linear-gradient(180deg,rgba(80,98,108,0.08)_1px,transparent_1px)] bg-[size:64px_64px]" />
-        <div className="absolute -left-24 top-20 h-80 w-80 rotate-45 border border-[#50626c]/10" />
-        <div className="absolute right-0 top-0 h-full w-[18vw] skew-x-[-16deg] bg-[#50626c]/8" />
+      <section className="relative overflow-hidden bg-[#eef1f2] px-6 py-24 sm:px-10 lg:px-16">
+        <img
+          src={aboutMapBg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-[0.5] grayscale saturate-0"
+        />
+        <div className="absolute inset-0 bg-[#eef1f2]/42" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#eef1f2]/72 via-[#eef1f2]/36 to-[#eef1f2]/58" />
+        <div className="absolute inset-0 bg-[#50626c]/8 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(80,98,108,0.055)_1px,transparent_1px),linear-gradient(180deg,rgba(80,98,108,0.055)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
         <div className="relative mx-auto max-w-[1680px]">
           <div className="mb-16 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
               <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
-                История предприятия
+                Наша история
               </div>
               <h2
                 className="max-w-3xl text-[#263740]"
@@ -259,94 +351,64 @@ export function AboutSection() {
                   lineHeight: 0.96,
                 }}
               >
-                Путь от основания до производства полного цикла
+                Ключевые этапы развития компании
               </h2>
             </div>
           </div>
 
-          <div className="relative mx-auto max-w-6xl">
-            <div className="absolute bottom-0 left-7 top-0 hidden w-px bg-gradient-to-b from-[#50626c] via-[#91a0a8] to-transparent md:block" />
+          <div className="relative -mx-6 sm:-mx-10 lg:mx-0">
+            <button
+              type="button"
+              onClick={() => scrollHistory(-1)}
+              aria-label="Предыдущие события"
+              className="absolute left-1 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#50626c]/16 bg-white/70 text-[#50626c]/78 shadow-[0_14px_34px_rgba(38,55,64,0.12)] backdrop-blur-md transition hover:text-[#263740] sm:left-3 lg:left-0 lg:h-16 lg:w-16 lg:-translate-x-1/2 lg:border-0 lg:bg-transparent lg:shadow-none xl:-translate-x-full"
+            >
+              <ChevronLeft className="h-9 w-9 lg:h-[54px] lg:w-[54px]" strokeWidth={1.1} />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollHistory(1)}
+              aria-label="Следующие события"
+              className="absolute right-1 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#50626c]/16 bg-white/70 text-[#50626c]/78 shadow-[0_14px_34px_rgba(38,55,64,0.12)] backdrop-blur-md transition hover:text-[#263740] sm:right-3 lg:right-0 lg:h-16 lg:w-16 lg:translate-x-1/2 lg:border-0 lg:bg-transparent lg:shadow-none xl:translate-x-full"
+            >
+              <ChevronRight className="h-9 w-9 lg:h-[54px] lg:w-[54px]" strokeWidth={1.1} />
+            </button>
 
-            <div className="grid gap-6 md:pl-20">
+            <div
+              ref={historyRailRef}
+              className="relative overflow-x-auto scroll-smooth px-16 pb-4 [scrollbar-width:none] sm:px-20 lg:px-20 [&::-webkit-scrollbar]:hidden"
+            >
+              <div className="relative flex min-w-max py-12 lg:py-16">
+                <div className="absolute left-0 right-0 top-1/2 h-px bg-[#50626c]/45" />
+
               {timeline.map((item, index) => {
-                const Icon = item.icon;
+                const isTop = index % 2 === 0;
 
                 return (
                   <motion.article
                     key={`${item.year}-${item.title}`}
-                    initial={{ opacity: 0, y: 28 }}
+                    initial={{ opacity: 0, y: isTop ? -22 : 22 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
                     transition={{ duration: 0.55, delay: Math.min(index * 0.04, 0.18) }}
-                    className="group relative overflow-visible border border-[#50626c]/12 bg-white/82 p-6 shadow-[0_24px_80px_rgba(38,55,64,0.08)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-[#50626c]/28 sm:p-8"
+                    className="group relative h-[620px] w-[calc(100vw-8rem)] max-w-[310px] shrink-0 sm:w-[340px] sm:max-w-none lg:h-[700px] lg:w-[430px]"
                   >
-                    <div className="absolute left-[-3.72rem] top-8 hidden h-4 w-4 rounded-full border-4 border-[#eef0f1] bg-[#50626c] shadow-[0_0_0_1px_rgba(80,98,108,0.28)] md:block" />
-                    <div className="absolute right-0 top-0 h-full w-24 skew-x-[-18deg] bg-[#50626c]/6 transition-colors duration-500 group-hover:bg-[#50626c]/12" />
-                    <div className="relative flex flex-col gap-5 sm:flex-row">
-                      <div className="flex h-14 w-14 shrink-0 rotate-45 items-center justify-center border border-[#50626c]/18 bg-[#263740] text-white shadow-lg shadow-[#263740]/12">
-                        <Icon className="-rotate-45" size={24} strokeWidth={1.6} />
+                    <div className={`absolute left-0 w-px bg-[#50626c] ${isTop ? 'bottom-[310px] h-[230px] lg:bottom-[350px] lg:h-[270px]' : 'top-[310px] h-[230px] lg:top-[350px] lg:h-[270px]'}`} />
+                    <div className={`absolute left-0 z-10 bg-[#50626c] px-3 py-1.5 text-[clamp(1.9rem,12vw,2.8rem)] font-black leading-none tracking-[0.02em] text-white shadow-[0_14px_34px_rgba(38,55,64,0.18)] sm:text-[3rem] lg:px-4 lg:text-[clamp(2.2rem,4vw,3.55rem)] ${isTop ? 'top-[248px] lg:top-[282px]' : 'bottom-[248px] lg:bottom-[282px]'}`}>
+                      {item.year}
+                    </div>
+                    <div className={`absolute left-3 w-[min(260px,calc(100%-1.5rem))] sm:w-[300px] lg:w-[330px] ${isTop ? 'top-0 max-h-[230px] lg:max-h-[260px]' : 'top-[390px] max-h-[220px] lg:top-[440px] lg:max-h-[250px]'}`}>
+                      <div className="mb-2 max-w-[230px] text-[13px] font-black uppercase leading-4 tracking-[-0.02em] text-[#50626c] sm:max-w-[260px] sm:text-[15px] sm:leading-5">
+                        {item.title}
                       </div>
-                      <div className="grid min-w-0 gap-4 lg:grid-cols-[190px_1fr] lg:gap-7">
-                        <div>
-                          <div className="text-2xl font-black tracking-[-0.05em] text-[#50626c]">
-                            {item.year}
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="mb-3 text-2xl font-bold tracking-[-0.04em] text-[#263740]">
-                            {item.title}
-                          </h3>
-                          <p className="text-base leading-7 text-[#595b5c]">{item.description}</p>
-                        </div>
-                      </div>
+                      <p className="max-w-[250px] text-xs leading-5 text-[#595b5c] sm:max-w-[300px] sm:text-sm sm:leading-6 lg:max-w-[330px]">
+                        {item.description}
+                      </p>
                     </div>
                   </motion.article>
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-[#263740] px-6 py-20 text-white sm:px-10 lg:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(145,160,168,0.22),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.08)_0,rgba(255,255,255,0.08)_18%,transparent_18%,transparent_100%)]" />
-        <div className="relative mx-auto grid max-w-[1680px] gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <div>
-            <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-white/54">
-              Компетенции
-            </div>
-            <h2
-              className="max-w-3xl"
-              style={{
-                fontSize: 'clamp(34px, 5vw, 70px)',
-                fontWeight: 800,
-                letterSpacing: '-0.055em',
-                lineHeight: 0.98,
-              }}
-            >
-              Объединяем производство, инжиниринг и логистику
-            </h2>
-          </div>
-
-          <div>
-            <p className="mb-8 text-lg leading-8 text-white/72">
-              Производственные, инженерные и транспортно-логистические компетенции,
-              а также международные связи помогают реализовывать сложные проекты в
-              промышленном оборудовании — от технической проработки до поставки.
-            </p>
-
-            <div className="grid gap-3 sm:grid-cols-2">
-              {competencies.map((item, index) => (
-                <div
-                  key={item}
-                  className="relative overflow-hidden border border-white/12 bg-white/[0.06] p-5"
-                >
-                  <div className="mb-8 text-sm font-black text-white/30">
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
-                  <div className="text-lg font-semibold leading-7 text-white">{item}</div>
-                </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
@@ -357,10 +419,10 @@ export function AboutSection() {
           src={aboutMapBg}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.18] grayscale"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.82] grayscale"
         />
-        <div className="absolute inset-0 bg-[#263740]/86" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(180deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        <div className="absolute inset-0 bg-[#263740]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#263740]/72 via-[#263740]/18 to-[#263740]/34" />
         <div className="absolute right-[7vw] top-0 hidden h-full w-[18vw] skew-x-[-16deg] bg-white/[0.06] lg:block" />
         <div className="absolute right-[19vw] top-0 hidden h-full w-[9vw] skew-x-[-16deg] bg-white/[0.035] lg:block" />
 
@@ -386,18 +448,10 @@ export function AboutSection() {
               Масштаб деятельности
             </h2>
             <p className="mt-7 max-w-xl text-lg leading-8 text-white/70">
-              Проекты и поставки охватывают ключевые промышленные регионы России,
-              страны ближнего зарубежья и международные направления сотрудничества.
+              Деятельность компании ООО «Газ-Проект Инжиниринг» охватывала в разное время более 20 субъектов РФ на более, чем 100 предприятиях. Развитие компании позволило активно развивать сотрудничество с деловыми кругами стран СНГ: Беларуси, Казахстана, Узбекистана и укреплять взаимодействие с Китаем.
             </p>
-            <div className="mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {['Россия', 'Беларусь', 'Казахстан', 'Узбекистан', 'Китай'].map((item, index) => (
-                <div key={item} className="min-h-32 border border-white/12 bg-white/[0.06] p-6">
-                  <div className="mb-8 text-sm font-black text-white/28">
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
-                  <div className="text-xl font-semibold">{item}</div>
-                </div>
-              ))}
+            <div className="mt-10 w-[min(440px,82vw)] text-[#263740]">
+              <Logo2 className="h-auto w-full drop-shadow-[0_24px_50px_rgba(0,0,0,0.28)]" />
             </div>
           </motion.div>
 
@@ -406,12 +460,9 @@ export function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.65, delay: 0.08 }}
-            className="relative overflow-hidden border border-white/12 bg-white/[0.06] p-4 shadow-[0_30px_100px_rgba(0,0,0,0.22)] backdrop-blur-sm sm:p-6"
+            className="relative min-w-0 overflow-hidden"
           >
-            <div className="mb-4 flex items-center justify-between gap-4">
-              <div className="text-sm font-medium text-white/62">
-                Увеличьте карту, чтобы увидеть подписи стран
-              </div>
+            <div className="mb-4 flex items-center justify-end gap-4">
               <div className="flex shrink-0 gap-2">
                 <button
                   type="button"
@@ -433,7 +484,7 @@ export function AboutSection() {
             </div>
 
             <div
-              className={`relative aspect-[16/11] overflow-hidden bg-[#eef0f1] touch-none select-none ${
+              className={`relative mx-auto aspect-[16/11] w-full max-w-[980px] overflow-hidden touch-none select-none lg:max-w-[1120px] ${
                 mapScale > 1 ? (isMapDragging ? 'cursor-grabbing' : 'cursor-grab') : ''
               }`}
               onPointerDown={handleMapPointerDown}
@@ -473,6 +524,35 @@ export function AboutSection() {
               </div>
             </div>
           </motion.div>
+        </div>
+
+        <div className="relative mx-auto mt-20 max-w-[1680px] border-t border-white/14 pt-10">
+          <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div>
+              <div className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-white/52">
+                Кооперация
+              </div>
+              <h3 className="text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
+                Наши партнеры
+              </h3>
+            </div>
+            <p className="max-w-xl text-sm leading-6 text-white/54">
+              Компании и организации, с которыми связаны реализованные проекты, поставки и инженерное взаимодействие.
+            </p>
+          </div>
+
+          <div className="overflow-hidden">
+            <div className="flex w-max animate-[partners-scroll_38s_linear_infinite] gap-3 hover:[animation-play-state:paused]">
+              {[...partnerLogos, ...partnerLogos].map((partner, index) => (
+                <div
+                  key={`${partner.name}-${index}`}
+                  className="flex h-28 w-56 shrink-0 items-center justify-center border border-white/10 bg-white px-6"
+                >
+                  <img src={partner.logo} alt={partner.name} className="max-h-16 w-full object-contain" loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

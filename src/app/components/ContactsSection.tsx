@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { Building2, Clock, Download, Mail, MapPin } from 'lucide-react';
 
 import contactsHero from '@/imports/tz-photos/contacts-hero-exact.webp';
-import contactsEntrance from '@/imports/contacts/contacts-entrance.webp';
+import contactsPostal from '@/imports/contacts/contacts-postal-n59a2606.webp';
 import contactsProduction from '@/imports/contacts/contacts-production.webp';
 import { FadingPattern } from './ui/fading-pattern';
 
@@ -35,7 +35,7 @@ const contactCards = [
   {
     icon: Clock,
     label: 'Режим работы',
-    value: 'Пн–Пт: 09:00–18:00',
+    value: 'Пн–Пт: 08:00–17:00',
     note: 'Выходные: суббота и воскресенье',
   },
 ];
@@ -45,7 +45,7 @@ const locations = [
     title: 'Почтовый адрес',
     address: postalAddress,
     description: 'Адрес для входящей корреспонденции, документов и деловой коммуникации.',
-    image: contactsEntrance,
+    image: contactsPostal,
   },
   {
     title: 'Производственная площадка',
@@ -114,9 +114,9 @@ export function ContactsSection() {
               </span>
             </div>
 
-            <h1 className="mb-7 max-w-3xl text-[clamp(42px,7vw,92px)] font-black leading-[0.95] tracking-[-0.06em] text-white">
+            {/* <h1 className="mb-7 max-w-3xl text-[clamp(42px,7vw,92px)] font-black leading-[0.95] tracking-[-0.06em] text-white">
               Как нас найти
-            </h1>
+            </h1> */}
 
             <p className="max-w-2xl text-lg leading-8 text-white/78 md:text-xl">
               Адреса офиса и производственной площадки, единая почта для обращений и
@@ -274,16 +274,7 @@ export function ContactsSection() {
               </a>
             </div>
 
-            <a
-              href="/documents/company-card.docx"
-              download
-              className="mb-8 inline-flex w-full items-center justify-center gap-3 bg-[#263740] px-6 py-4 text-sm font-black uppercase tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#50626C] md:hidden"
-            >
-              <Download size={18} />
-              Скачать карту предприятия
-            </a>
-
-            <div className="divide-y divide-[#A7A9AC]/20 border-y border-[#A7A9AC]/20">
+            {/* <div className="divide-y divide-[#A7A9AC]/20 border-y border-[#A7A9AC]/20">
               {requisites.map(([label, value]) => (
                 <div key={label} className="grid gap-2 py-5 md:grid-cols-[240px_1fr]">
                   <div className="text-xs font-bold uppercase tracking-[0.13em] text-[#8D9DA6]">
@@ -308,7 +299,7 @@ export function ContactsSection() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </section>
