@@ -33,7 +33,7 @@ export function HeroSection() {
         className="pointer-events-none absolute left-0 top-0 h-full w-auto max-w-none -translate-x-[10%] -translate-y-[8%] brightness-0 invert opacity-[0.05]"
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1680px] flex-col justify-end px-5 pb-0 pt-28 sm:px-8 lg:px-14 xl:px-20">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1920px] flex-col justify-end px-5 pb-0 pt-28 sm:px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,22 +56,22 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
-          className="-mx-5 overflow-hidden border-t border-white/55 bg-[#202b31]/22 px-5 backdrop-blur-[2px] sm:-mx-8 sm:px-8 lg:-mx-14 lg:px-14 xl:-mx-20 xl:px-20"
+          className="overflow-hidden border-t border-white/55 bg-[#202b31]/22 px-5 backdrop-blur-[2px] sm:-mx-8 sm:px-8 lg:-mx-14 lg:px-12 xl:-mx-20"
         >
-          <div className="mx-auto grid max-w-[1680px] grid-cols-1 lg:grid-cols-4">
+          <div className="mx-auto grid max-w-[1920px] grid-cols-1 lg:grid-cols-4">
             {stages.map((stage, index) => (
               <div
                 key={stage}
                 className="group flex min-h-[38px] items-center px-1 sm:min-h-[44px] sm:px-3 lg:min-h-[132px] lg:px-7"
               >
-                {index > 0 && (
-                  <span className="mr-7 hidden text-[22px] font-light text-white/85 lg:inline" aria-hidden="true">
-                    →
+                {index >= 0 && (
+                  <span className="mr-7 hidden text-[14px] font-light text-white/85 lg:inline" aria-hidden="true">
+                    🡪
                   </span>
                 )}
-                {index > 0 && (
-                  <span className="mr-2 text-[16px] font-light text-white/85 lg:hidden" aria-hidden="true">
-                    →
+                {index >= 0 && (
+                  <span className="mr-2 text-[12px] font-light text-white/85 lg:hidden" aria-hidden="true">
+                    🡪
                   </span>
                 )}
                 <span className="whitespace-nowrap text-[12px] font-medium uppercase tracking-[-0.01em] text-white transition-colors min-[360px]:text-[13px] sm:text-[16px] sm:tracking-[0.01em] lg:text-[22px] lg:tracking-[0.015em]">
