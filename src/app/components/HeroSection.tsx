@@ -46,9 +46,9 @@ export function HeroSection() {
             className="mb-5 h-auto w-full max-w-[520px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.48)] sm:max-w-[650px] lg:max-w-[760px]"
           />
 
-          <p className="max-w-[720px] text-[17px] font-medium leading-[1.45] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-[21px] lg:text-[24px]">
+          <p className="max-w-[720px] text-[17px] font-medium leading-[1.45] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-[21px] lg:text-[32px]">
             Полный цикл производства оборудования для нефтегазовой, химической и энергетической отраслей{' '}
-            <strong className="whitespace-nowrap text-[21px] font-bold sm:text-[27px] lg:text-[30px]">с 2003 года</strong>
+            <strong className="whitespace-nowrap text-[21px] font-bold sm:text-[27px] lg:text-[42px]">с 2003 года</strong>
           </p>
         </motion.div>
 
