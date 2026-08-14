@@ -5,6 +5,20 @@ import pattern from '@/imports/hero/home-pattern.svg';
 
 const stages = ['Проектирование', 'Производство', 'Поставка', 'Монтаж'];
 
+function StageArrow({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 14 10" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M1 5H12M8.5 1.5L12 5L8.5 8.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function HeroSection() {
   return (
     <section className="relative flex min-h-[100svh] w-full overflow-hidden bg-[#30383d] text-white">
@@ -65,14 +79,10 @@ export function HeroSection() {
                 className="group flex min-h-[38px] items-center px-1 sm:min-h-[44px] lg:min-h-[132px] lg:px-7"
               >
                 {index >= 0 && (
-                  <span className="mr-7 hidden text-[14px] font-light text-white/85 lg:inline" aria-hidden="true">
-                    🡪
-                  </span>
+                  <StageArrow className="mr-7 hidden h-[10px] w-[14px] shrink-0 text-white/85 lg:block" />
                 )}
                 {index >= 0 && (
-                  <span className="mr-2 text-[12px] font-light text-white/85 lg:hidden" aria-hidden="true">
-                    🡪
-                  </span>
+                  <StageArrow className="mr-2 h-[8px] w-[11px] shrink-0 text-white/85 lg:hidden" />
                 )}
                 <span className="whitespace-nowrap text-[12px] font-medium uppercase tracking-[-0.01em] text-white transition-colors min-[360px]:text-[13px] sm:text-[16px] sm:tracking-[0.01em] lg:text-[22px] lg:tracking-[0.015em]">
                   {String(index + 1).padStart(2, '0')} {stage}
