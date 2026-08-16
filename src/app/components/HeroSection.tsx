@@ -52,18 +52,18 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="mb-8 max-w-[860px] sm:mb-10 lg:mb-14"
+          className="mb-8 max-w-[720px] lg:max-w-[860px] sm:mb-10 lg:mb-14"
         >
           <img
             src={companyLogo}
             alt="Газ-Проект Инжиниринг"
-            className="mb-5 h-auto w-full max-w-[520px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.48)] sm:max-w-[650px] lg:max-w-[760px]"
+            className="mb-5 h-auto w-[400px] sm:w-full max-w-[520px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.48)] sm:max-w-[650px] lg:max-w-[760px]"
           />
 
-          <p className="max-w-[720px] text-[17px] font-medium leading-[1.45] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-[21px] lg:text-[32px]">
+          <p className="max-w-[720px] text-[17px] font-medium leading-[1.45] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-[21px] lg:text-[32px] ml-20 sm:ml-32 lg:ml-37">
             Полный цикл производства оборудования для нефтегазовой, химической и энергетической отраслей{' '}
-            <strong className="whitespace-nowrap text-[21px] font-bold sm:text-[27px] lg:text-[42px]">с 2003 года</strong>
           </p>
+          <p className="dblock text-right whitespace-nowrap text-[28px] font-bold sm:text-[36px] lg:text-[48px]">с 2003 года</p>
         </motion.div>
 
         <motion.div
