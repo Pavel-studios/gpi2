@@ -1,9 +1,10 @@
 import { motion } from 'motion/react';
 import companyLogo from '@/imports/hero/company-logo.svg';
-import heroVideo from '@/imports/hero/home-hero.mp4';
 import pattern from '@/imports/hero/home-pattern.svg';
 
 const stages = ['Проектирование', 'Производство', 'Поставка', 'Монтаж'];
+const publicBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const heroVideo = `${publicBase}/media/home-hero.mp4`;
 
 function StageArrow({ className = '' }: { className?: string }) {
   return (
@@ -57,10 +58,10 @@ export function HeroSection() {
           <img
             src={companyLogo}
             alt="Газ-Проект Инжиниринг"
-            className="mb-5 h-auto w-[400px] sm:w-full max-w-[520px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.48)] sm:max-w-[650px] lg:max-w-[760px]"
+            className="mb-5 h-auto w-[290px] sm:w-full max-w-[520px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.48)] sm:max-w-[650px] lg:max-w-[760px]"
           />
 
-          <p className="max-w-[720px] text-[17px] font-medium leading-[1.45] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-[21px] lg:text-[32px] ml-20 sm:ml-32 lg:ml-37">
+          <p className="max-w-[720px] text-[17px] font-medium leading-[1.45] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-[21px] lg:text-[32px] ml-15 sm:ml-32 lg:ml-37">
             Полный цикл производства оборудования для нефтегазовой, химической и энергетической отраслей{' '}
           </p>
           <p className="dblock text-right whitespace-nowrap text-[28px] font-bold sm:text-[36px] lg:text-[48px]">с 2003 года</p>
