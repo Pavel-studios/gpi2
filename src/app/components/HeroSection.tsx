@@ -61,7 +61,7 @@ export function HeroSection() {
             className="mb-5 h-auto w-[290px] sm:w-full max-w-[520px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.48)] sm:max-w-[650px] lg:max-w-[760px]"
           />
 
-          <p className="max-w-[720px] text-[17px] font-medium leading-[1.45] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-[21px] lg:text-[32px] ml-15 sm:ml-32 lg:ml-37">
+          <p className="max-w-[230px] sm:max-w-[523px] lg:max-w-[613px] text-[17px] font-medium leading-[1.45] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-[21px] lg:text-[32px] ml-15 sm:ml-32 lg:ml-37">
             Полный цикл производства оборудования для нефтегазовой, химической и энергетической отраслей{' '}
           </p>
           <p className="dblock text-right whitespace-nowrap text-[28px] font-bold sm:text-[36px] lg:text-[48px]">с 2003 года</p>
