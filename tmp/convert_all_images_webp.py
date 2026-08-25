@@ -1,5 +1,5 @@
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageOps
 
 root = Path('src/imports')
 mapping = {}
@@ -7,7 +7,7 @@ for source in root.rglob('*'):
     if source.suffix.lower() not in {'.jpg', '.jpeg', '.png'}:
         continue
     target = source.with_suffix('.webp')
-    image = Image.open(source)
+    image = ImageOps.exif_transpose(Image.open(source))
     if image.mode not in {'RGB', 'RGBA'}:
         image = image.convert('RGBA' if 'A' in image.getbands() else 'RGB')
     image.save(target, 'WEBP', quality=84, method=6)

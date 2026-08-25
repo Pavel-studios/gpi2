@@ -25,7 +25,7 @@ import flareWA0072 from '@/imports/project-flares/IMG-20250217-WA0072.webp';
 import flare20241125 from '@/imports/project-flares/IMG_20241125_145750.webp';
 import flare20230202Clean from '@/imports/project-flares/IMG_20230202_100926_clean.webp';
 import pipelineN59A2333 from '@/imports/project-pipeline/N59A2333.webp';
-import pipelineN59A2349 from '@/imports/project-pipeline/N59A2349.webp';
+import pipelineN59A2349 from '@/imports/project-pipeline/N59A2349-retouched.webp';
 import pipelineN59A2356 from '@/imports/project-pipeline/N59A2356.webp';
 import pipelineWA0038 from '@/imports/project-pipeline/IMG-20250731-WA0038.webp';
 import pipelineWA0039 from '@/imports/project-pipeline/IMG-20250731-WA0039.webp';
