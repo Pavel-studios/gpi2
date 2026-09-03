@@ -19,7 +19,7 @@ import quality3 from '@/imports/tz-photos/prod-quality-3.webp';
 import quality4 from '@/imports/tz-photos/prod-quality-4.webp';
 import quality5 from '@/imports/tz-photos/prod-quality-5.webp';
 import heat1 from '@/imports/tz-photos/prod-heat-1.webp';
-import heat2 from '@/imports/tz-photos/prod-heat-2.jpg';
+import heat2 from '@/imports/tz-photos/prod-heat-2.webp';
 import automation1 from '@/imports/tz-photos/prod-automation-1.webp';
 import automation2 from '@/imports/tz-photos/prod-automation-2.webp';
 import automation3 from '@/imports/tz-photos/prod-automation-3.webp';

@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import productionImage from '@/imports/tz-photos/adv-production-exact.webp';
 import teamImage from '@/imports/tz-photos/adv-team-exact.webp';
-import projectsImage from '@/imports/tz-photos/adv-projects-exact.webp';
+import projectsImage from '@/imports/tz-photos/adv-projects-retouched.webp';
 import certQuality1 from '@/imports/about/certificates/cert-quality-1.webp';
 import certQuality2 from '@/imports/about/certificates/cert-quality-2.webp';
 import certTrts1 from '@/imports/about/certificates/cert-trts-1.webp';
@@ -42,25 +42,25 @@ const advantages = [
   {
     title: 'Собственное производство',
     value: 'Полный цикл',
-    description: 'Оборудование универсальное и с ЧПУ, цеховая грузоподъемность до 15 тонн, испытательный стенд до 40 МПа, лаборатория НК, участок термообработки.',
+    description: 'Оборудование универсальное и с ЧПУ, цеховая грузоподъемность до 15 тонн, испытательный стенд до 40 МПа, лаборатория НК, участок термообработки',
     image: productionImage,
   },
   {
     title: 'Команда профессионалов',
     value: '150',
-    description: 'Инженеры, конструкторы и производственные специалисты, объединённые опытом реализации сложных промышленных задач.',
+    description: 'Инженеры, конструкторы и производственные специалисты, объединённые опытом реализации сложных промышленных задач',
     image: teamImage,
   },
   {
     title: 'Реализованные проекты',
     value: '2000+',
-    description: 'Успешно реализованные поставки для ведущих компаний России и стран СНГ в нефтегазовой, химической и энергетической отраслях.',
+    description: 'Успешно реализованные поставки для ведущих компаний России и стран СНГ в нефтегазовой, химической и энергетической отраслях',
     image: projectsImage,
   },
   {
     title: 'Полная сертификация',
     value: 'ТР ТС · ISO · ИНТИ · НАКС',
-    description: 'Сертификация оборудования, системы менеджмента качества и аттестованные технологии сварки.',
+    description: 'Сертификация оборудования, системы менеджмента качества и аттестованные технологии сварки',
     image: null,
   },
 ];
@@ -133,8 +133,8 @@ export function AdvantagesSection() {
         <div className="max-w-3xl pl-0 lg:pl-[430px]">
           <AnimatePresence mode="wait">
             <motion.div key={`copy-${activeIndex}`} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.45 }} className="text-white">
-              <div className="mb-5 text-[clamp(2.5rem,7vw,6.5rem)] font-semibold leading-none tracking-[-0.05em]">{active.value}</div>
-              <p className="max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">{active.description}</p>
+              <div className="mb-5 text-[clamp(2.5rem,7vw,7rem)] font-semibold leading-none tracking-[-0.05em]">{active.value}</div>
+              <p className="max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg lg:text-[24px]">{active.description}</p>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -148,7 +148,7 @@ export function AdvantagesSection() {
                 key={item.title}
                 type="button"
                 onClick={() => selectAdvantage(index)}
-                className={`group relative flex min-h-[62px] w-full items-start gap-2 border-r border-b border-white/15 px-3 py-2.5 text-left text-white transition-colors even:border-r-0 sm:min-h-20 sm:items-center sm:gap-3 sm:border-b-0 sm:even:border-r sm:last:border-r-0 lg:min-h-24 lg:border-b lg:border-r-0 lg:px-5 ${isActive ? 'bg-white/18' : 'hover:bg-white/10'}`}
+                className={`group relative flex min-h-[62px] w-full items-start gap-2 border-r border-b border-white/15 px-3 py-2.5 text-left text-white transition-colors even:border-r-0 sm:min-h-20 sm:items-center sm:gap-3 sm:border-b-0 sm:even:border-r sm:last:border-r-0 lg:min-h-24 lg:border-b lg:border-r-0 lg:px-5 ${isActive ? 'bg-[#8D9DA6]' : 'hover:bg-white/10'}`}
                 aria-pressed={isActive}
               >
                 <span className="text-[10px] font-semibold tabular-nums text-white/55 lg:w-7 lg:text-xs">0{index + 1}</span>

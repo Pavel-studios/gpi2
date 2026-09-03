@@ -16,16 +16,16 @@ import coatingImage3 from '@/imports/tz-photos/prod-coating-3.webp';
 const capabilities = [
   {
     number: '01',
-    title: 'Механическая обработка',
+    title: 'Оборудование универсальное и с ЧПУ',
     description: 'Оборудование универсальное и с ЧПУ: токарные, фрезерные, карусельные, расточные, сверлильные и листогибочные станки.',
-    tags: ['Токарные станки', 'Фрезерные станки', 'Листогибочные станки'],
+    tags: ['Токарные станки', 'Фрезерные станки', 'Карусельные станки', 'Листогибочные станки', 'Шлифовальные станки', 'Расточные станки', 'Сверлильные станки'],
     images: [machiningImage],
   },
   {
     number: '02',
-    title: 'Сварочное производство',
+    title: 'Сварка аттестованными НАКС оборудованием, технологиями и персоналом',
     description: 'Сварка с аттестацией НАКС оборудования, технологий и персонала для изготовления ответственных металлоконструкций и промышленного оборудования.',
-    tags: ['TIG', 'MIG/MAG', 'SAW'],
+    tags: ['TIG', 'MIG/MAG', 'SAW', 'MMA'],
     images: [weldingImage],
   },
   {
@@ -37,16 +37,16 @@ const capabilities = [
   },
   {
     number: '04',
-    title: 'Участок термообработки',
+    title: 'Пооперационный контроль аттестованными специалистами всех этапов производства',
     description: 'Индукционная термообработка — прогрессивный метод термической обработки металлов с контролем технологических режимов.',
-    tags: ['Индукционный нагрев', 'Контроль режима', 'Термообработка металлов'],
+    tags: ['Индукционная термообработка', 'Объемная термообработка'],
     images: [heatImage, heatImage2],
   },
   {
     number: '05',
-    title: 'Участок АСУ ТП',
+    title: 'Автоматизация управления сложным оборудованием',
     description: 'Возможность автоматизации управления сложным оборудованием: проектирование, сборка шкафов, настройка и пусконаладка систем управления.',
-    tags: ['Проектирование', 'Сборка шкафов', 'Пусконаладка'],
+    tags: ['Проектирование', 'Сборка шкафов', 'Настройка и пусконаладка систем управления'],
     images: [automationImage],
   },
   {
@@ -97,9 +97,6 @@ export function ProductionPreview() {
               Производственные мощности
             </h2>
           </div>
-          <p className="max-w-xl text-base leading-relaxed text-[#50626c] lg:justify-self-end lg:text-lg">
-            Собственные участки позволяют контролировать каждый этап — от заготовки и обработки до контроля, автоматизации и нанесения защитных покрытий.
-          </p>
         </motion.div>
 
         <div className="hidden min-h-[720px] overflow-hidden bg-[#263740] shadow-[0_30px_80px_rgba(38,55,64,.18)] lg:grid lg:grid-cols-[minmax(330px,0.78fr)_1.6fr]">
@@ -109,7 +106,7 @@ export function ProductionPreview() {
                 key={item.number}
                 type="button"
                 onClick={() => selectCapability(index)}
-                className={`group relative flex flex-1 items-center gap-5 border-b border-white/10 px-8 py-5 text-left transition-colors duration-500 last:border-b-0 ${active === index ? 'bg-[#50626c]' : 'hover:bg-white/[0.045]'}`}
+                className={`group relative flex flex-1 items-center gap-5 border-b border-white/10 px-8 py-5 text-left transition-colors duration-500 last:border-b-0 ${active === index ? 'bg-[#8D9DA6]' : 'hover:bg-white/[0.045]'}`}
               >
                 <span className={`text-xs font-semibold tracking-[0.2em] transition-colors ${active === index ? 'text-white/65' : 'text-white/30'}`}>{item.number}</span>
                 <span className="text-lg font-medium leading-tight text-white xl:text-xl">{item.title}</span>

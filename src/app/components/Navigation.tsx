@@ -44,8 +44,8 @@ export function Navigation() {
           <Link to="/" aria-label="Газ-Проект Инжиниринг — главная" className="group flex items-center">
             <Logo
               width={100}
-              fill={isDarkTop ? '#ffffff' : '#595b5c'}
-              className="transition-all duration-500 group-hover:scale-[1.03]"
+              fill={!isSolid ? '#ffffff' : '#595b5c'}
+              className={`transition-all duration-500 group-hover:scale-[1.03] ${isHomeTop ? 'drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]' : ''}`}
             />
           </Link>
 
@@ -54,7 +54,7 @@ export function Navigation() {
               isSolid
                 ? 'border-[#50626c]/10 bg-[#eef0f1]/70'
                 : isHomeTop
-                  ? 'border-[#50626c]/12 bg-white/[0.18] backdrop-blur-md'
+                  ? 'border-white/18 bg-black/[0.10] backdrop-blur-md'
                   : 'border-white/12 bg-white/[0.08] backdrop-blur-md'
             }`}
           >
@@ -67,19 +67,19 @@ export function Navigation() {
                     ? isSolid
                       ? 'bg-white font-semibold text-[#263740] shadow-sm'
                       : isHomeTop
-                        ? 'bg-[#50626c]/10 font-semibold text-[#263740]'
+                        ? 'bg-white/18 font-semibold text-white shadow-sm'
                         : 'bg-white/16 font-semibold text-white'
                     : isSolid
                       ? 'font-medium text-[#69777d] hover:bg-white/70 hover:text-[#263740]'
                       : isHomeTop
-                        ? 'font-medium text-[#69777d] hover:bg-[#50626c]/8 hover:text-[#263740]'
+                        ? 'font-medium text-white/85 hover:bg-white/12 hover:text-white'
                         : 'font-medium text-white/70 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 {item.label}
                 <span
                   className={`absolute inset-x-4 -bottom-1 h-px transition-transform duration-300 ${
-                    isDarkTop ? 'bg-white/45' : 'bg-[#50626c]/40'
+                    !isSolid ? 'bg-white/55' : 'bg-[#50626c]/40'
                   } ${isActive(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}
                 />
               </Link>
@@ -89,15 +89,15 @@ export function Navigation() {
           <div className="hidden items-center gap-2 md:flex">
             <span
               className={`px-3 py-1.5 text-xs font-bold transition-colors duration-500 ${
-                isDarkTop ? 'bg-white/16 text-white' : 'bg-[#50626c] text-white'
+                !isSolid ? 'bg-white/20 text-white' : 'bg-[#50626c] text-white'
               }`}
             >
               RU
             </span>
-            <span className={`px-2 text-xs font-bold transition-colors duration-500 ${isDarkTop ? 'text-white/45' : 'text-[#a7a9ac]'}`}>
+            <span className={`px-2 text-xs font-bold transition-colors duration-500 ${!isSolid ? 'text-white/70' : 'text-[#a7a9ac]'}`}>
               EN
             </span>
-            <span className={`px-2 text-xs font-bold transition-colors duration-500 ${isDarkTop ? 'text-white/45' : 'text-[#a7a9ac]'}`}>
+            <span className={`px-2 text-xs font-bold transition-colors duration-500 ${!isSolid ? 'text-white/70' : 'text-[#a7a9ac]'}`}>
               CN
             </span>
           </div>
@@ -105,7 +105,7 @@ export function Navigation() {
           <button
             onClick={() => setMobileMenuOpen((open) => !open)}
             className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-500 md:hidden ${
-              isDarkTop ? 'border-white/16 text-white' : 'border-[#50626c]/14 text-[#50626c]'
+              !isSolid ? 'border-white/30 bg-black/10 text-white' : 'border-[#50626c]/14 text-[#50626c]'
             }`}
             aria-label={mobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
           >

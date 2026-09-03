@@ -1,50 +1,96 @@
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
-import heroPoster from '@/imports/tz-photos/adv-production.webp';
-import pattern from '@/imports/pattern.svg';
-import Logo2 from './ui/logo2';
+import companyLogo from '@/imports/hero/company-logo.svg';
+import pattern from '@/imports/hero/home-pattern.svg';
 
 const stages = ['Проектирование', 'Производство', 'Поставка', 'Монтаж'];
 const publicBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const heroVideo = `${publicBase}/media/home-hero.mp4`;
+
+function StageArrow({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 14 10" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M1 5H12M8.5 1.5L12 5L8.5 8.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export function HeroSection() {
   return (
-    <section className="hero relative min-h-[100svh] overflow-hidden bg-[#eef1f2]">
+    <section className="relative flex min-h-[100svh] w-full overflow-hidden bg-[#30383d] text-white">
       <div className="absolute inset-0">
-        <video className="h-full w-full object-cover object-[64%_center]" src={`${publicBase}/media/production-hero-h264.mp4`} poster={heroPoster} autoPlay muted loop playsInline preload="auto" aria-label="Производство промышленного оборудования" />
-        <div className="hero__video-shade absolute inset-0" />
-      </div>
-      <div
-        className="hero__pattern pointer-events-none absolute"
-        style={{
-          maskImage: `url(${pattern})`,
-          WebkitMaskImage: `url(${pattern})`,
-        }}
-      />
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1920px] flex-col px-6 lg:px-12">
-        <div className="flex flex-1 items-end pb-5 pt-28 lg:items-center lg:py-20">
-          <motion.div initial={{ opacity: 0, x: -36 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }} className="w-full max-w-[760px]">
-            <h1 className="w-[min(760px,88vw)]">
-              <Logo2 className="h-auto w-full brightness-[0.62] contrast-125 drop-shadow-[0_12px_28px_rgba(80,98,108,0.14)]" />
-            </h1>
-            <div className="hero__metal-line my-7 h-px w-[min(360px,72vw)]" />
-            <p className="max-w-[650px] text-base leading-relaxed text-[#40515a] sm:text-lg">
-              Полный цикл производства оборудования для нефтегазовой, химической и энергетической отраслей{' '}
-              <span className="inline-block text-[1.32em] font-black tracking-[-0.025em] text-[#263740]">
-                с 2003 года
-              </span>
-            </p>
-          </motion.div>
-        </div>
+        <video
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.55 }} className="grid border-t border-[#50626c]/20 sm:grid-cols-2 lg:grid-cols-4">
-          {stages.map((stage, index) => (
-            <div key={stage} className="group flex items-center gap-3 border-b border-[#50626c]/15 py-4 sm:px-4 lg:border-b-0 lg:border-r first:pl-0 last:border-r-0">
-              <span className="text-xs font-semibold text-[#7b8b93]">0{index + 1}</span>
-              <span className="text-sm font-semibold tracking-[0.04em] text-[#40515a]">{stage}</span>
-              {index < stages.length - 1 && <ArrowRight className="ml-auto hidden text-[#8d9da6] lg:block" size={15} />}
-            </div>
-          ))}
+        <div className="absolute inset-0 bg-[#40515a]/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#202a30]/58 via-[#33434b]/24 to-[#26343b]/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#172127]/65 via-transparent to-[#202b31]/24" />
+      </div>
+
+      <img
+        src={pattern}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 h-full w-auto max-w-none -translate-x-[10%] -translate-y-[8%] brightness-0 invert opacity-[0.05]"
+      />
+
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1920px] flex-col justify-end px-5 pb-0 pt-28 sm:px-6 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="mb-8 max-w-[720px] lg:max-w-[860px] sm:mb-10 lg:mb-14"
+        >
+          <img
+            src={companyLogo}
+            alt="Газ-Проект Инжиниринг"
+            className="mb-5 h-auto w-[290px] sm:w-full max-w-[520px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.48)] sm:max-w-[650px] lg:max-w-[760px]"
+          />
+
+          <p className="max-w-[230px] sm:max-w-[523px] lg:max-w-[613px] text-[17px] font-medium leading-[1.45] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-[21px] lg:text-[32px] ml-15 sm:ml-32 lg:ml-37">
+            Полный цикл производства оборудования для нефтегазовой, химической и энергетической отраслей{' '}
+          </p>
+          <p className="dblock text-right whitespace-nowrap text-[28px] font-bold sm:text-[36px] lg:text-[48px]">с 2003 года</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
+          className="overflow-hidden border-t border-white/55 sm:-mx-8 sm:px-8 lg:-mx-14 lg:px-12 xl:-mx-20"
+        >
+          <div className="mx-auto grid max-w-[1920px] grid-cols-1 lg:grid-cols-4">
+            {stages.map((stage, index) => (
+              <div
+                key={stage}
+                className="group flex min-h-[38px] items-center px-1 sm:min-h-[44px] lg:min-h-[132px] lg:px-7"
+              >
+                {index >= 0 && (
+                  <StageArrow className="mr-7 hidden h-[10px] w-[14px] shrink-0 text-white/85 lg:block" />
+                )}
+                {index >= 0 && (
+                  <StageArrow className="mr-2 h-[8px] w-[11px] shrink-0 text-white/85 lg:hidden" />
+                )}
+                <span className="whitespace-nowrap text-[12px] font-medium uppercase tracking-[-0.01em] text-white transition-colors min-[360px]:text-[13px] sm:text-[16px] sm:tracking-[0.01em] lg:text-[22px] lg:tracking-[0.015em]">
+                  {String(index + 1).padStart(2, '0')} {stage}
+                </span>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

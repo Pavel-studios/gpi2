@@ -2,12 +2,12 @@ interface LogoProps {
   fill?: string;
   width: number;
   className?: string;
-  [key: string]: any; // для остальных пропсов, например style, onClick и т.д.
+  [key: string]: any;
 }
 
 function Logo({ fill = "#595b5c", width, className, ...props }: LogoProps) {
   return (
-<svg fill={fill} width={width} className={className} id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140.71 87.89">
+<svg fill={fill} width={width} className={'logo ' + className} id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140.71 87.89">
   <g id="Layer_1-2" data-name="Layer 1">
     <g>
       <polyline className="cls-1" points="43.84 7.48 43.84 0 0 43.92 7.5 51.45 7.84 51.79 43.85 87.89 81.53 50.13 81.53 49.04 81.52 44.39 80.39 44.4 50.02 44.46 54.85 49.3 75.07 49.48 43.86 80.6 14.97 51.62 11.15 47.8 7.35 43.99 43.84 7.47"/>
