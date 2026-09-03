@@ -1,80 +1,66 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import machiningImage from '@/imports/tz-photos/prod-machining-1.webp';
-import weldingImage from '@/imports/tz-photos/prod-welding-n59a2466.webp';
-import qualityImage from '@/imports/tz-photos/prod-quality-img-8003.webp';
-import qualityImage2 from '@/imports/tz-photos/prod-quality-img-8019.webp';
-import heatImage from '@/imports/tz-photos/prod-heat-img-7995.webp';
-import heatImage2 from '@/imports/tz-photos/prod-heat-img-7992.webp';
-import automationImage from '@/imports/tz-photos/prod-automation-1.webp';
-import coatingImage from '@/imports/tz-photos/prod-coating-1.webp';
-import coatingImage2 from '@/imports/tz-photos/prod-coating-2.webp';
-import coatingImage3 from '@/imports/tz-photos/prod-coating-3.webp';
+const publicBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const machiningVideo = `${publicBase}/media/prod-preview/mech-obrabotka.mp4`;
+const weldingVideo = `${publicBase}/media/prod-preview/welding.mp4`;
+const automationVideo = `${publicBase}/media/prod-preview/automation.mp4`;
+const qualityVideo = `${publicBase}/media/prod-preview/quality.mp4`;
+const heatTreatmentVideo = `${publicBase}/media/prod-preview/heat-treatment.mp4`;
+const coatingVideo = `${publicBase}/media/prod-preview/coating.mp4`;
 
 const capabilities = [
   {
     number: '01',
     title: 'Оборудование универсальное и с ЧПУ',
-    description: 'Оборудование универсальное и с ЧПУ: токарные, фрезерные, карусельные, расточные, сверлильные и листогибочные станки.',
+    description: 'Оборудование универсальное и с ЧПУ',
     tags: ['Токарные станки', 'Фрезерные станки', 'Карусельные станки', 'Листогибочные станки', 'Шлифовальные станки', 'Расточные станки', 'Сверлильные станки'],
-    images: [machiningImage],
+    videoSrc: machiningVideo,
   },
   {
     number: '02',
     title: 'Сварка аттестованными НАКС оборудованием, технологиями и персоналом',
-    description: 'Сварка с аттестацией НАКС оборудования, технологий и персонала для изготовления ответственных металлоконструкций и промышленного оборудования.',
+    description: 'Сварка аттестованными НАКС оборудованием, технологиями и персоналом',
     tags: ['TIG', 'MIG/MAG', 'SAW', 'MMA'],
-    images: [weldingImage],
+    videoSrc: weldingVideo,
   },
   {
     number: '03',
     title: 'Контроль качества',
-    description: 'Визуально-измерительный, радиографический, ультразвуковой, рентгенофлуоресцентный контроль, контроль герметичности и контроль проникающими веществами.',
+    description: 'Визуально-измерительный, радиографический, ультразвуковой, рентгенофлуоресцентный контроль, контроль герметичности и контроль проникающими веществами',
     tags: ['Радиография до 60 мм', 'Ультразвуковой контроль', 'Капиллярный контроль', 'Гидравлические / пневматические испытания'],
-    images: [qualityImage, qualityImage2],
+    videoSrc: qualityVideo,
   },
   {
     number: '04',
     title: 'Пооперационный контроль аттестованными специалистами всех этапов производства',
-    description: 'Индукционная термообработка — прогрессивный метод термической обработки металлов с контролем технологических режимов.',
+    description: 'Пооперационный контроль аттестованными специалистами всех этапов производства',
     tags: ['Индукционная термообработка', 'Объемная термообработка'],
-    images: [heatImage, heatImage2],
+    videoSrc: heatTreatmentVideo,
   },
   {
     number: '05',
     title: 'Автоматизация управления сложным оборудованием',
-    description: 'Возможность автоматизации управления сложным оборудованием: проектирование, сборка шкафов, настройка и пусконаладка систем управления.',
+    description: 'Автоматизация управления сложным оборудованием',
     tags: ['Проектирование', 'Сборка шкафов', 'Настройка и пусконаладка систем управления'],
-    images: [automationImage],
+    videoSrc: automationVideo,
   },
   {
     number: '06',
     title: 'Участок нанесения лакокрасочного покрытия',
-    description: 'Возможность нанесения однослойных и многослойных покрытий с контролем адгезии и толщинометрией каждого слоя.',
+    description: 'Возможность нанесения однослойных и многослойных покрытий с контролем адгезии и толщинометрией каждого слоя',
     tags: ['Однослойные покрытия', 'Многослойные покрытия', 'Контроль адгезии'],
-    images: [coatingImage, coatingImage2, coatingImage3],
+    videoSrc: coatingVideo,
   },
 ];
 
 export function ProductionPreview() {
   const [active, setActive] = useState(0);
-  const [slideIndex, setSlideIndex] = useState(0);
   const current = capabilities[active];
-  const currentImage = current.images[slideIndex % current.images.length];
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setSlideIndex((index) => index + 1);
-    }, 4200);
-
-    return () => window.clearInterval(timer);
-  }, []);
 
   const selectCapability = (index: number) => {
     setActive(index);
-    setSlideIndex(0);
   };
 
   return (
@@ -118,16 +104,22 @@ export function ProductionPreview() {
 
           <div className="relative overflow-hidden">
             <AnimatePresence mode="wait">
-              <motion.img
-                key={`${current.title}-${currentImage}`}
-                src={currentImage}
-                alt={current.title}
+              <motion.video
+                key={current.videoSrc}
+                className="absolute inset-0 h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
                 initial={{ opacity: 0, scale: 1.06 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.02 }}
                 transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+              >
+                <source src={current.videoSrc} type="video/mp4" />
+              </motion.video>
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-[#17252c] via-[#263740]/20 to-transparent" />
             <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#263740]/35 to-transparent" />
@@ -163,7 +155,17 @@ export function ProductionPreview() {
               className="overflow-hidden bg-[#263740] text-white shadow-[0_18px_46px_rgba(38,55,64,.16)]"
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-[#50626c]">
-                <img src={item.images[0]} alt={item.title} className="h-full w-full object-cover" loading="lazy" />
+                <video
+                  className="h-full w-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label={item.title}
+                >
+                  <source src={item.videoSrc} type="video/mp4" />
+                </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#17252c]/75 via-transparent to-transparent" />
                 <div className="absolute left-5 top-5 text-xs font-semibold tracking-[0.2em] text-white/65">{item.number}</div>
               </div>
