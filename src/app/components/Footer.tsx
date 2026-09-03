@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import pattern from '@/imports/pattern.svg';
@@ -16,13 +16,23 @@ const contactItems = [
   {
     icon: Mail,
     label: 'Почта',
-    value: 'mail@gpiufa.ru',
+    value: ['mail@gpiufa.ru'],
     href: 'mailto:mail@gpiufa.ru',
   },
   {
     icon: MapPin,
     label: 'Почтовый адрес',
-    value: '450005, Республика Башкортостан, г. Уфа, ул. Мингажева, дом 129',
+    value: ['450005, Республика Башкортостан, г. Уфа, ул. Мингажева, дом 129']
+  },
+  {
+    icon: MapPin,
+    label: 'Юридический адрес',
+    value: ['450069, Республика Башкортостан, г. Уфа, ул. Производственная, дом 5 корпус 1']
+  },
+  {
+    icon: Phone,
+    label: 'Номера телефонов',
+    value: ['+7 (347) 216-46-50', '+7 (347) 216-46-51']
   },
 ];
 
@@ -55,8 +65,8 @@ export function Footer() {
         <div className="grid gap-10 py-12 lg:grid-cols-[0.9fr_0.7fr_1.1fr]">
           <div>
             <div className="mb-5 text-xs font-bold uppercase tracking-[0.24em] text-white/42">Компания</div>
-            <p className="max-w-sm text-sm leading-7 text-white/58">
-              ООО «Газ-Проект Инжиниринг» — российский производитель промышленного оборудования с собственной производственной базой в Уфе.
+            <p className="max-w-sm text-[22px] leading-7 text-white/58">
+              ООО «Газ-Проект Инжиниринг» — российский производитель промышленного оборудования с собственной производственной базой в г. Уфе.
             </p>
           </div>
 
@@ -86,7 +96,11 @@ export function Footer() {
                     <Icon className="mt-1 shrink-0 text-white/42" size={18} />
                     <div>
                       <div className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-white/34">{item.label}</div>
-                      <div className="text-sm leading-6 text-white/72">{item.value}</div>
+                      {item.value.map(value => (
+                        <div className="text-sm leading-6 text-white/72">{value}</div>
+                      ))
+                      }
+                      
                     </div>
                   </div>
                 );
