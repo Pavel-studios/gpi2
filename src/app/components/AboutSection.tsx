@@ -1,4 +1,4 @@
-import { PointerEvent, useEffect, useRef, useState } from 'react';
+import { PointerEvent, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import {
   Atom,
@@ -15,37 +15,6 @@ import {
   ChevronRight,
 } from 'lucide-react';
 
-import gallery01 from '@/imports/about/gallery/about-gallery-01.webp';
-import gallery02 from '@/imports/about/gallery/about-gallery-02.webp';
-import gallery03 from '@/imports/about/gallery/about-gallery-03.webp';
-import gallery04 from '@/imports/about/gallery/about-gallery-04.webp';
-import gallery05 from '@/imports/about/gallery/about-gallery-05.webp';
-import gallery06 from '@/imports/about/gallery/about-gallery-06.webp';
-import gallery07 from '@/imports/about/gallery/about-gallery-07.webp';
-import gallery08 from '@/imports/about/gallery/about-gallery-08.webp';
-import gallery09 from '@/imports/about/gallery/about-gallery-09.webp';
-import gallery10 from '@/imports/about/gallery/about-gallery-10.webp';
-import gallery11 from '@/imports/about/gallery/about-gallery-11.webp';
-import gallery12 from '@/imports/about/gallery/about-gallery-12.webp';
-import gallery13 from '@/imports/about/gallery/about-gallery-13.webp';
-import gallery14 from '@/imports/about/gallery/about-gallery-14.webp';
-import gallery15 from '@/imports/about/gallery/about-gallery-15.webp';
-import gallery16 from '@/imports/about/gallery/about-gallery-16.webp';
-import gallery17 from '@/imports/about/gallery/about-gallery-17.webp';
-import gallery18 from '@/imports/about/gallery/about-gallery-18.webp';
-import gallery19 from '@/imports/about/gallery/about-gallery-19.webp';
-import gallery20 from '@/imports/about/gallery/about-gallery-20.webp';
-import gallery21 from '@/imports/about/gallery/about-gallery-21.webp';
-import gallery22 from '@/imports/about/gallery/about-gallery-22.webp';
-import gallery23 from '@/imports/about/gallery/about-gallery-23.webp';
-import gallery24 from '@/imports/about/gallery/about-gallery-24.webp';
-import gallery25 from '@/imports/about/gallery/about-gallery-25.webp';
-import gallery26 from '@/imports/about/gallery/about-gallery-26.webp';
-import gallery27 from '@/imports/about/gallery/about-gallery-27.webp';
-import gallery28 from '@/imports/about/gallery/about-gallery-28.webp';
-import gallery29 from '@/imports/about/gallery/about-gallery-29.webp';
-import gallery30 from '@/imports/about/gallery/about-gallery-30.webp';
-import gallery31 from '@/imports/about/gallery/about-gallery-31.webp';
 import aboutMapBg from '@/imports/about/about-map-bg-20241125.webp';
 import activityMapMarkup from '@/imports/map-edited-2.svg?raw';
 import logoGazprom from '@/imports/clients/gazprom_logo.webp';
@@ -62,43 +31,9 @@ import logoPurneftegaz from '@/imports/clients/purneftegaz.webp';
 import logoRnUvat from '@/imports/clients/rn-uvatneftegaz.webp';
 import logoSibur from '@/imports/clients/s1200.webp';
 import Logo2 from './ui/logo2';
-import { FadingPattern } from './ui/fading-pattern';
+import { AboutHeroSection } from './AboutHeroSection';
 import { AboutCertificatesSection } from './AboutCertificatesSection';
 import { StrategyPartnerSection } from './StrategyPartnerSection';
-
-const heroSlides = [
-  gallery01,
-  gallery02,
-  gallery03,
-  gallery04,
-  gallery05,
-  gallery06,
-  gallery07,
-  gallery08,
-  gallery09,
-  gallery10,
-  gallery11,
-  gallery12,
-  gallery13,
-  gallery14,
-  gallery15,
-  gallery16,
-  gallery17,
-  gallery18,
-  gallery19,
-  gallery20,
-  gallery21,
-  gallery22,
-  gallery23,
-  gallery24,
-  gallery25,
-  gallery26,
-  gallery27,
-  gallery28,
-  gallery29,
-  gallery30,
-  gallery31,
-];
 
 const timeline = [
   {
@@ -184,20 +119,12 @@ const partnerLogos = [
 ];
 
 export function AboutSection() {
-  const [activeSlide, setActiveSlide] = useState(0);
   const [mapScale, setMapScale] = useState(1);
   const [mapOffset, setMapOffset] = useState({ x: 0, y: 0 });
   const [isMapDragging, setIsMapDragging] = useState(false);
   const mapDrag = useRef({ pointerId: -1, x: 0, y: 0 });
   const historyRailRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % heroSlides.length);
-    }, 4200);
-
-    return () => window.clearInterval(timer);
-  }, []);
 
   const clampMapOffset = (x: number, y: number, scale = mapScale) => {
     if (scale <= 1) return { x: 0, y: 0 };
@@ -258,71 +185,7 @@ export function AboutSection() {
 
   return (
     <div className="bg-[#eef0f1]">
-      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-[#263740]">
-        {heroSlides.map((slide, index) => (
-          <motion.img
-            key={slide}
-            src={slide}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            initial={false}
-            animate={{
-              opacity: activeSlide === index ? 1 : 0,
-              scale: activeSlide === index ? 1.03 : 1,
-            }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          />
-        ))}
-
-        <div className="absolute inset-0 bg-gradient-to-r from-[#263740]/94 via-[#263740]/64 to-[#263740]/14" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#263740]/82 via-transparent to-transparent" />
-        <FadingPattern opacity="0.06" />
-
-        <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-[1920px] items-end px-6 pb-14 pt-28 sm:px-10 lg:px-16 lg:pb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl"
-          >
-            <div className="mb-8 inline-flex items-center gap-3 border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-white/80 backdrop-blur-md">
-              О компании
-            </div>
-
-            <h1
-              className="max-w-4xl text-white"
-              style={{
-                fontSize: 'clamp(46px, 8vw, 120px)',
-                fontWeight: 800,
-                letterSpacing: '-0.07em',
-                lineHeight: 0.92,
-              }}
-            >
-              Более 20 лет
-              <span className="block text-white/62">на рынке</span>
-            </h1>
-
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/74 sm:text-xl">
-              Самостоятельное производственное предприятие полного цикла для нефтегазовой,
-              химической и энергетической отраслей.
-            </p>
-
-            <div className="mt-10 flex max-w-xl flex-wrap gap-2">
-              {heroSlides.map((slide, index) => (
-                <button
-                  key={slide}
-                  type="button"
-                  aria-label={`Показать фото ${index + 1}`}
-                  onClick={() => setActiveSlide(index)}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    activeSlide === index ? 'w-12 bg-white' : 'w-5 bg-white/30 hover:bg-white/60'
-                  }`}
-                />
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <AboutHeroSection />
 
       <section className="relative overflow-hidden bg-[#eef1f2] px-6 py-24 sm:px-10 lg:px-16">
         <img
