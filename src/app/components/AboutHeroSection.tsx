@@ -63,7 +63,7 @@ export function AboutHeroSection() {
       const element = rail.current;
       const width = group.current?.offsetWidth ?? 0;
       if (element && width && previous && !paused && !interacting.current && !reducedMotion.matches) {
-        remainder += Math.min(now - previous, 50) * 0.04;
+        remainder += Math.min(now - previous, 50) * 0.08;
         const pixels = Math.floor(remainder);
         remainder -= pixels;
         element.scrollLeft += pixels;
@@ -87,7 +87,7 @@ export function AboutHeroSection() {
         </div>
         <img src={pattern} alt="" aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-full w-auto max-w-none -translate-x-[10%] -translate-y-[8%] brightness-0 invert opacity-[0.05]" />
         <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1920px] flex-col justify-end px-5 pb-12 pt-28 sm:px-6 lg:px-12 lg:pb-20">
-          <div className="mb-6 text-xs font-bold uppercase tracking-[0.22em] text-white/85">О компании</div>
+          <div className="section-eyebrow mb-8 self-start text-xs font-bold uppercase tracking-[0.22em] text-white/76">О компании</div>
           <h1 className="max-w-4xl text-white drop-shadow-lg" style={{ fontSize: 'clamp(46px, 8vw, 120px)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.96 }}>
             Более 20 лет<span className="block text-white/80">на рынке</span>
           </h1>
@@ -100,7 +100,7 @@ export function AboutHeroSection() {
       <section aria-label="Фотогалерея О компании" className="overflow-hidden bg-[#eef0f1] py-10 sm:py-16">
         <div className="px-6 sm:px-10 lg:px-16">
         <div className="mx-auto mb-7 flex max-w-[1680px] items-center justify-between gap-4">
-          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#50626c]">Фотогалерея</h2>
+          <h2 className="section-eyebrow text-sm font-bold uppercase tracking-[0.18em] text-[#50626c]">Фотогалерея</h2>
           <div className="flex items-center gap-3">
           <button type="button" onClick={() => scrollPhoto(-1)} aria-label="Предыдущая фотография в фотоленте" className="hidden h-11 w-11 items-center justify-center rounded-full border border-[#50626c]/25 text-[#50626c] transition-colors hover:bg-[#50626c] hover:text-white lg:flex">
             <ArrowLeft size={20} />

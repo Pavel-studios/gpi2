@@ -1,4 +1,4 @@
-import { PointerEvent, useRef, useState } from 'react';
+import { PointerEvent, useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import {
   Atom,
@@ -17,23 +17,13 @@ import {
 
 import aboutMapBg from '@/imports/about/about-map-bg-20241125.webp';
 import activityMapMarkup from '@/imports/map-edited-2.svg?raw';
-import logoGazprom from '@/imports/clients/gazprom_logo.webp';
-import logoGazpromKomplekt from '@/imports/clients/057_1-2-4.webp';
-import logoRosneft from '@/imports/clients/a2ddf127393db4380ee610d7b9e31e66.webp';
-import logoBashneft from '@/imports/clients/580f14163611fefad60da78d5c9b904c.webp';
-import logoLukoil from '@/imports/clients/png-klev-club-fdy1-p-lukoil-png-1.webp';
-import logoSinopec from '@/imports/clients/index_img.webp';
-import logoInk from '@/imports/clients/big-catalog-16344744171.webp';
-import logoKondensat from '@/imports/clients/Untitled-1.webp';
-import logoCkti from '@/imports/clients/partner_5.webp';
-import logoSibneftegaz from '@/imports/clients/sibneftegaz_logo.webp';
-import logoPurneftegaz from '@/imports/clients/purneftegaz.webp';
-import logoRnUvat from '@/imports/clients/rn-uvatneftegaz.webp';
-import logoSibur from '@/imports/clients/s1200.webp';
-import Logo2 from './ui/logo2';
+import './about-layout.css';
 import { AboutHeroSection } from './AboutHeroSection';
 import { AboutCertificatesSection } from './AboutCertificatesSection';
 import { StrategyPartnerSection } from './StrategyPartnerSection';
+
+// Remove the relief effects only in this section; the source SVG stays unchanged.
+const flatMapMarkup = activityMapMarkup.replace(/\sfilter="[^"]*"/g, '');
 
 const timeline = [
   {
@@ -41,7 +31,7 @@ const timeline = [
     icon: Building2,
     title: 'Основание компании',
     description:
-      'Компания «Газ-Проект Инжиниринг» была основана в г. Уфа в Республике Башкоротостан. Изначально это было специализированное производственно-инжиниринговое предприятие по разработке и поставке оборудования для нефтегазовой отрасли, в частности факельных систем и индукционного обогрева.',
+      'Компания «Газ-Проект Инжиниринг» была основана в г. Уфа в Республике Башкортостан как специализированное производственно-инжиниринговое предприятие по разработке и поставке оборудования для нефтегазовой отрасли, в частности факельных систем и индукционного обогрева.',
   },
   // {
   //   year: '2004',
@@ -83,7 +73,7 @@ const timeline = [
     icon: Landmark,
     title: 'Сотрудничество с отраслевыми институтами',
     description:
-      'Компания развивает  взаимодействие с ведущими институтами страны – НПО ЦКТИ, Газпром ВНИИГАЗ, Газпром Проектирование, ВНИИ Нефтемаш, АО НИИ Химмаш, Иркутск НИИ Химмаш.',
+      'Компания развивает взаимодействие с ведущими институтами страны – ОАО НПО ЦКТИ, Газпром ВНИИГАЗ, Газпром Проектирование, ВНИИ Нефтемаш, АО НИИ Химмаш, Иркутск НИИ Химмаш.',
   },
   {
     year: '2024–2026',
@@ -102,21 +92,9 @@ const presencePoints = [
   { label: 'Китай', top: '78%', left: '57%' },
 ];
 
-const partnerLogos = [
-  { name: 'Газпром', logo: logoGazprom },
-  { name: 'Газпром комплектация', logo: logoGazpromKomplekt },
-  { name: 'Роснефть', logo: logoRosneft },
-  { name: 'Башнефть', logo: logoBashneft },
-  { name: 'ЛУКОЙЛ', logo: logoLukoil },
-  { name: 'Sinopec', logo: logoSinopec },
-  { name: 'Иркутская нефтяная компания', logo: logoInk },
-  { name: 'Конденсат', logo: logoKondensat },
-  { name: 'НПО ЦКТИ', logo: logoCkti },
-  { name: 'Сибнефтегаз', logo: logoSibneftegaz },
-  { name: 'Пурнефтегаз', logo: logoPurneftegaz },
-  { name: 'РН-Уватнефтегаз', logo: logoRnUvat },
-  { name: 'СИБУР', logo: logoSibur },
-];
+const partnerAssets = import.meta.glob('@/imports/about/partners-v3/*.webp', { eager: true, query: '?url', import: 'default' });
+const partnerLogos = Object.entries(partnerAssets).sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, logo]) => ({ name: `Логотип партнёра ${path.split('/').pop()?.replace('.webp', '')}`, logo: logo as string }));
 
 export function AboutSection() {
   const [mapScale, setMapScale] = useState(1);
@@ -124,6 +102,24 @@ export function AboutSection() {
   const [isMapDragging, setIsMapDragging] = useState(false);
   const mapDrag = useRef({ pointerId: -1, x: 0, y: 0 });
   const historyRailRef = useRef<HTMLDivElement>(null);
+  const [historyEdges, setHistoryEdges] = useState({ start: true, end: false });
+
+  useEffect(() => {
+    const rail = historyRailRef.current;
+    if (!rail) return;
+    const updateEdges = () => setHistoryEdges({
+      start: rail.scrollLeft <= 2,
+      end: rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2,
+    });
+    const observer = new ResizeObserver(updateEdges);
+    observer.observe(rail);
+    rail.addEventListener('scroll', updateEdges, { passive: true });
+    updateEdges();
+    return () => {
+      observer.disconnect();
+      rail.removeEventListener('scroll', updateEdges);
+    };
+  }, []);
 
 
   const clampMapOffset = (x: number, y: number, scale = mapScale) => {
@@ -150,7 +146,16 @@ export function AboutSection() {
     const rail = historyRailRef.current;
     if (!rail) return;
 
-    rail.scrollBy({ left: direction * Math.min(560, rail.clientWidth * 0.72), behavior: 'smooth' });
+    const cards = Array.from(rail.querySelectorAll<HTMLElement>('[data-history-card]'));
+    const origin = cards[0]?.offsetLeft ?? 0;
+    const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
+    const stops = cards.map(card => Math.min(maxScroll, card.offsetLeft - origin));
+    const current = rail.scrollLeft;
+    if ((direction > 0 && current >= maxScroll - 2) || (direction < 0 && current <= 2)) return;
+    const target = direction > 0
+      ? stops.find(stop => stop > current + 2) ?? maxScroll
+      : stops.filter(stop => stop < current - 2).at(-1) ?? 0;
+    rail.scrollTo({ left: target, behavior: 'smooth' });
   };
 
   const handleMapPointerDown = (event: PointerEvent<HTMLDivElement>) => {
@@ -202,7 +207,7 @@ export function AboutSection() {
         <div className="relative mx-auto max-w-[1680px]">
           <div className="mb-16 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
-              <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
+              <div className="section-eyebrow mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
                 Наша история
               </div>
               <h2
@@ -219,84 +224,44 @@ export function AboutSection() {
             </div>
           </div>
 
-          <div className="relative -mx-6 sm:-mx-10 lg:mx-0">
-            <button
-              type="button"
-              onClick={() => scrollHistory(-1)}
-              aria-label="Предыдущие события"
-              className="absolute left-1 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#50626c]/16 bg-white/70 text-[#50626c]/78 shadow-[0_14px_34px_rgba(38,55,64,0.12)] backdrop-blur-md transition hover:text-[#263740] sm:left-3 lg:left-0 lg:h-16 lg:w-16 lg:-translate-x-1/2 lg:border-0 lg:bg-transparent lg:shadow-none xl:-translate-x-full"
-            >
-              <ChevronLeft className="h-9 w-9 lg:h-[54px] lg:w-[54px]" strokeWidth={1.1} />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollHistory(1)}
-              aria-label="Следующие события"
-              className="absolute right-1 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#50626c]/16 bg-white/70 text-[#50626c]/78 shadow-[0_14px_34px_rgba(38,55,64,0.12)] backdrop-blur-md transition hover:text-[#263740] sm:right-3 lg:right-0 lg:h-16 lg:w-16 lg:translate-x-1/2 lg:border-0 lg:bg-transparent lg:shadow-none xl:translate-x-full"
-            >
-              <ChevronRight className="h-9 w-9 lg:h-[54px] lg:w-[54px]" strokeWidth={1.1} />
-            </button>
-
-            <div
-              ref={historyRailRef}
-              className="relative overflow-x-auto scroll-smooth px-16 pb-4 [scrollbar-width:none] sm:px-20 lg:px-20 [&::-webkit-scrollbar]:hidden"
-            >
-              <div className="relative flex min-w-max py-12 lg:py-16">
-                <div className="absolute left-0 right-0 top-1/2 h-px bg-[#50626c]/45" />
-
-              {timeline.map((item, index) => {
-                const isTop = index % 2 === 0;
-
-                return (
-                  <motion.article
-                    key={`${item.year}-${item.title}`}
-                    initial={{ opacity: 0, y: isTop ? -22 : 22 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.55, delay: Math.min(index * 0.04, 0.18) }}
-                    className="group relative h-[620px] w-[calc(100vw-8rem)] max-w-[310px] shrink-0 sm:w-[340px] sm:max-w-none lg:h-[700px] lg:w-[430px]"
-                  >
-                    <div className={`absolute left-0 w-px bg-[#50626c] ${isTop ? 'bottom-[310px] h-[230px] lg:bottom-[350px] lg:h-[270px]' : 'top-[310px] h-[230px] lg:top-[350px] lg:h-[270px]'}`} />
-                    <div className={`absolute left-0 z-10 bg-[#50626c] px-3 py-1.5 text-[clamp(1.9rem,12vw,2.8rem)] font-black leading-none tracking-[0.02em] text-white shadow-[0_14px_34px_rgba(38,55,64,0.18)] sm:text-[3rem] lg:px-4 lg:text-[clamp(2.2rem,4vw,3.55rem)] ${isTop ? 'top-[248px] lg:top-[282px]' : 'bottom-[248px] lg:bottom-[282px]'}`}>
-                      {item.year}
-                    </div>
-                    <div className={`absolute left-3 w-[min(260px,calc(100%-1.5rem))] sm:w-[300px] lg:w-[330px] ${isTop ? 'top-0 max-h-[230px] lg:max-h-[260px]' : 'top-[390px] max-h-[220px] lg:top-[440px] lg:max-h-[250px]'}`}>
-                      <div className="mb-2 max-w-[230px] text-[13px] font-black uppercase leading-4 tracking-[-0.02em] text-[#50626c] sm:max-w-[260px] sm:text-[15px] sm:leading-5">
-                        {item.title}
-                      </div>
-                      <p className="max-w-[250px] text-xs leading-5 text-[#595b5c] sm:max-w-[300px] sm:text-sm sm:leading-6 lg:max-w-[330px]">
-                        {item.description}
-                      </p>
-                    </div>
-                  </motion.article>
-                );
-              })}
-              </div>
+          <div className="history-carousel">
+            <button type="button" disabled={historyEdges.start} onClick={() => scrollHistory(-1)} aria-label="Предыдущие события" className="history-arrow history-arrow-prev"><ChevronLeft /></button>
+            <button type="button" disabled={historyEdges.end} onClick={() => scrollHistory(1)} aria-label="Следующие события" className="history-arrow history-arrow-next"><ChevronRight /></button>
+            <div ref={historyRailRef} className="history-rail">
+              {timeline.map((item, index) => (
+                <article key={item.year} data-history-card className={`history-card ${index % 2 === 0 ? 'history-card-top' : 'history-card-bottom'}`}>
+                  <div className="history-date">{item.year}</div>
+                  <div className="history-copy">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#263740] px-6 py-24 text-white sm:px-10 lg:px-16">
+      <section className="activity-section relative overflow-hidden bg-[#263740] px-6 py-24 text-white sm:px-10 lg:px-16">
         <img
           src={aboutMapBg}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.82] grayscale"
+          className="activity-background absolute h-full w-full object-cover opacity-[0.82]"
         />
         <div className="absolute inset-0 bg-[#263740]/30" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#263740]/72 via-[#263740]/18 to-[#263740]/34" />
         <div className="absolute right-[7vw] top-0 hidden h-full w-[18vw] skew-x-[-16deg] bg-white/[0.06] lg:block" />
         <div className="absolute right-[19vw] top-0 hidden h-full w-[9vw] skew-x-[-16deg] bg-white/[0.035] lg:block" />
 
-        <div className="relative mx-auto grid max-w-[1680px] gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+        <div className="relative mx-auto grid max-w-[1680px] gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6 }}
           >
-            <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-white/52">
+            <div className="section-eyebrow mb-5 text-xs font-bold uppercase tracking-[0.22em] text-white/70">
               География
             </div>
             <h2
@@ -310,11 +275,9 @@ export function AboutSection() {
             >
               Масштаб деятельности
             </h2>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-white/70">
-              Деятельность компании ООО «Газ-Проект Инжиниринг» охватывала в разное время более 20 субъектов РФ на более, чем 100 предприятиях. Развитие компании позволило активно развивать сотрудничество с деловыми кругами стран СНГ: Беларуси, Казахстана, Узбекистана и укреплять взаимодействие с Китаем.
-            </p>
-            <div className="mt-10 w-[min(440px,82vw)] text-[#263740]">
-              <Logo2 className="h-auto w-full drop-shadow-[0_24px_50px_rgba(0,0,0,0.28)]" />
+            <div className="mt-7 max-w-xl space-y-5 text-lg leading-8 text-white/85">
+              <p>Деятельность ООО «Газ-Проект Инжиниринг» охватывает более 20 субъектов РФ на более чем 100 предприятиях.</p>
+              <p>Компания активно развивает сотрудничество с деловыми кругами стран СНГ: Беларуси, Казахстана, Узбекистана и укрепляет взаимодействие с Китаем.</p>
             </div>
           </motion.div>
 
@@ -347,7 +310,7 @@ export function AboutSection() {
             </div>
 
             <div
-              className={`relative mx-auto aspect-[16/11] w-full max-w-[980px] overflow-hidden touch-none select-none lg:max-w-[1120px] ${
+              className={`relative mx-auto aspect-[20/11] w-full max-w-[980px] overflow-hidden touch-pan-y select-none lg:max-w-[1120px] ${
                 mapScale > 1 ? (isMapDragging ? 'cursor-grabbing' : 'cursor-grab') : ''
               }`}
               onPointerDown={handleMapPointerDown}
@@ -356,34 +319,20 @@ export function AboutSection() {
               onPointerCancel={handleMapPointerUp}
               onContextMenu={(event) => event.preventDefault()}
             >
-              <div
-                className={`activity-map absolute inset-0 origin-center ${isMapDragging ? '' : 'transition-transform duration-500'}`}
-                style={{ transform: `translate(${mapOffset.x}%, ${mapOffset.y}%) scale(${mapScale})` }}
-                role="img"
-                aria-label="Карта географии деятельности компании"
-                dangerouslySetInnerHTML={{ __html: activityMapMarkup }}
-              />
-              <div
-                className={`absolute inset-0 origin-center ${isMapDragging ? '' : 'transition-transform duration-500'}`}
-                style={{ transform: `translate(${mapOffset.x}%, ${mapOffset.y}%) scale(${mapScale})` }}
-              >
-                {presencePoints.map((point, index) => (
-                  <div
-                    key={point.label}
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
-                    style={{ top: point.top, left: point.left }}
-                  >
-                    <span className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-[#50626c]/50" />
-                    <span className="relative block h-3.5 w-3.5 rounded-full border-2 border-white bg-[#50626c] shadow-[0_0_0_6px_rgba(80,98,108,0.22)]" />
-                    <span
-                      className={`absolute left-5 top-1/2 -translate-y-1/2 whitespace-nowrap bg-[#263740]/90 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-white shadow-lg transition-all duration-500 ${
-                        mapScale > 1.05 || index === 0 ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0'
-                      }`}
-                    >
-                      {point.label}
-                    </span>
-                  </div>
-                ))}
+              <div className="absolute left-0 top-0 w-full origin-top scale-y-[0.8] aspect-[16/11]">
+                <div className={`absolute inset-0 origin-center ${isMapDragging ? '' : 'transition-transform duration-500'}`}
+                  style={{ transform: `translate(${mapOffset.x}%, ${mapOffset.y}%) scale(${mapScale})` }}>
+                  <div className="activity-map absolute inset-0" role="img" aria-label="Карта географии деятельности компании" dangerouslySetInnerHTML={{ __html: flatMapMarkup }} />
+                  {presencePoints.map((point, index) => (
+                    <div key={point.label} data-country={point.label} className="absolute" style={{ top: point.top, left: point.left }}>
+                      <div className="country-marker" style={{ transform: `translate(-50%, -50%) scale(${1 / mapScale}, ${1.25 / mapScale})` }}>
+                        <span className="country-pulse" />
+                        <span className="country-dot" />
+                        <span className={`country-label country-label-${index}`}>{point.label}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
@@ -392,20 +341,18 @@ export function AboutSection() {
         <div className="relative mx-auto mt-20 max-w-[1680px] border-t border-white/14 pt-10">
           <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
-              <div className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-white/52">
+              <div className="section-eyebrow mb-3 text-xs font-bold uppercase tracking-[0.22em] text-white/70">
                 Кооперация
               </div>
               <h3 className="text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
                 Наши партнеры
               </h3>
             </div>
-            <p className="max-w-xl text-sm leading-6 text-white/54">
-              Компании и организации, с которыми связаны реализованные проекты, поставки и инженерное взаимодействие.
-            </p>
+
           </div>
 
           <div className="overflow-hidden">
-            <div className="flex w-max animate-[partners-scroll_38s_linear_infinite] gap-3 hover:[animation-play-state:paused]">
+            <div className="flex w-max animate-[partners-scroll_178s_linear_infinite] gap-3 hover:[animation-play-state:paused]">
               {[...partnerLogos, ...partnerLogos].map((partner, index) => (
                 <div
                   key={`${partner.name}-${index}`}

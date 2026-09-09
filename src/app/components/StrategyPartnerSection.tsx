@@ -199,7 +199,7 @@ export function StrategyPartnerSection() {
           transition={{ duration: 0.55 }}
           className="max-w-4xl"
         >
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
+          <p className="section-eyebrow mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
             Стратегическое партнерство
           </p>
           <h2

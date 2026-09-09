@@ -86,7 +86,7 @@ export function AboutCertificatesSection() {
       <div className="relative mx-auto max-w-[1680px]">
         <div className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
+            <div className="section-eyebrow mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
               Документы
             </div>
             <h2
