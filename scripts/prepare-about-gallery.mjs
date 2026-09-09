@@ -33,3 +33,9 @@ for (const [index, item] of photos.entries()) {
   if (result.status !== 0) throw new Error(result.stderr);
   console.log(`${dest}: ${files.join(' + ')}`);
 }
+
+// Keep existing asset names stable; 15a sorts immediately after photo 15.
+const missingPhoto = spawnSync('ffmpeg', ['-y', '-v', 'error', '-i',
+  path.join(source, 'IMG_20260807_161753_693.jpg'), '-vf', 'scale=-2:600,setsar=1',
+  '-frames:v', '1', '-c:v', 'libwebp', '-quality', '84', path.join(output, '15a.webp')], { encoding: 'utf8' });
+if (missingPhoto.status !== 0) throw new Error(missingPhoto.stderr);
