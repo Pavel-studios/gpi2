@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 
 import aboutMapBg from '@/imports/about/about-map-bg-20241125.webp';
+import nstecLogo from '@/imports/clients/new/nstec.webp';
 import activityMapMarkup from '@/imports/map-edited-2.svg?raw';
 import './about-layout.css';
 import { AboutHeroSection } from './AboutHeroSection';
@@ -93,8 +94,14 @@ const presencePoints = [
 ];
 
 const partnerAssets = import.meta.glob('@/imports/about/partners-v3/*.webp', { eager: true, query: '?url', import: 'default' });
-const partnerLogos = Object.entries(partnerAssets).sort(([a], [b]) => a.localeCompare(b))
-  .map(([path, logo]) => ({ name: `Логотип партнёра ${path.split('/').pop()?.replace('.webp', '')}`, logo: logo as string }));
+// Keep source variants on disk, but show only the customer-approved versions.
+const excludedPartnerFiles = new Set(['01.webp', '19.webp', '25.webp', '33.webp', '40.webp', '48.webp', '51.webp']);
+const partnerLogos = Object.entries(partnerAssets)
+  .filter(([path]) => !excludedPartnerFiles.has(path.split('/').pop()!))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, logo]) => path.endsWith('/32.webp')
+    ? { name: 'Ново-Салаватская ТЭЦ', logo: nstecLogo }
+    : { name: `Логотип партнёра ${path.split('/').pop()?.replace('.webp', '')}`, logo: logo as string });
 
 export function AboutSection() {
   const [mapScale, setMapScale] = useState(1);
@@ -352,7 +359,7 @@ export function AboutSection() {
           </div>
 
           <div className="overflow-hidden">
-            <div className="flex w-max animate-[partners-scroll_178s_linear_infinite] gap-3 hover:[animation-play-state:paused]">
+            <div className="flex w-max animate-[partners-scroll_178s_linear_infinite] gap-3 hover:[animation-play-state:paused]" style={{ animationDuration: `${partnerLogos.length * 178 / 61}s` }}>
               {[...partnerLogos, ...partnerLogos].map((partner, index) => (
                 <div
                   key={`${partner.name}-${index}`}
