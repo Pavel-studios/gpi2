@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, X } from "lucide-react";
-import gazpromLogo from "@/imports/clients/gazprom_logo.webp";
+import interRaoLogo from "@/imports/about/partners-v3/08.webp";
 import gazpromKomplektLogo from "@/imports/clients/057_1-2-4.webp";
-import rosneftLogo from "@/imports/clients/a2ddf127393db4380ee610d7b9e31e66.webp";
+import rosatomLogo from "@/imports/about/partners-v3/28.webp";
 import lukoilLogo from "@/imports/clients/png-klev-club-fdy1-p-lukoil-png-1.webp";
 import bashneftLogo from "@/imports/clients/580f14163611fefad60da78d5c9b904c.webp";
 import inkLogo from "@/imports/clients/big-catalog-16344744171.webp";
-import sibneftegazLogo from "@/imports/clients/sibneftegaz_logo.webp";
+import starkLogo from "@/imports/about/partners-v3/34.webp";
 import norilsktransgazLogo from "@/imports/clients/norilsktransgaz.webp";
 import kondensatLogo from "@/imports/clients/Untitled-1.webp";
 import cktiLogo from "@/imports/clients/partner_5.webp";
@@ -42,15 +42,15 @@ import screen3 from "@/imports/tz-photos/project-screen-3.webp";
 import screen4 from "@/imports/project-heat/IMG_20260805_081250_482.webp";
 
 const clients = [
-  { name: "Газпром", logo: gazpromLogo },
+  { name: "Интер РАО ЕЭС", logo: interRaoLogo },
   { name: "Газпром комплектация", logo: gazpromKomplektLogo },
-  { name: "Роснефть", logo: rosneftLogo },
+  { name: "Росатом", logo: rosatomLogo },
   { name: "Башнефть", logo: bashneftLogo },
   { name: "ЛУКОЙЛ", logo: lukoilLogo },
   { name: "Иркутская нефтяная компания", logo: inkLogo },
   { name: "Конденсат", logo: kondensatLogo },
   { name: "НПО ЦКТИ", logo: cktiLogo },
-  { name: "Сибнефтегаз", logo: sibneftegazLogo },
+  { name: "СТАРК ЦНИПИ", logo: starkLogo },
   { name: "Пурнефтегаз", logo: purneftegazLogo },
   { name: "РН-Уватнефтегаз", logo: rnUvatLogo },
   { name: "Норильсктрансгаз", logo: norilsktransgazLogo },
