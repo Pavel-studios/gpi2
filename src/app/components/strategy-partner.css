@@ -1,0 +1,64 @@
+.strategy-partnership { color: #263740; }
+.strategy-container { width: 100%; max-width: 1808px; margin-inline: auto; padding-inline: 24px; }
+.strategy-eyebrow { margin-bottom: 24px; color: #50626c; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.strategy-intro { position: relative; isolation: isolate; overflow: hidden; }
+.strategy-intro-photo, .strategy-intro-shade, .strategy-video, .strategy-video-shade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.strategy-intro-photo { object-position: 65% center; }
+.strategy-intro-shade { background: linear-gradient(90deg, #edf0f1ed 0%, #edf0f1d4 35%, #edf0f145 68%, #edf0f110); }
+.strategy-pattern { position: absolute; top: 0; left: 0; height: 100%; width: auto; max-width: none; transform: translate(-10%, -8%); opacity: .05; pointer-events: none; }
+.strategy-intro-content { position: relative; padding-block: 96px; }
+.strategy-intro h2 { max-width: 850px; font-size: clamp(34px, 4.4vw, 76px); font-weight: 800; letter-spacing: -.045em; line-height: 1.08; }
+.strategy-intro h2 span { display: flex; align-items: baseline; gap: 16px; margin-top: 16px; }
+.strategy-intro h2 svg { flex: 0 0 .55em; width: .55em; height: .55em; stroke-width: 3; }
+.strategy-intro-description { max-width: 650px; margin-top: 36px; font-size: 19px; line-height: 1.7; font-weight: 500; }
+.strategy-navigation { margin-top: 52px; }
+.strategy-navigation h3 { font-size: 23px; font-weight: 600; margin-bottom: 20px; }
+.strategy-navigation > div { display: flex; flex-wrap: wrap; gap: 10px; }
+.strategy-navigation a { display: inline-flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid #50626c66; background: #edf0f1bd; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.strategy-navigation a:hover { background: #fff; }
+.strategy-direction { position: relative; isolation: isolate; overflow: hidden; scroll-margin-top: 90px; }
+.strategy-video-shade { background: linear-gradient(90deg, #26374066, #26374018); }
+.strategy-direction-content { position: relative; padding-block: 80px; }
+.strategy-copy { width: min(100%, 800px); padding: 40px; background: #e6eceee8; }
+.strategy-copy h2, .strategy-meetings h2 { font-size: clamp(30px, 3.1vw, 52px); line-height: 1.12; letter-spacing: -.035em; font-weight: 800; }
+.strategy-copy p:not(.strategy-eyebrow) { margin-top: 26px; font-size: 18px; line-height: 1.7; }
+.strategy-copy ul { list-style: none; margin-top: 24px; padding: 0; }
+.strategy-copy li { position: relative; padding-left: 22px; margin-top: 12px; font-size: 17px; line-height: 1.65; }
+.strategy-copy li::before { content: '—'; position: absolute; left: 0; }
+.strategy-logos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 960px; gap: 16px; margin-top: 24px; }
+.strategy-logo { height: 108px; padding: 16px 22px; display: flex; align-items: center; justify-content: center; background: white; }
+.strategy-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.strategy-logistics .strategy-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 472px; }
+.strategy-foreign .strategy-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 800px; }
+.strategy-meetings { padding-block: 80px; background: #edf0f1; }
+.strategy-meeting-heading { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 32px; }
+.strategy-controls { display: flex; gap: 8px; }
+.strategy-controls button { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid #50626c66; border-radius: 50%; color: #50626c; cursor: pointer; }
+.strategy-controls button:hover { background: #263740; color: white; }
+.strategy-rail { display: flex; overflow-x: auto; scrollbar-width: none; }
+.strategy-rail::-webkit-scrollbar { display: none; }
+.strategy-photo-group { display: flex; flex: 0 0 auto; gap: 16px; padding-right: 16px; }
+.strategy-photo { display: block; flex: 0 0 auto; width: clamp(280px, 31vw, 570px); aspect-ratio: 4 / 3; overflow: hidden; cursor: zoom-in; background: #dfe2e3; }
+.strategy-photo img { width: 100%; height: 100%; object-fit: cover; }
+.strategy-partnership button:focus-visible, .strategy-partnership a:focus-visible { outline: 3px solid #0089bb; outline-offset: -3px; }
+@media (min-width: 640px) { .strategy-container { padding-inline: 40px; } }
+@media (min-width: 1024px) { .strategy-container { padding-inline: 64px; } }
+@media (max-width: 767px) {
+  .strategy-intro-content { padding-block: 64px; }
+  .strategy-intro-shade { background: #edf0f1cc; }
+  .strategy-intro-photo { object-position: 62% center; }
+  .strategy-intro h2 { font-size: clamp(30px, 7.5vw, 46px); }
+  .strategy-intro h2 span { gap: 10px; }
+  .strategy-intro-description { font-size: 16px; }
+  .strategy-eyebrow { font-size: 10px; letter-spacing: .1em; gap: 12px; }
+  .strategy-eyebrow::before { width: 28px; flex-shrink: 0; }
+  .strategy-direction-content { padding-block: 48px; }
+  .strategy-copy { padding: 24px 20px; }
+  .strategy-copy h2 { font-size: 30px; }
+  .strategy-copy p:not(.strategy-eyebrow), .strategy-copy li { font-size: 16px; }
+  .strategy-logos, .strategy-foreign .strategy-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .strategy-logo { height: 92px; padding: 14px; }
+  .strategy-meetings { padding-block: 56px; }
+  .strategy-controls .strategy-desktop-arrow { display: none; }
+  .strategy-photo { width: 78vw; }
+}
