@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import certificatePhoto from '@/imports/strategy-partner/meetings/02-14.webp';
 import { ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import { PhotoViewer } from './PhotoViewer';
 import pattern from '@/imports/hero/home-pattern.svg';
@@ -109,7 +110,7 @@ function Meetings() {
       onWheel={() => { target.current = null; interact(); }} onScroll={() => { if (target.current !== null && Math.abs((rail.current?.scrollLeft ?? 0) - target.current) < 1) target.current = null; }}
       onFocusCapture={() => { hovering.current = true; }} onBlurCapture={e => { if (!e.currentTarget.contains(e.relatedTarget as Node)) hovering.current = false; }}>
       {[0, 1].map(copy => <div key={copy} ref={copy === 0 ? group : undefined} className="strategy-photo-group" aria-hidden={copy === 1 ? true : undefined}>
-        {photos.map((photo, i) => <button key={photo.src} className="strategy-photo" tabIndex={copy === 1 ? -1 : 0} onClick={() => setSelected(i)} aria-label={`Открыть фото ${i + 1}: ${photo.alt}`}><img src={photo.src} alt={copy === 0 ? photo.alt : ''} loading="lazy" decoding="async" /></button>)}
+        {photos.map((photo, i) => <button key={photo.src} className={`strategy-photo${photo.src === certificatePhoto ? ' strategy-photo-certificate' : ''}`} style={photo.src === certificatePhoto ? { '--certificate-background': `url("${photo.src}")` } as CSSProperties : undefined} tabIndex={copy === 1 ? -1 : 0} onClick={() => setSelected(i)} aria-label={`Открыть фото ${i + 1}: ${photo.alt}`}><img src={photo.src} alt={copy === 0 ? photo.alt : ''} loading="lazy" decoding="async" /></button>)}
       </div>)}
     </div></div>
     {selected !== null && <PhotoViewer images={photos} initialIndex={selected} onClose={() => setSelected(null)} />}
