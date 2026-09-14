@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowUpRight, FileCheck2, Layers3, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, BadgeCheck, FileCheck2, Layers3, ShieldCheck } from 'lucide-react';
 
 import certQuality1 from '@/imports/about/certificates/cert-quality-1.webp';
 import certQuality2 from '@/imports/about/certificates/cert-quality-2.webp';
@@ -12,6 +12,7 @@ import certWelding1 from '@/imports/about/certificates/cert-welding-1.webp';
 import certWelding2 from '@/imports/about/certificates/cert-welding-2.webp';
 import certWelding3 from '@/imports/about/certificates/cert-welding-3.webp';
 import certWelding4 from '@/imports/about/certificates/cert-welding-4.webp';
+import certDealerAuthorization from '@/imports/about/certificates/cert-dealer-authorization.webp';
 import pattern from '@/imports/pattern.svg';
 import { PhotoViewer, PhotoViewerImage } from './PhotoViewer';
 
@@ -61,6 +62,16 @@ const certificateGroups: CertificateGroup[] = [
       { src: certWelding4, alt: 'Аттестация технологии сварки НАКС — документ 4' },
     ],
   },
+  {
+    code: '04',
+    title: 'Дилерские полномочия',
+    description:
+      'Доверенность, подтверждающая полномочия официального представителя Yuanda Valve Group Co., Ltd.',
+    icon: BadgeCheck,
+    images: [
+      { src: certDealerAuthorization, alt: 'Доверенность Yuanda Valve Group Co., Ltd' },
+    ],
+  },
 ];
 
 export function AboutCertificatesSection() {
@@ -103,7 +114,7 @@ export function AboutCertificatesSection() {
           </div>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {certificateGroups.map((group, index) => {
             const Icon = group.icon;
 
@@ -144,8 +155,10 @@ export function AboutCertificatesSection() {
                         alt={image.alt}
                         className="absolute bottom-0 h-[285px] w-[200px] border border-[#50626c]/12 bg-white object-cover shadow-[0_22px_50px_rgba(38,55,64,0.18)] transition-transform duration-500 group-hover:-translate-y-2"
                         style={{
-                          left: `${imageIndex * 62}px`,
-                          transform: `rotate(${(imageIndex - 1) * 5}deg) translateY(${imageIndex * 8}px)`,
+                          left: group.images.length === 1 ? '50%' : `${imageIndex * 62}px`,
+                          transform: group.images.length === 1
+                            ? 'translateX(-50%)'
+                            : `rotate(${(imageIndex - 1) * 5}deg) translateY(${imageIndex * 8}px)`,
                           zIndex: 3 - imageIndex,
                         }}
                       />
