@@ -17,17 +17,17 @@
 .strategy-navigation a { display: inline-flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid #50626c66; background: #edf0f1bd; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
 .strategy-navigation a:hover { background: #fff; }
 .strategy-direction { position: relative; isolation: isolate; overflow: hidden; scroll-margin-top: 90px; }
-.strategy-direction + .strategy-direction { border-top: 56px solid #edf0f1; }
-.strategy-video-shade { background: linear-gradient(90deg, #26374066, #26374018); }
-.strategy-direction-content { position: relative; padding-block: 80px; }
-.strategy-copy { width: min(100%, 800px); padding: 40px; background: #e6eceee8; }
+.strategy-direction + .strategy-direction { border-top: 40px solid #edf0f1; }
+.strategy-video-shade { background: linear-gradient(90deg, rgba(80,98,108,.58), rgba(80,98,108,.44)); }
+.strategy-direction-content { position: relative; padding-block: 56px; }
+.strategy-copy { width: min(100%, 800px); padding: 32px 36px; background: #e6eceee8; }
 .strategy-copy h2, .strategy-meetings h2 { font-size: clamp(30px, 3.1vw, 52px); line-height: 1.12; letter-spacing: -.035em; font-weight: 800; }
-.strategy-copy p:not(.strategy-eyebrow) { margin-top: 26px; font-size: 18px; line-height: 1.7; }
-.strategy-copy ul { list-style: none; margin-top: 24px; padding: 0; }
-.strategy-copy li { position: relative; padding-left: 22px; margin-top: 12px; font-size: 17px; line-height: 1.65; }
+.strategy-copy p:not(.strategy-eyebrow) { margin-top: 20px; font-size: 17px; line-height: 1.6; }
+.strategy-copy ul { list-style: none; margin-top: 18px; padding: 0; }
+.strategy-copy li { position: relative; padding-left: 22px; margin-top: 8px; font-size: 16px; line-height: 1.55; }
 .strategy-copy li::before { content: '—'; position: absolute; left: 0; }
-.strategy-logos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 800px; gap: 16px; margin-top: 24px; }
-.strategy-logo { height: 108px; padding: 16px 22px; display: flex; align-items: center; justify-content: center; background: white; }
+.strategy-logos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 800px; gap: 12px; margin-top: 18px; }
+.strategy-logo { height: 92px; padding: 14px 20px; display: flex; align-items: center; justify-content: center; background: white; }
 .strategy-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .strategy-logistics .strategy-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 472px; }
 .strategy-foreign .strategy-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 800px; }
@@ -49,7 +49,7 @@
 @media (min-width: 1024px) { .strategy-container { padding-inline: 64px; } }
 @media (min-width: 768px) {
   .strategy-intro-content { min-height: max(900px, 60vw); display: flex; flex-direction: column; justify-content: center; }
-  .strategy-direction-content { min-height: 56.25vw; display: flex; flex-direction: column; justify-content: center; }
+  .strategy-direction-content { min-height: clamp(680px, 78svh, 820px); display: flex; flex-direction: column; justify-content: center; }
   .strategy-copy { width: min(100%, 880px); }
   .strategy-logos, .strategy-foreign .strategy-logos { width: min(100%, 880px); max-width: 880px; }
   .strategy-logistics .strategy-logos { max-width: 432px; }
