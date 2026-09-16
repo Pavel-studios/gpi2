@@ -1,7 +1,7 @@
 .strategy-partnership { color: #263740; }
 .strategy-container { width: 100%; max-width: 1808px; margin-inline: auto; padding-inline: 24px; }
 .strategy-eyebrow { margin-bottom: 24px; color: #50626c; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
-.strategy-intro { position: relative; isolation: isolate; overflow: hidden; }
+.strategy-intro { position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; min-height: 100svh; }
 .strategy-intro-photo, .strategy-intro-shade, .strategy-video, .strategy-video-shade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .strategy-intro-photo { object-position: 65% top; }
 .strategy-intro-shade { background: linear-gradient(90deg, #edf0f1ed 0%, #edf0f1d4 35%, #edf0f145 68%, #edf0f110); }
@@ -14,9 +14,9 @@
 .strategy-navigation { margin-top: 52px; }
 .strategy-navigation h3 { font-size: 23px; font-weight: 600; margin-bottom: 20px; }
 .strategy-navigation > div { display: flex; flex-wrap: wrap; gap: 10px; }
-.strategy-navigation a { display: inline-flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid #50626c66; background: #edf0f1bd; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
-.strategy-navigation a:hover { background: #fff; }
-.strategy-direction { position: relative; isolation: isolate; overflow: hidden; scroll-margin-top: 90px; }
+.strategy-navigation a { display: inline-flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid #8D9DA6; background: #8D9DA6; color: #fff; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; transition: background-color .2s, color .2s; }
+.strategy-navigation a:hover { background: #50626c; color: #fff; }
+.strategy-direction { position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; min-height: 100svh; scroll-margin-top: 90px; }
 .strategy-direction + .strategy-direction { border-top: 40px solid #edf0f1; }
 .strategy-video-shade { background: linear-gradient(90deg, rgba(80,98,108,.58), rgba(80,98,108,.44)); }
 .strategy-direction-content { position: relative; padding-block: 56px; }
@@ -47,9 +47,17 @@
 .strategy-partnership button:focus-visible, .strategy-partnership a:focus-visible { outline: 3px solid #0089bb; outline-offset: -3px; }
 @media (min-width: 640px) { .strategy-container { padding-inline: 40px; } }
 @media (min-width: 1024px) { .strategy-container { padding-inline: 64px; } }
+@media (min-width: 768px) and (max-height: 900px) {
+  .strategy-intro-content { padding-block: 48px; }
+  .strategy-intro h2 { font-size: clamp(34px, 3.8vw, 64px); }
+  .strategy-intro h2 span { margin-top: 10px; }
+  .strategy-intro-description { margin-top: 24px; }
+  .strategy-navigation { margin-top: 32px; }
+}
 @media (min-width: 768px) {
-  .strategy-intro-content { min-height: max(900px, 60vw); display: flex; flex-direction: column; justify-content: center; }
-  .strategy-direction-content { min-height: clamp(680px, 78svh, 820px); display: flex; flex-direction: column; justify-content: center; }
+  .strategy-intro-content { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+  .strategy-direction-content { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+  .strategy-direction + .strategy-direction .strategy-direction-content { min-height: calc(100vh - 40px); min-height: calc(100svh - 40px); }
   .strategy-copy { width: min(100%, 880px); }
   .strategy-logos, .strategy-foreign .strategy-logos { width: min(100%, 880px); max-width: 880px; }
   .strategy-logistics .strategy-logos { max-width: 432px; }
