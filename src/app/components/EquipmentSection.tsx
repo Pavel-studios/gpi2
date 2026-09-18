@@ -3,27 +3,64 @@ import { motion } from 'motion/react';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import pattern from '@/imports/pattern.svg';
-import heroPoster from '@/imports/tz-photos/adv-production.webp';
-import { FadingPattern } from './ui/fading-pattern';
+import heroPattern from '@/imports/hero/home-pattern.svg';
+import heroPoster from '@/imports/equipment/equipment-hero-page3-poster.webp';
 import { PhotoViewer } from './PhotoViewer';
 
 const publicBase = import.meta.env.BASE_URL.replace(/\/$/, '');
-const heroVideo = `${publicBase}/media/equipment-hero-n59a2261.mp4`;
+const heroVideo = `${publicBase}/media/equipment-hero-page3.mp4`;
 const equipmentPhotoModules = import.meta.glob('/src/imports/equipment-cards/*.webp', {
   eager: true,
   query: '?url',
   import: 'default',
 }) as Record<string, string>;
 
-const equipmentPhotos = (prefix: string) =>
-  Object.entries(equipmentPhotoModules)
-    .filter(([path]) => path.includes(`/equipment-cards/${prefix}-`))
-    .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
-    .map(([, src]) => src);
+const equipmentPhoto = (name: string) => {
+  const photo = equipmentPhotoModules[`/src/imports/equipment-cards/${name}.webp`];
+  if (!photo) throw new Error(`Missing equipment photo: ${name}`);
+  return photo;
+};
+
+const existingPhotos = (prefix: string, numbers: number[]) =>
+  numbers.map((number) => equipmentPhoto(`${prefix}-${String(number).padStart(2, '0')}`));
+
+const newPhotos = (...names: string[]) =>
+  names.map((name) => equipmentPhoto(`extra-${name}`));
 
 const equipment = [
   {
     number: '01',
+    name: 'Теплообменное оборудование',
+    description: 'Аппараты для теплообменных процессов в промышленных установках.',
+    industries: 'Нефтегазовая, перерабатывающая, атомная',
+    parameters: [
+      'Рабочая среда: природный и попутный газ, газовый конденсат, нефть, вода, пар и другие жидкости и газы',
+      'Пропускная способность по газу: до 10 млн нм³/сут',
+      'Пропускная способность по жидкости: до 54 000 м³/сут',
+      'Рабочее давление: до 21 МПа',
+      'Температура сред: до +350 °C',
+    ],
+    images: [
+      ...existingPhotos('heat', [3, 4]),
+      ...newPhotos('Screenshot_2026-08-03T16_17_13', 'Screenshot_2026-08-03T16_19_50'),
+    ],
+  },
+  {
+    number: '02',
+    name: 'Котельное оборудование',
+    description: 'Элементы паровых стационарных котлов для перегрева насыщенного пара.',
+    industries: 'Нефтегазовая, энергетика',
+    parameters: [
+      'Рабочая среда: насыщенный и перегретый пар',
+      'Давление пара: до 25 МПа',
+      'Массовый расход пара: до 3950 т/ч',
+      'Температура пара: до +565 °C',
+      'Материалы труб: нержавеющая и жаропрочная сталь',
+    ],
+    images: existingPhotos('boiler', [2, 4, 6, 10]),
+  },
+  {
+    number: '03',
     name: 'Факельные установки',
     description: 'Оборудование для безопасного сброса и сжигания горючих газов и жидкостей.',
     industries: 'Нефтегазовая, перерабатывающая',
@@ -36,52 +73,10 @@ const equipment = [
       'Потребляемая мощность: не более 2000 Вт',
       'Материалы исполнения: нержавеющая и жаропрочная сталь',
     ],
-    images: equipmentPhotos('flare'),
-  },
-  {
-    number: '02',
-    name: 'Узлы технологических трубопроводов',
-    description: 'Фасонные детали и сборочные узлы для технологических трубопроводов.',
-    industries: 'Нефтегазовая, перерабатывающая, атомная',
-    parameters: [
-      'Условный проход (DN): 50–1200',
-      'Условное давление (PN): 6–25',
-      'Температура рабочей среды: от -70 °C до +700 °C',
-      'Материалы исполнения: углеродистые, низколегированные и аустенитные стали',
-    ],
-    images: equipmentPhotos('pipeline'),
-  },
-  {
-    number: '03',
-    name: 'Нестандартное оборудование для АЭС',
-    description: 'Оборудование для смешивания технологических потоков и основного конденсата.',
-    industries: 'Атомная',
-    parameters: [
-      'Рабочая среда: вода, пароводяная смесь',
-      'Расход основного конденсата: до 1100 т/ч',
-      'Расход конденсата греющего пара: до 250 т/ч',
-      'Рабочее давление: до 5 МПа',
-      'Температура среды: до +250 °C',
-      'Материалы исполнения: нержавеющая и жаропрочная сталь',
-    ],
-    images: equipmentPhotos('nuclear'),
+    images: existingPhotos('flare', [3, 4, 7]),
   },
   {
     number: '04',
-    name: 'Теплообменное оборудование',
-    description: 'Аппараты для теплообменных процессов в промышленных установках.',
-    industries: 'Нефтегазовая, перерабатывающая, атомная',
-    parameters: [
-      'Рабочая среда: природный и попутный газ, газовый конденсат, нефть, вода, пар и другие жидкости и газы',
-      'Пропускная способность по газу: до 10 млн нм³/сут',
-      'Пропускная способность по жидкости: до 54 000 м³/сут',
-      'Рабочее давление: до 21 МПа',
-      'Температура сред: до +350 °C',
-    ],
-    images: equipmentPhotos('heat'),
-  },
-  {
-    number: '05',
     name: 'Емкостное оборудование',
     description: 'Сосуды и аппараты, изготавливаемые по индивидуальным техническим проектам.',
     industries: 'Нефтегазовая, перерабатывающая',
@@ -93,21 +88,91 @@ const equipment = [
       'Температура эксплуатации: от -60 °C до +80 °C',
       'Материалы корпуса: углеродистые, низколегированные и нержавеющие стали',
     ],
-    images: equipmentPhotos('vessel'),
+    images: [
+      ...existingPhotos('vessel', [5, 6]),
+      ...newPhotos('Screenshot_2026-08-03T14_35_50', 'Screenshot_2026-08-03T14_36_21'),
+    ],
+  },
+  {
+    number: '05',
+    name: 'Нестандартное оборудование для АЭС',
+    description: 'Оборудование, изготавливаемое по специальным техническим заданиям, в единственном экземпляре.',
+    industries: 'Атомная энергетика',
+    parameters: [
+      'Рабочая среда: вода, пароводяная смесь',
+      'Расход основного конденсата: до 1100 т/ч',
+      'Расход конденсата греющего пара: до 250 т/ч',
+      'Рабочее давление: до 5 МПа',
+      'Температура среды: до +250 °C',
+      'Материалы исполнения: нержавеющая и жаропрочная сталь',
+      'Отсутствует аналог',
+      'Изготавливается штучно',
+      'Изготовление по индивидуальному заказу',
+    ],
+    images: [
+      ...existingPhotos('nuclear', [2, 6, 10, 12]),
+      ...newPhotos(
+        'Screenshot_2026-08-03T16_13_54',
+        'Screenshot_2026-08-03T16_19_50',
+        'Screenshot_2026-08-04T15_01_28',
+        'Screenshot_2026-08-04T15_01_36',
+      ),
+    ],
   },
   {
     number: '06',
-    name: 'Котельное оборудование',
-    description: 'Элементы паровых стационарных котлов для перегрева насыщенного пара.',
-    industries: 'Нефтегазовая, энергетика',
+    name: 'Узлы технологических трубопроводов',
+    description: 'Фасонные детали и сборочные узлы для технологических трубопроводов.',
+    industries: 'Нефтегазовая, перерабатывающая, атомная',
     parameters: [
-      'Рабочая среда: насыщенный и перегретый пар',
-      'Давление пара: до 25 МПа',
-      'Массовый расход пара: до 3950 т/ч',
-      'Температура пара: до +565 °C',
-      'Материалы труб: нержавеющая и жаропрочная сталь',
+      'Условный проход (DN): 50–1200',
+      'Условное давление (PN): 6–25',
+      'Температура рабочей среды: от -70 °C до +700 °C',
+      'Материалы исполнения: углеродистые, низколегированные и аустенитные стали',
     ],
-    images: equipmentPhotos('boiler'),
+    images: [
+      ...existingPhotos('pipeline', [3, 4, 6]),
+      ...newPhotos(
+        'Screenshot_2026-08-04T09_44_01',
+        'Screenshot_2026-08-04T09_44_14',
+        'Screenshot_2026-08-04T09_45_07',
+        'Screenshot_2026-08-04T09_24_48',
+        'Screenshot_2026-08-04T09_25_16',
+        'Screenshot_2026-08-04T09_26_36',
+        'Screenshot_2026-08-04T09_26_56',
+      ),
+    ],
+  },
+  {
+    number: '07',
+    name: 'Трубопроводная арматура',
+    description: 'Предназначена для управления потоком рабочей среды.',
+    industries: 'Атомная и тепловая энергетика, нефтехимическая отрасль',
+    parameters: [
+      'Рабочая среда: газ, вода, пар, нефтепродукты',
+      'Рабочая температура: от -60 до +650 °C',
+      'Расчетное давление: до 40 МПа',
+      'Тип присоединения: под приварку, фланцевое, межфланцевое',
+      'Тип управления: ручной, электрический, пневматический',
+    ],
+    images: newPhotos('Screenshot_2026-08-03T15_31_57', 'Screenshot_2026-08-03T15_32_02'),
+  },
+  {
+    number: '08',
+    name: 'Металлоконструкции',
+    description: 'Работают как несущие, опорные, ограждающие или вспомогательные конструкции, а также как самостоятельное оборудование.',
+    industries: 'Атомная и тепловая энергетика, нефтегазовая, перерабатывающая и нефтехимическая отрасли',
+    parameters: [
+      'Способ соединения: сварные, болтовые, сборно-разборные',
+      'Материалы: углеродистая и нержавеющая сталь',
+      'Назначение: под оборудование, для трубопроводов, для обслуживания',
+      'Несущая способность: по требованию проекта',
+    ],
+    images: newPhotos(
+      'Screenshot_2026-08-04T09_07_09',
+      'Screenshot_2026-08-04T09_07_41',
+      'Screenshot_2026-08-04T09_14_42',
+    ),
   },
 ];
 
@@ -135,13 +200,13 @@ export function EquipmentSection() {
       <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-[#263740]">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src={heroVideo}
           poster={heroPoster}
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
+          aria-hidden="true"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
@@ -150,7 +215,12 @@ export function EquipmentSection() {
         <div className="absolute right-[8vw] top-0 hidden h-full w-[22vw] skew-x-[-18deg] bg-white/[0.07] lg:block" />
         <div className="absolute right-[19vw] top-0 hidden h-full w-[10vw] skew-x-[-18deg] bg-white/[0.04] lg:block" />
 
-        <FadingPattern opacity="0.075" />
+        <img
+          src={heroPattern}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 h-full w-auto max-w-none -translate-x-[10%] -translate-y-[8%] brightness-0 invert opacity-[0.05]"
+        />
 
         <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-[1920px] items-end px-6 py-12 sm:px-10 lg:px-16 lg:py-20">
           <motion.div
@@ -160,18 +230,18 @@ export function EquipmentSection() {
             className="max-w-5xl"
           >
             <div className="mb-8 inline-flex border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-white/76 backdrop-blur-md">
-              Оборудование
+              Продукция
             </div>
             <h1
               className="max-w-5xl text-white"
               style={{
-                fontSize: 'clamp(46px, 8vw, 118px)',
+                fontSize: 'clamp(40px, 8vw, 118px)',
                 fontWeight: 800,
                 letterSpacing: '-0.07em',
                 lineHeight: 0.92,
               }}
             >
-              Поставляемое
+              Производимое
               <span className="block text-white/62">оборудование</span>
             </h1>
           </motion.div>
@@ -195,7 +265,7 @@ export function EquipmentSection() {
         <div className="relative mx-auto max-w-[1680px]">
           <div className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
-              <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
+              <div className="section-eyebrow mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
                 Каталог
               </div>
               <h2
@@ -207,12 +277,12 @@ export function EquipmentSection() {
                   lineHeight: 0.96,
                 }}
               >
-                Карточки производимого оборудования
+                Поставляемая продукция
               </h2>
             </div>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2">
             {equipment.map((item, index) => {
                 const activeImageIndex = activeImages[item.number] ?? 0;
                 const activeImage = item.images[activeImageIndex] ?? item.images[0];
@@ -223,8 +293,8 @@ export function EquipmentSection() {
                     initial={{ opacity: 0, y: 28 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.55, delay: (index % 3) * 0.08 }}
-                    className="group relative overflow-hidden border border-[#50626c]/12 bg-white shadow-[0_24px_80px_rgba(38,55,64,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#50626c]/28"
+                    transition={{ duration: 0.55, delay: (index % 2) * 0.08 }}
+                    className="group relative flex flex-col overflow-hidden border border-[#50626c]/12 bg-white shadow-[0_24px_80px_rgba(38,55,64,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#50626c]/28"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden bg-[#263740]">
                       <img
@@ -246,11 +316,12 @@ export function EquipmentSection() {
                         className="absolute inset-0 z-[1] cursor-zoom-in"
                         aria-label={`Открыть фото: ${item.name}`}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#17252c]/82 via-[#263740]/18 to-transparent" />
-                      <div className="absolute left-5 top-5 z-[2] text-sm font-black tracking-[0.18em] text-white/62">
+                      <div className="pointer-events-none absolute inset-0 z-[2] bg-[#263740]/25" />
+                      <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-[#17252c]/80 via-transparent to-[#263740]/30" />
+                      <div className="pointer-events-none absolute left-5 top-5 z-[2] text-sm font-black tracking-[0.18em] text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
                         {item.number}
                       </div>
-                      <ArrowUpRight className="absolute right-5 top-5 z-[2] text-white/70 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      <ArrowUpRight className="pointer-events-none absolute right-5 top-5 z-[2] text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
 
                       {item.images.length > 1 && (
                         <>
@@ -258,7 +329,7 @@ export function EquipmentSection() {
                             <button
                               type="button"
                               onClick={() => changeImage(item.number, item.images.length, -1)}
-                              className="flex h-9 w-9 items-center justify-center border border-white/30 bg-[#263740]/55 text-white backdrop-blur-md transition-colors hover:bg-white hover:text-[#263740]"
+                              className="flex h-9 w-9 items-center justify-center border border-[#8D9DA6] bg-[#8D9DA6] text-white transition-colors hover:bg-[#718691]"
                               aria-label={`Предыдущее фото: ${item.name}`}
                             >
                               <ChevronLeft size={17} />
@@ -266,7 +337,7 @@ export function EquipmentSection() {
                             <button
                               type="button"
                               onClick={() => changeImage(item.number, item.images.length, 1)}
-                              className="flex h-9 w-9 items-center justify-center border border-white/30 bg-[#263740]/55 text-white backdrop-blur-md transition-colors hover:bg-white hover:text-[#263740]"
+                              className="flex h-9 w-9 items-center justify-center border border-[#8D9DA6] bg-[#8D9DA6] text-white transition-colors hover:bg-[#718691]"
                               aria-label={`Следующее фото: ${item.name}`}
                             >
                               <ChevronRight size={17} />
@@ -296,14 +367,14 @@ export function EquipmentSection() {
                       )}
                     </div>
 
-                    <div className="relative p-7">
+                    <div className="relative flex flex-1 flex-col p-7">
                       <h3 className="text-2xl font-extrabold leading-tight tracking-[-0.045em] text-[#263740]">
                         {item.name}
                       </h3>
                       <p className="mt-4 min-h-[72px] text-[15px] leading-6 text-[#595b5c]">
                         {item.description}
                       </p>
-                      <div className="mt-6 space-y-2 border-y border-[#50626c]/10 py-5">
+                      <div className="mt-6 space-y-2 border-t border-[#50626c]/10 py-5">
                         <div className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#50626c]/65">
                           Ключевые параметры
                         </div>
@@ -314,7 +385,7 @@ export function EquipmentSection() {
                           </div>
                         ))}
                       </div>
-                      <div className="mt-7 border-t border-[#50626c]/12 pt-5">
+                      <div className="mt-auto border-t border-[#50626c]/12 pt-5">
                         <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#50626c]/65">
                           Отрасли
                         </div>
