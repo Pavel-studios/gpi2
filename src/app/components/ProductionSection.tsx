@@ -7,79 +7,87 @@ import {
 } from 'lucide-react';
 
 import pattern from '@/imports/pattern.svg';
-import machining1 from '@/imports/tz-photos/prod-machining-1.webp';
-import machining2 from '@/imports/tz-photos/prod-machining-2.webp';
-import machining3 from '@/imports/tz-photos/prod-machining-3.webp';
-import welding1 from '@/imports/tz-photos/prod-welding-1.webp';
-import welding2 from '@/imports/tz-photos/prod-welding-2.webp';
-import welding3 from '@/imports/tz-photos/prod-welding-3.webp';
-import quality1 from '@/imports/tz-photos/prod-quality-1.webp';
-import quality2 from '@/imports/tz-photos/prod-quality-2.webp';
-import quality3 from '@/imports/tz-photos/prod-quality-3.webp';
-import quality4 from '@/imports/tz-photos/prod-quality-4.webp';
-import quality5 from '@/imports/tz-photos/prod-quality-5.webp';
-import heat1 from '@/imports/tz-photos/prod-heat-1.webp';
-import heat2 from '@/imports/tz-photos/prod-heat-2.webp';
-import automation1 from '@/imports/tz-photos/prod-automation-1.webp';
-import automation2 from '@/imports/tz-photos/prod-automation-2.webp';
-import automation3 from '@/imports/tz-photos/prod-automation-3.webp';
-import automation4 from '@/imports/tz-photos/prod-automation-4.webp';
-import coating1 from '@/imports/tz-photos/prod-coating-1.webp';
-import coating2 from '@/imports/tz-photos/prod-coating-2.webp';
-import coating3 from '@/imports/tz-photos/prod-coating-3.webp';
-import { FadingPattern } from './ui/fading-pattern';
+import heroPattern from '@/imports/hero/home-pattern.svg';
+import heroPoster from '@/imports/production-page/production-hero-page4-poster.webp';
 
 const publicBase = import.meta.env.BASE_URL.replace(/\/$/, '');
-const heroVideo = `${publicBase}/media/production-hero-n59a2574.mp4`;
+const heroVideo = `${publicBase}/media/production-hero-page4.mp4`;
+const productionPhotoModules = import.meta.glob('/src/imports/production-cards/*.webp', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>;
+
+type ProductionPhoto = { src: string; position?: string };
+
+const productionPhotos = (prefix: string, positions: string[] = []): ProductionPhoto[] =>
+  Object.entries(productionPhotoModules)
+    .filter(([path]) => path.includes(`/production-cards/${prefix}-`))
+    .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+    .map(([, src], index) => ({ src, position: positions[index] ?? 'center center' }));
 
 const productionAreas = [
   {
     number: '01',
-    title: 'Заготовительные участки',
+    title: 'Заготовительный участок',
     description:
       'Лентопильные станки до Ø300 мм, портал газо-плазменной резки до δ=70 мм и листогибочные станки до δ=30 мм.',
-    bullets: ['Лентопильные станки', 'Газо-плазменная резка', 'Листогибочные станки'],
-    images: [machining1, machining2, machining3],
+    bullets: ['Лентопильные станки', 'Газо-плазменная резка', 'Лазерная резка', 'Листогибочные станки'],
+    images: productionPhotos('blanking', ['50%', '57%', '51%', '53%', '49%', '50%', '61%', '76%']),
   },
   {
     number: '02',
-    title: 'Сварочные участки',
-    description:
-      'Полный спектр аттестованных сварочных технологий и персонала для работы с различными материалами.',
-    bullets: ['TIG — аргонодуговая сварка', 'MIG/MAG — полуавтоматическая сварка', 'SAW — сварка под флюсом', 'Ручная электродуговая сварка'],
-    images: [welding1, welding2, welding3],
+    title: 'Участки механической обработки',
+    description: 'Универсальное оборудование и станки с ЧПУ для механической обработки деталей.',
+    bullets: ['Токарные станки', 'Фрезерные станки', 'Карусельные станки', 'Шлифовальные станки', 'Расточные станки', 'Сверлильные станки'],
+    images: productionPhotos('machining', ['35%', '54%', '55%', '52%', '50%', '52%', '72%', '48%', '47%', '50%', '61%']),
   },
   {
     number: '03',
-    title: 'Служба контроля качества',
+    title: 'Сварочные участки',
     description:
-      'Контроль материалов, сварных соединений и готового оборудования на ключевых этапах производства.',
-    bullets: ['Визуально-измерительный контроль', 'Радиографический контроль', 'Ультразвуковой контроль', 'Контроль герметичности', 'Рентгенфлуорисцентный контроль', 'Капиллярный контроль'],
-    images: [quality1, quality2, quality3, quality4, quality5],
+      'Полный спектр аттестованных сварочных технологий и персонала для работы с различными материалами.',
+    bullets: ['TIG — аргонодуговая сварка', 'MIG/MAG — полуавтоматическая сварка', 'SAW — сварка под флюсом', 'MMA — ручная дуговая сварка', 'Ручная электродуговая сварка'],
+    images: productionPhotos('welding', ['48%', '39%', '49%', '49%', '54%', '49%', '41%', '48%', '49%', '51%', '47%', '50%']),
   },
   {
     number: '04',
+    title: 'Служба контроля качества',
+    description:
+      'Контроль материалов, сварных соединений и готового оборудования на всех этапах производства.',
+    bullets: ['Визуально-измерительный контроль', 'Радиографический контроль', 'Ультразвуковой контроль', 'Контроль герметичности', 'Рентгенфлуорисцентный контроль', 'Капиллярный контроль'],
+    images: productionPhotos('quality', ['48%', '50%', '55%', '50%', '50%', '49%', '50%']),
+  },
+  {
+    number: '05',
     title: 'Участок АСУ ТП',
     description:
       'Автоматизация управления сложным оборудованием, сборка и настройка систем управления технологическими процессами.',
     bullets: ['Сборка шкафов управления', 'Автоматизация параметров', 'Пусконаладочные работы'],
-    images: [automation1, automation2, automation3, automation4],
+    images: productionPhotos('automation', ['50%', '50%', '50%']),
   },
   {
-    number: '05',
+    number: '06',
     title: 'Участок термообработки',
     description:
       'Индукционная термообработка — прогрессивный метод термической обработки металлов.',
     bullets: ['Индукционная термообработка', 'Контроль режимов нагрева', 'Подготовка деталей к дальнейшей обработке'],
-    images: [heat1, heat2],
+    images: productionPhotos('heat', ['50%', '50%']),
   },
   {
-    number: '06',
+    number: '07',
+    title: 'Участок испытаний',
+    description: 'Возможность выполнения приемочных, приемо-сдаточных, квалификационных испытаний, в том числе испытаний на прочность, плотность и герметичность оборудования.',
+    bullets: ['Гидравлические испытания', 'Пневматические испытания', 'Контроль работоспособности', 'Контроль массы'],
+    images: productionPhotos('testing', ['48%', '54%', '54%', '51%']),
+  },
+  {
+    number: '08',
     title: 'Участок нанесения лакокрасочного покрытия',
     description:
       'Нанесение однослойных и многослойных покрытий с контролем адгезии и толщинометрией каждого слоя.',
     bullets: ['Однослойные покрытия', 'Многослойные покрытия', 'Контроль адгезии', 'Толщинометрия'],
-    images: [coating1, coating2, coating3],
+    images: productionPhotos('coating', ['50%', '52%', '51%', '54%', '55%', '50%', '50%']),
   },
 ];
 
@@ -102,6 +110,7 @@ export function ProductionSection() {
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src={heroVideo}
+          poster={heroPoster}
           autoPlay
           muted
           loop
@@ -112,7 +121,12 @@ export function ProductionSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#263740]/86 via-transparent to-transparent" />
         <div className="absolute right-[8vw] top-0 hidden h-full w-[22vw] skew-x-[-18deg] bg-white/[0.07] lg:block" />
         <div className="absolute right-[19vw] top-0 hidden h-full w-[10vw] skew-x-[-18deg] bg-white/[0.04] lg:block" />
-        <FadingPattern opacity="0.065" />
+        <img
+          src={heroPattern}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 h-full w-auto max-w-none -translate-x-[10%] -translate-y-[8%] brightness-0 invert opacity-[0.05]"
+        />
 
         <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-[1920px] items-end px-6 py-12 sm:px-10 lg:px-16 lg:py-20">
           <motion.div
@@ -138,7 +152,7 @@ export function ProductionSection() {
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-white/74 sm:text-xl">
               Производственные участки полного цикла: механическая обработка,
-              сварка, контроль качества и испытания оборудования.
+              сварка, контроль качества и испытания оборудования
             </p>
           </motion.div>
         </div>
@@ -161,7 +175,7 @@ export function ProductionSection() {
         <div className="relative mx-auto max-w-[1680px]">
           <div className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
-              <div className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
+              <div className="section-eyebrow mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#50626c]">
                 Участки
               </div>
               <h2
@@ -196,13 +210,14 @@ export function ProductionSection() {
                       <AnimatePresence mode="wait">
                         <motion.img
                           key={`${area.title}-${activeIndex}`}
-                          src={area.images[activeIndex]}
+                          src={area.images[activeIndex].src}
                           alt={area.title}
                           initial={{ opacity: 0, scale: 1.04 }}
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 1.02 }}
                           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                           className="absolute inset-0 h-full w-full object-cover"
+                          style={{ objectPosition: area.images[activeIndex].position }}
                         />
                       </AnimatePresence>
                       <div className="absolute inset-0 bg-gradient-to-t from-[#17252c]/82 via-transparent to-transparent" />
@@ -213,7 +228,7 @@ export function ProductionSection() {
                         <button
                           type="button"
                           onClick={() => switchImage(area.title, -1, area.images.length)}
-                          className="flex h-11 w-11 items-center justify-center border border-white/25 bg-[#263740]/45 text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-[#263740]"
+                          className="flex h-11 w-11 items-center justify-center border border-[#8D9DA6] bg-[#8D9DA6] text-white transition-colors hover:bg-[#718691]"
                           aria-label="Предыдущее фото"
                         >
                           <ArrowLeft size={18} />
@@ -221,7 +236,7 @@ export function ProductionSection() {
                         <button
                           type="button"
                           onClick={() => switchImage(area.title, 1, area.images.length)}
-                          className="flex h-11 w-11 items-center justify-center border border-white/25 bg-[#263740]/45 text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-[#263740]"
+                          className="flex h-11 w-11 items-center justify-center border border-[#8D9DA6] bg-[#8D9DA6] text-white transition-colors hover:bg-[#718691]"
                           aria-label="Следующее фото"
                         >
                           <ArrowRight size={18} />

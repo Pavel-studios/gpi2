@@ -3,7 +3,7 @@
 .strategy-eyebrow { margin-bottom: 24px; color: #50626c; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
 .strategy-intro { position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; min-height: 100svh; }
 .strategy-intro-photo, .strategy-intro-shade, .strategy-video, .strategy-video-shade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-.strategy-intro-photo { object-position: 65% top; }
+.strategy-intro-photo { object-position: center center; }
 .strategy-intro-shade { background: linear-gradient(90deg, #edf0f1ed 0%, #edf0f1d4 35%, #edf0f145 68%, #edf0f110); }
 .strategy-pattern { position: absolute; top: 0; left: 0; height: 100%; width: auto; max-width: none; transform: translate(-10%, -8%); opacity: .05; pointer-events: none; }
 .strategy-intro-content { position: relative; padding-block: 96px; }
@@ -69,7 +69,7 @@
   .strategy-direction + .strategy-direction { border-top-width: 28px; }
   .strategy-intro-content { padding-block: 64px; }
   .strategy-intro-shade { background: #edf0f1cc; }
-  .strategy-intro-photo { object-position: 62% center; }
+  .strategy-intro-photo { object-position: center center; }
   .strategy-intro h2 { font-size: clamp(30px, 7.5vw, 46px); }
   .strategy-intro h2 span { gap: 10px; }
   .strategy-intro-description { font-size: 16px; }
