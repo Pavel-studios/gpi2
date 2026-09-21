@@ -2,6 +2,13 @@
 @import './tailwind.css';
 @import './theme.css';
 
+/* Hide Yandex promotional shortcuts while preserving controls and copyright. */
+[class*='ymaps-'][class*='-gotoymaps'],
+[class*='ymaps-'][class*='-gototaxi'],
+[class*='ymaps-'][class*='-gototech'] {
+  display: none !important;
+}
+
 .page-loader {
   position: fixed;
   inset: 0;

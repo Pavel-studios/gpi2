@@ -1,5 +1,6 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Building2, Clock, Download, Mail, MapPin } from 'lucide-react';
+import { Building2, Clock, Download, Eye, Mail, MapPin, Phone } from 'lucide-react';
 
 import contactsHero from '@/imports/tz-photos/contacts-hero-exact.webp';
 import contactsPostal from '@/imports/contacts/contacts-postal-n59a2606.webp';
@@ -7,11 +8,138 @@ import contactsProduction from '@/imports/contacts/contacts-production.webp';
 import { FadingPattern } from './ui/fading-pattern';
 
 const legalAddress =
-  '450069, Республика Башкортостан, г.о. город Уфа, г. Уфа, ул. Производственная, дом 5 корпус 1';
+  '450069, Республика Башкортостан, г.\u00A0Уфа, ул.\u00A0Производственная, дом\u00A05, корпус\u00A01';
 
-const postalAddress = '450005, Республика Башкортостан, г. Уфа, ул. Мингажева, дом 129';
+const postalAddress = '450005, Республика Башкортостан, г.\u00A0Уфа, ул.\u00A0Мингажева, дом\u00A0129';
 
 const email = 'mail@gpiufa.ru';
+const phone = '+7\u00A0(347)\u00A0293-43-23';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const mapCoordinates_1: [number, number] = [54.769206, 56.243924];
+const mapCoordinates_2: [number, number] = [54.736306, 55.971250];
+const mapCoordinatesCenter: [number, number] = [54.748996, 56.093309];
+
+const markerSvg = encodeURIComponent(`
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="80" viewBox="0 0 64 80">
+    <filter id="shadow" x="-50%" y="-30%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#263740" flood-opacity=".34"/>
+    </filter>
+    <path filter="url(#shadow)" d="M32 3C16.5 3 4 15.5 4 31c0 21.2 28 45 28 45s28-23.8 28-45C60 15.5 47.5 3 32 3Z" fill="#263740" stroke="#fff" stroke-width="4"/>
+    <circle cx="32" cy="31" r="11" fill="none" stroke="#fff" stroke-width="4"/>
+    <circle cx="32" cy="31" r="3.5" fill="#fff"/>
+  </svg>
+`);
+
+function YandexMap() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let map: any;
+    let cancelled = false;
+
+    const createMap = () => {
+      const ymaps = (window as any).ymaps;
+      if (!ymaps || !containerRef.current) return;
+
+      ymaps.ready(() => {
+        if (cancelled || !containerRef.current) return;
+
+        map = new ymaps.Map(
+          containerRef.current,
+          {
+            center: mapCoordinatesCenter,
+            zoom: 11,
+            controls: ['zoomControl', 'fullscreenControl'],
+          },
+          { suppressMapOpenBlock: true },
+        );
+
+        const markerLayout_1 = ymaps.templateLayoutFactory.createClass(`
+          <div style="position:absolute;left:0;top:0;display:flex;flex-direction:column;align-items:center;transform:translate(-50%,-100%);filter:drop-shadow(0 10px 16px rgba(38,55,64,.25));">
+            <div style="width:250px;margin-bottom:8px;padding:12px 14px;background:#263740;color:#fff;box-sizing:border-box;">
+              <div style="margin-bottom:5px;font-size:9px;line-height:1.25;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.58);">Производственная площадка</div>
+              <div style="font-size:12px;line-height:1.45;font-weight:600;">г.&nbsp;Уфа, ул.&nbsp;Производственная, дом&nbsp;5, корпус&nbsp;1</div>
+            </div>
+            <img src="data:image/svg+xml;charset=UTF-8,${markerSvg}" width="32" height="40" alt="" style="display:block;width:32px;height:40px;" />
+          </div>
+        `);
+        const markerLayout_2 = ymaps.templateLayoutFactory.createClass(`
+          <div style="position:absolute;left:0;top:0;display:flex;flex-direction:column;align-items:center;transform:translate(-50%,-100%);filter:drop-shadow(0 10px 16px rgba(38,55,64,.25));">
+            <div style="width:250px;margin-bottom:8px;padding:12px 14px;background:#263740;color:#fff;box-sizing:border-box;">
+              <div style="margin-bottom:5px;font-size:9px;line-height:1.25;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.58);">Почтовый адрес</div>
+              <div style="font-size:12px;line-height:1.45;font-weight:600;">г.&nbsp;Уфа, ул.&nbsp;Мингажева, дом&nbsp;129</div>
+            </div>
+            <img src="data:image/svg+xml;charset=UTF-8,${markerSvg}" width="32" height="40" alt="" style="display:block;width:32px;height:40px;" />
+          </div>
+        `);
+
+        const placemark_1 = new ymaps.Placemark(
+          mapCoordinates_1,
+          {
+            hintContent: 'Газ-Проект Инжиниринг',
+            balloonContentHeader: 'Газ-Проект Инжиниринг',
+            balloonContentBody: 'г. Уфа, ул. Производственная, дом 5, корпус 1',
+          },
+          {
+            iconLayout: markerLayout_1,
+            interactivityModel: 'default#transparent',
+            hasBalloon: false,
+            openBalloonOnClick: false,
+            cursor: 'default',
+            iconShape: {
+              type: 'Rectangle',
+              coordinates: [[-125, -112], [125, 0]],
+            },
+          },
+        );
+        const placemark_2 = new ymaps.Placemark(
+          mapCoordinates_2,
+          {
+            hintContent: 'Газ-Проект Инжиниринг',
+            balloonContentHeader: 'Газ-Проект Инжиниринг',
+            balloonContentBody: 'г. Уфа, ул. Мингажева, дом 129',
+          },
+          {
+            iconLayout: markerLayout_2,
+            interactivityModel: 'default#transparent',
+            hasBalloon: false,
+            openBalloonOnClick: false,
+            cursor: 'default',
+            iconShape: {
+              type: 'Rectangle',
+              coordinates: [[-125, -112], [125, 0]],
+            },
+          },
+        );
+
+        map.geoObjects.add(placemark_1);
+        map.geoObjects.add(placemark_2);
+      });
+    };
+
+    const existingScript = document.querySelector<HTMLScriptElement>('#yandex-maps-api');
+    if ((window as any).ymaps) {
+      createMap();
+    } else if (existingScript) {
+      existingScript.addEventListener('load', createMap, { once: true });
+    } else {
+      const script = document.createElement('script');
+      script.id = 'yandex-maps-api';
+      script.src = 'https://api-maps.yandex.ru/2.1/?lang=ru_RU';
+      script.async = true;
+      script.addEventListener('load', createMap, { once: true });
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      cancelled = true;
+      existingScript?.removeEventListener('load', createMap);
+      map?.destroy();
+    };
+  }, []);
+
+  return <div ref={containerRef} className="absolute inset-0" aria-label="Яндекс.Карта производственной площадки" />;
+}
 
 const contactCards = [
   {
@@ -30,7 +158,7 @@ const contactCards = [
     icon: Mail,
     label: 'Электронная почта',
     value: email,
-    note: 'Единый адрес для входящих обращений',
+    note: `Телефон: ${phone}`,
   },
   {
     icon: Clock,
@@ -91,17 +219,23 @@ const bankDetails = [
 export function ContactsSection() {
   return (
     <div className="bg-[#F3F5F5]">
-      <section className="relative min-h-[680px] overflow-hidden px-6 py-24 lg:px-10 lg:py-32">
-        <img
-          src={contactsHero}
-          alt="Здание Газ-Проект Инжиниринг"
+      <section className="relative min-h-[100svh] overflow-hidden px-6 py-24 lg:px-10 lg:py-32">
+        <video
+          src={`${base}/media/contacts-hero.mp4`}
+          poster={contactsHero}
           className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#263740]/95 via-[#263740]/78 to-[#263740]/30" />
         <FadingPattern opacity="0.075" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F3F5F5] to-transparent" />
 
-        <div className="relative mx-auto flex min-h-[500px] max-w-[1680px] items-end">
+        <div className="relative mx-auto flex min-h-[calc(100svh-12rem)] max-w-[1680px] items-end">
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
@@ -114,13 +248,13 @@ export function ContactsSection() {
               </span>
             </div>
 
-            {/* <h1 className="mb-7 max-w-3xl text-[clamp(42px,7vw,92px)] font-black leading-[0.95] tracking-[-0.06em] text-white">
-              Как нас найти
-            </h1> */}
+            <h1 className="mb-7 max-w-4xl text-[clamp(48px,7vw,112px)] font-black leading-[0.92] tracking-[-0.06em] text-white">
+              Как с&nbsp;нами связаться
+            </h1>
 
             <p className="max-w-2xl text-lg leading-8 text-white/78 md:text-xl">
-              Адреса офиса и производственной площадки, единая почта для обращений и
-              справочная информация по ООО «Газ-Проект Инжиниринг».
+              Офис и&nbsp;производственная площадка, карта предприятия, связь
+              с&nbsp;потребителем.
             </p>
           </motion.div>
         </div>
@@ -156,6 +290,15 @@ export function ContactsSection() {
                   {card.value}
                 </div>
                 <p className="text-sm leading-6 text-[#595B5C]">{card.note}</p>
+                {card.label === 'Электронная почта' && (
+                  <a
+                    href={`tel:${phone.replace(/[^+\d]/g, '')}`}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#50626C] transition-colors hover:text-[#263740]"
+                  >
+                    <Phone size={16} strokeWidth={1.8} />
+                    {phone}
+                  </a>
+                )}
               </motion.article>
             );
           })}
@@ -171,20 +314,16 @@ export function ContactsSection() {
             transition={{ duration: 0.65 }}
             className="border border-[#A7A9AC]/25 bg-white p-8 shadow-[0_24px_80px_rgba(38,55,64,0.08)] md:p-10"
           >
-            <div className="mb-6 inline-flex bg-[#263740]/5 px-4 py-2">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#50626C]">
+            <div className="mb-6 flex items-center gap-4 text-[#50626C]">
+              <span className="h-px w-12 bg-current opacity-50" aria-hidden="true" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em]">
                 Две точки присутствия
               </span>
             </div>
 
             <h2 className="mb-6 text-[clamp(32px,4vw,56px)] font-black leading-none tracking-[-0.045em] text-[#263740]">
-              Офис и производство в Уфе
+              Офис и&nbsp;производство в&nbsp;Уфе
             </h2>
-
-            <p className="mb-10 max-w-2xl text-base leading-8 text-[#595B5C]">
-              В блоке ниже указаны адреса из карточки предприятия. Справа оставлена
-              подготовленная область под будущую вставку интерактивной Яндекс.Карты.
-            </p>
 
             <div className="space-y-4">
               {locations.map((location, index) => (
@@ -195,7 +334,7 @@ export function ContactsSection() {
                   <img
                     src={location.image}
                     alt={location.title}
-                    className="h-36 w-full object-cover md:h-full"
+                    className="h-36 w-full bg-white object-contain md:h-full"
                   />
                   <div className="flex flex-col justify-center py-2">
                     <div className="mb-3 flex items-center gap-3">
@@ -222,25 +361,9 @@ export function ContactsSection() {
             transition={{ duration: 0.65, delay: 0.08 }}
             className="relative min-h-[640px] overflow-hidden border border-[#A7A9AC]/25 bg-white p-4 shadow-[0_30px_100px_rgba(38,55,64,0.12)]"
           >
-            <div className="relative flex h-full min-h-[608px] items-center justify-center overflow-hidden border border-dashed border-[#8D9DA6]/55 bg-[#F3F5F5]">
-              <div className="absolute inset-0 opacity-[0.65] [background-image:linear-gradient(#A7A9AC_1px,transparent_1px),linear-gradient(90deg,#A7A9AC_1px,transparent_1px)] [background-size:48px_48px]" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(80,98,108,0.12),transparent_28%)]" />
+            <div className="relative h-full min-h-[608px] overflow-hidden bg-[#E7EBED]">
+              <YandexMap />
 
-              <div className="relative max-w-md px-6 text-center">
-                <div className="mx-auto mb-7 grid h-20 w-20 place-items-center rounded-full bg-white text-[#50626C] shadow-[0_18px_50px_rgba(38,55,64,0.12)]">
-                  <MapPin size={34} strokeWidth={1.6} />
-                </div>
-                <div className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-[#8D9DA6]">
-                  Место под Яндекс.Карту
-                </div>
-                <h3 className="mb-5 text-[clamp(28px,4vw,44px)] font-black leading-none tracking-[-0.045em] text-[#263740]">
-                  Карта будет добавлена позже
-                </h3>
-                <p className="text-base leading-7 text-[#595B5C]">
-                  Этот блок подготовлен под вставку интерактивной карты Яндекса. Достаточно
-                  заменить содержимое заглушки на iframe или компонент карты.
-                </p>
-              </div>
             </div>
           </motion.div>
         </div>
@@ -255,19 +378,22 @@ export function ContactsSection() {
             transition={{ duration: 0.6 }}
             className="border border-[#A7A9AC]/25 bg-white p-8 shadow-[0_24px_80px_rgba(38,55,64,0.08)] md:p-10"
           >
-            <div className="mb-8 flex items-start justify-between gap-6">
+            <div className="mb-8 flex flex-col items-start justify-between gap-6 sm:flex-row">
               <div>
-                <div className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#50626C]">
-                  Реквизиты компании
+                <div className="mb-4 flex items-center gap-4 text-[#50626C]">
+                  <span className="h-px w-12 bg-current opacity-50" aria-hidden="true" />
+                  <span className="text-xs font-bold uppercase tracking-[0.2em]">
+                    Реквизиты компании
+                  </span>
                 </div>
                 <h2 className="text-[clamp(28px,4vw,48px)] font-black leading-none tracking-[-0.045em] text-[#263740]">
-                  Карточка предприятия
+                  Карта предприятия
                 </h2>
               </div>
               <a
-                href="/documents/company-card.docx"
+                href={`${base}/documents/company-card.docx`}
                 download
-                className="hidden items-center justify-center gap-3 bg-[#263740] px-6 py-4 text-sm font-black uppercase tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#50626C] md:inline-flex"
+                className="inline-flex items-center justify-center gap-3 bg-[#263740] px-6 py-4 text-sm font-black uppercase tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#50626C]"
               >
                 <Download size={18} />
                 Скачать карту предприятия
@@ -300,6 +426,41 @@ export function ContactsSection() {
                 ))}
               </div>
             </div> */}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="mt-8 border border-[#A7A9AC]/25 bg-white p-8 shadow-[0_24px_80px_rgba(38,55,64,0.08)] md:p-10"
+          >
+            <div className="mb-8 flex items-center gap-4 text-[#50626C]">
+              <span className="h-px w-12 bg-current opacity-50" aria-hidden="true" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em]">
+                Связь с&nbsp;потребителями
+              </span>
+            </div>
+
+            <div className="grid gap-4 lg:grid-cols-2">
+              <article className="flex min-h-44 flex-col justify-between border border-[#A7A9AC]/25 bg-[#F3F5F5] p-6 md:p-8">
+                <h3 className="mb-8 text-2xl font-black leading-tight tracking-[-0.025em] text-[#263740]">
+                  Политика в&nbsp;области качества
+                </h3>
+                <a href={`${base}/documents/quality-policy.pdf`} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-3 bg-[#263740] px-6 py-4 text-sm font-black uppercase tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#50626C]">
+                  <Eye size={18} /> Посмотреть
+                </a>
+              </article>
+
+              <article className="flex min-h-44 flex-col justify-between border border-[#A7A9AC]/25 bg-[#F3F5F5] p-6 md:p-8">
+                <h3 className="mb-8 text-2xl font-black leading-tight tracking-[-0.025em] text-[#263740]">
+                  Лист оценки удовлетворенности потребителя
+                </h3>
+                <a href={`${base}/documents/customer-satisfaction-sheet.docx`} download className="inline-flex w-fit items-center gap-3 bg-[#263740] px-6 py-4 text-sm font-black uppercase tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#50626C]">
+                  <Download size={18} /> Скачать лист оценки
+                </a>
+              </article>
+            </div>
           </motion.div>
         </div>
       </section>

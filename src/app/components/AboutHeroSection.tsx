@@ -87,7 +87,7 @@ export function AboutHeroSection() {
         </div>
         <img src={pattern} alt="" aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-full w-auto max-w-none -translate-x-[10%] -translate-y-[8%] brightness-0 invert opacity-[0.05]" />
         <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1920px] flex-col justify-end px-5 pb-12 pt-28 sm:px-6 lg:px-12 lg:pb-20">
-          <div className="section-eyebrow mb-8 self-start text-xs font-bold uppercase tracking-[0.22em] text-white/76">О компании</div>
+          <div className="mb-8 self-start border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-white/76 backdrop-blur-md">О компании</div>
           <h1 className="max-w-4xl text-white drop-shadow-lg" style={{ fontSize: 'clamp(46px, 8vw, 120px)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.96 }}>
             Более 20 лет<span className="block text-white/80">на рынке</span>
           </h1>
